@@ -145,51 +145,42 @@ public class Emails
             throw new Exception ("Erro ao atualizar dados do email");
         }
     }
-/////////////////// parei aqui ////////////////////
-    public static Aluno getAluno (int ra) throws Exception
+
+    public static Email getEmail (int idEmail) throws Exception
     {
-        if (novoRA > 99999 || novoRA < 10000)
-            throw new Exception ("RA invalido");
-
-        String ra2 = "" + novoRA;
-
-        return getAluno(ra2);
-    }
-
-    public static Aluno getAluno (String ra) throws Exception
-    {
-        Aluno aluno = null;
+        Email email = null;
 
         try
         {
             String sql;
 
             sql = "SELECT * " +
-                  "FROM ALUNO " +
-                  "WHERE RA = ?";
+                  "FROM Email " +
+                  "WHERE idEmail = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
-            BDSQLServer.COMANDO.setString (1, ra);
+            BDSQLServer.COMANDO.setInt (1, idEmail);
 
             MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
 
             if (!resultado.first())
                 throw new Exception ("Nao cadastrado");
 
-            aluno = new Aluno (resultado.getString("RA"),
-                               resultado.getString("NOME"),
-                               resultado.getString("EMAIL"));
+            email = new Email (resultado.getInt("idEmail"), 
+            				   resultado.getInt("idHub"),
+                               resultado.getString("endereço"),
+                               resultado.getString("senha"));
         }
         catch (SQLException erro)
         {
-            throw new Exception ("Erro ao procurar aluno");
+            throw new Exception ("Erro ao procurar email");
         }
 
-        return aluno;
+        return email;
     }
 
-    public static MeuResultSet getAlunos () throws Exception
+    public static MeuResultSet getEmails () throws Exception
     {
         MeuResultSet resultado = null;
 
@@ -198,7 +189,7 @@ public class Emails
             String sql;
 
             sql = "SELECT * " +
-                  "FROM ALUNO";
+                  "FROM Emails";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
@@ -206,18 +197,19 @@ public class Emails
         }
         catch (SQLException erro)
         {
-            throw new Exception ("Erro ao recuperar Alunos");
+            throw new Exception ("Erro ao recuperar Emails");
         }
 
         return resultado;
     }
     
-    public static Aluno[] listar() throws Exception
+    public static Email[] listar() throws Exception
     {
-    	Aluno[] Alunos = null;
+    	Email[] emails = null;
         try
         {
-            String sql;
+            /*
+        	String sql;
 
             sql = "SELECT * " +
                   "FROM ALUNO ";
@@ -225,23 +217,25 @@ public class Emails
             BDSQLServer.COMANDO.prepareStatement (sql);
 
             MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
-
+			*/
+        	MeuResultSet resultado = getEmails();
+        	
             if (!resultado.first())
-                throw new Exception ("Nao existem Alunos cadastrados");
+                throw new Exception ("Nao existem emails cadastrados");
             
-            ArrayList<Aluno> lista = new ArrayList<Aluno>();
+            ArrayList<Email> lista = new ArrayList<Email>();
             int i=0;
             
             do
             {
-            	lista.add(new Aluno(resultado.getString("RA"), resultado.getString("NOME"), resultado.getString("EMAIL")));
+            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha")));
             	i++;
             }while(resultado.next() == true);
             	
-            Alunos = new Aluno[i];
+            emails = new Email[i];
             for(int j=0; j<i; j++)
             {
-            	Alunos[j] = lista.get(j);
+            	emails[j] = lista.get(j);
             }
 			
 	    }
@@ -251,6 +245,6 @@ public class Emails
 	        throw new Exception ("Erro ao recuperar Alunos");
 	    }
         
-        return Alunos;
+        return emails;
     }
 }

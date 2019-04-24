@@ -23,3 +23,5 @@ CONSTRAINT FKemails FOREIGN KEY (emails) REFERENCES Email(idEmail)
 
 SELECT * FROM Hub
 SELECT * FROM Email
+
+SELECT * FROM Email WHERE idHub = 1

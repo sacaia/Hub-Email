@@ -52,7 +52,7 @@ public class Emails
         }
         catch (SQLException erro)
         {
-            throw new Exception ("Erro ao procurar Email");
+            throw new Exception ("Erro ao procurar email");
         }
 
         return retorno;
@@ -61,7 +61,7 @@ public class Emails
     public static void incluir (Email email) throws Exception
     {
         if (email==null)
-            throw new Exception ("Aluno nao fornecido");
+            throw new Exception ("Email nao fornecido");
 
         try
         {
@@ -197,7 +197,7 @@ public class Emails
         }
         catch (SQLException erro)
         {
-            throw new Exception ("Erro ao recuperar Emails");
+            throw new Exception ("Erro ao recuperar emails");
         }
 
         return resultado;
@@ -242,7 +242,7 @@ public class Emails
 	    catch (SQLException erro)
 	    {
 	    	erro.printStackTrace();
-	        throw new Exception ("Erro ao recuperar Alunos");
+	        throw new Exception ("Erro ao recuperar emails");
 	    }
         
         return emails;

@@ -14,12 +14,12 @@
   </head>
   <body>
 <!--
-    mt =
-    mb
-    ml
-    mr
-    my
-    mx =
+    mt = margin top
+    mb = margin bot
+    ml = margin left
+    mr = margin right
+    my = margin Y
+    mx = margin X
 
 -->
       
@@ -163,7 +163,7 @@
           </div>
       
           <div class="row mt-5">
-            <div class="col-3">
+            <div class="col-sm-6 col-md-4">
                 <!--<nav id="navbarVertical" class="navbar navbar-light bg-light">
                     <nav class="nav nav-pills flex-column">
                     
@@ -189,7 +189,7 @@
                     
                     </nav>
                 </nav>-->
-                <div id="navbarVertical" class="list-group shadow-sm">
+                <div id="navbarVertical" class="list-group shadow-sm mb-3">
                 
                     <a class="list-group-item list-group-item-action" href="#item1">Item 1</a>
                     
@@ -200,7 +200,7 @@
                 </div>
             </div>
               
-            <div class="col-9">
+            <div class="col-sm-6 col-md-8">
                 
                 <div data-spy="scroll" data-target="#navbarVertical" data-offset="0" class="scrollspySite">
                 
@@ -237,6 +237,249 @@
       
 <!---------------------------------CARDS--------------------------------->
       
+      <div class="container">
+          <div class="row my-5 justify-content-sm-center">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="card mb-5">
+
+                    <img class="card-img-top imagemCard" src="img/Raposa1.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">In id ante dapibus</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Curabitur viverra a dui in consectetur.</h6>
+                        <p class="card-text">In id ante dapibus, mollis urna id, placerat augue. Suspendisse porttitor, risus et eleifend tincidunt, risus metus suscipit purus, eu placerat metus augue ac sapien.</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Sed congue</li>
+                        <li class="list-group-item">Nam odio felis</li>
+                        <li class="list-group-item">Etiam ac dictum</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link" data-toggle="modal" data-target="#siteModal">Hunde</a>
+                        <a href="#" class="card-link">Suspendisse porttitor</a>
+                    </div>
+                    <div class="card-footer text-muted"> <!-- class="card-header" é a msm coisa só q tem q colocar em cima do card -->
+                     vel viverra elit nisl in diam
+                    </div>
+
+                </div> 
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="card mb-5">
+
+                    <img class="card-img-top imagemCard" src="img/Raposa2.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">In id ante dapibus</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Curabitur viverra a dui in consectetur.</h6>
+                        <p class="card-text">In id ante dapibus, mollis urna id, placerat augue. Suspendisse porttitor, risus et eleifend tincidunt, risus metus suscipit purus, eu placerat metus augue ac sapien.</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Sed congue</li>
+                        <li class="list-group-item">Nam odio felis</li>
+                        <li class="list-group-item">Etiam ac dictum</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">Hunde</a>
+                        <a href="#" class="card-link">Suspendisse porttitor</a>
+                    </div>
+                    <div class="card-footer text-muted"> <!-- class="card-header" é a msm coisa só q tem q colocar em cima do card -->
+                     vel viverra elit nisl in diam
+                    </div>
+
+                </div> 
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="card mb-5">
+
+                    <img class="card-img-top imagemCard" src="img/Raposa3.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">In id ante dapibus</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Curabitur viverra a dui in consectetur.</h6>
+                        <p class="card-text">In id ante dapibus, mollis urna id, placerat augue. Suspendisse porttitor, risus et eleifend tincidunt, risus metus suscipit purus, eu placerat metus augue ac sapien.</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Sed congue</li>
+                        <li class="list-group-item">Nam odio felis</li>
+                        <li class="list-group-item">Etiam ac dictum</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">Hunde</a>
+                        <a href="#" class="card-link">Suspendisse porttitor</a>
+                    </div>
+                    <div class="card-footer text-muted"> <!-- class="card-header" é a msm coisa só q tem q colocar em cima do card -->
+                     vel viverra elit nisl in diam
+                    </div>
+
+                </div> 
+            </div>
+
+          </div>
+        </div>
+      
+<!---------------------------------JUMBOTRON--------------------------------->
+      
+      <!-- com bordinhas
+    <div class="row">
+      
+        <div class="col-12">
+      
+            <div class="jumbotron text-center">
+                <h1>Jumbotron</h1>
+            </div>
+            
+        </div>
+             
+      </div>
+   sem bordinhas -->
+      <div class="jumbotron jumbotron-fluid">
+      
+        <div class="container">
+        
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-4">Jumbotron</h1>
+                    <p class="lead">
+                    Vivamus a libero accumsan, consequat mauris vel, dignissim diam. Phasellus feugiat lacinia enim ac rhoncus. Praesent pulvinar libero vel sodales tempus.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+            
+                <div class="col-12">
+                
+                    <ul class="nav nav-pills justify-content-center mb-3" id="pills-nav">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link active" id="nav-pills-1" data-toggle="pill" href="#nav-item-1">Proin porta</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-pills-2" data-toggle="pill" href="#nav-item-2">tellus condimentum</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-pills-3" data-toggle="pill" href="#nav-item-3">Mauris tempor</a>
+                        </li>
+                        
+                    </ul>
+                    
+                    <div class="tab-content" id="nav-pills-content">
+                    
+                        <div class="tab-pane fade show active" id="nav-item-1" role="tabpanel">
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <div class="embed-responsive embed-responsive-16by9"> <!-- dimensoes possiveis: 21by9, 16by9, 4by3, 1by1 -->
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/kjp9IGSjBlU"></iframe>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="col-sm-6">
+                                    <p>Vivamus a libero accumsan, consequat mauris vel, dignissim diam. Phasellus feugiat lacinia enim ac rhoncus. Praesent pulvinar libero vel sodales tempus. Nam nec metus scelerisque, condimentum odio a, molestie velit.</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="tab-pane fade" id="nav-item-2" role="tabpanel">
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <div class="embed-responsive embed-responsive-16by9"> <!-- dimensoes possiveis: 21by9, 16by9, 4by3, 1by1 -->
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/0pEFDGwafI8"></iframe>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="col-sm-6">
+                                    <p>Donec mattis sodales risus, vel lobortis tortor accumsan non. In viverra mollis est, eget dictum ligula. Mauris tempor urna sed turpis ultrices, non feugiat arcu egestas. Vestibulum lobortis nisi leo, sed viverra quam rhoncus a. Proin porta tortor vitae risus lobortis, eget vulputate neque elementum. Curabitur at consectetur justo. Nullam ultricies, ligula blandit auctor pharetra, velit sapien vestibulum quam, posuere ullamcorper leo arcu a libero. Suspendisse mattis rutrum neque, in bibendum orci aliquet at. Nulla est ante, tempus ut arcu et, volutpat luctus ipsum. Praesent ac turpis in tellus condimentum sagittis in in augue. Etiam ultrices mollis magna, a lacinia enim ullamcorper facilisis. Suspendisse venenatis aliquam nulla, sed pharetra orci blandit a. Curabitur efficitur nisl viverra neque vulputate ultricies.</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="tab-pane fade" id="nav-item-3" role="tabpanel">
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    
+                                    <div class="embed-responsive embed-responsive-16by9"> <!-- dimensoes possiveis: 21by9, 16by9, 4by3, 1by1 -->
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/LcR_6j66Psk"></iframe>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="col-sm-6">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare cursus tellus at cursus. Pellentesque laoreet purus at rutrum tempor. Vivamus quis maximus magna. Morbi congue placerat sapien, id rutrum diam semper in. Duis auctor vestibulum sapien nec lacinia. In id tellus ac lorem facilisis tincidunt at eu dolor.</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                
+                </div>
+            
+            </div>
+            
+        </div>
+      
+      </div>
+         
+<!---------------------------------MODAL--------------------------------->
+      
+      <div class="modal fade" id="siteModal" tabindex="-1" role="dialog"> <!-- fade = animação -->
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    
+                    <h5 class="modal-title">Suspendisse potenti</h5>
+                    
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span><!-- $time; = x -->
+                    </button>
+                    
+                </div>
+                
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        
+                        <div class="row">
+                            <div class="col-6">
+                                <h4>Titulo lindo</h4>
+                                <p>
+                                     Donec mattis sodales risus, vel lobortis tortor accumsan non. In viverra mollis est, eget dictum ligula. Mauris tempor urna sed turpis ultrices, non feugiat arcu egestas. Vestibulum lobortis nisi leo, sed viverra quam rhoncus a. Proin porta tortor vitae risus lobortis, eget vulputate neque elementum. Curabitur at consectetur justo. Nullam ultricies, ligula blandit auctor pharetra, velit sapien vestibulum quam, posuere ullamcorper leo arcu a libero. Suspendisse mattis rutrum neque, in bibendum orci aliquet at.
+                                </p>
+                            </div>
+                        
+                            <div class="col-6">
+                                <h4>Titulo lindo 2.0</h4>
+                                <p>
+                                     Donec mattis sodales risus, vel lobortis tortor accumsan non. In viverra mollis est, eget dictum ligula. Mauris tempor urna sed turpis ultrices, non feugiat arcu egestas. Vestibulum lobortis nisi leo, sed viverra quam rhoncus a. Proin porta tortor vitae risus lobortis, eget vulputate neque elementum. Curabitur at consectetur justo. Nullam ultricies, ligula blandit auctor pharetra, velit sapien vestibulum quam, posuere ullamcorper leo arcu a libero. Suspendisse mattis rutrum neque, in bibendum orci aliquet at.
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                    
+                
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    
+                </div>
+            
+            </div>
+        </div>
+      </div>
       
       
       

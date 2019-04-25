@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>O site mais bunitu do mundoo!!</title>
+  </head>
+  <body>
+<!--
+    mt =
+    mb
+    ml
+    mr
+    my
+    mx =
+
+-->
+      
+<!---------------------------------NAVBAR----------------------------------->
+      
+      <nav class="navbar navbar-expand-lg navbar-dark bg-warning"> <!-- navbar-light = texto escuro, navbar-dark = texto claro -->
+        
+        <div class="container"> <!-- container, basicamente, da um espacinho dos lados da tela, n deiax encostar nas bordas-->
+            
+            <a class="navbar-brand h1 mb-0" href="#">Curso</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+                <span class="navbar-toggler-icon"></span>
+            </button> <!-- pra quando a tela ficar mt pequena aparece o botão-->
+
+            <div class="collapse navbar-collapse" id="navbarSite">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Início</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Perfil</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Serviços</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Depoimentos</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contatos</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" data-id="navDrop">
+                            Social
+                        </a>
+                        
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Facebook</a>
+                            <a class="dropdown-item" href="#">Twitter</a>
+                            <a class="dropdown-item" href="#">Instagram</a>
+                        </div>
+                        
+                    </li>
+                </ul>
+                
+                <form class="form-inline">
+                
+                    <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar...">
+                    
+                    <button class="btn btn-dark" type="Submit">OK</button>
+                
+                </form>
+                
+            </div>
+            
+        </div>
+        
+      </nav>
+      
+<!---------------------------------CAROUSEL--------------------------------->
+      
+
+      <div id="carouselSite" class="carousel slide" data-ride="carousel">
+
+          <ol class="carousel-indicators">
+            <li data-target="#carouselSite" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselSite" data-slide-to="1"></li>
+          <li data-target="#carouselSite" data-slide-to="2"></li>
+          <li data-target="#carouselSite" data-slide-to="3"></li>
+          </ol>
+          
+          <div class="carousel-inner">
+          
+            <div class="carousel-item active">    
+                <img src="img/Vulpix2.0.png" class="img-fluid d-block carouselSite">
+                
+                <div class="carousel-caption d-none d-sm-block text-info">
+                    <h1>Lorem Ipsum</h1>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae metus tortor.</p>
+                </div>
+            </div>
+              
+            <div class="carousel-item carouselSite">        
+                <img src="img/PopotienaF.png" class="img-fluid d-block carouselSite">
+                
+                <div class="carousel-caption d-none d-sm-block text-info">
+                    <h1>Lorem Ipsum</h1>
+                    <p class="lead">Quisque quis turpis metus. Duis imperdiet, sapien eu suscipit gravida, tellus ante sollicitudin turpis, ac bibendum mi augue eu quam. Integer non sollicitudin sem. Nulla quis dictum tellus, vel tristique neque.</p>
+                </div>
+            </div>
+              
+            <div class="carousel-item carouselSite">      
+                <img src="img/Shinx2.1.png" class="img-fluid d-block carouselSite"> 
+                
+                <div class="carousel-caption d-none d-sm-block text-info">
+                    <h1>Lorem Ipsum</h1>
+                    <p class="lead">Integer semper, turpis in convallis fringilla, risus elit mattis urna, eu congue lorem massa a ipsum.</p>
+                </div>
+            </div>
+              
+            <div class="carousel-item carouselSite">      
+                <img src="img/Empoleon2.1.png" class="img-fluid d-block carouselSite">
+                
+                <div class="carousel-caption d-none d-sm-block text-info">
+                    <h1>Lorem Ipsum</h1>
+                    <p class="lead">Vivamus quis tempor lacus. Nam lectus mauris, tincidunt in mollis at, euismod ac erat.</p>
+                </div>
+            </div>
+          </div>
+
+          <a class="carousel-control-prev" href="#carouselSite" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          
+          <a class="carousel-control-next" href="#carouselSite" role="button" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="sr-only">Avançar</span>
+          </a>
+          
+      </div>   
+      
+<!---------------------------------SCROLLSPY--------------------------------->
+      
+      <div class="container mt-5">
+      
+          <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-3">Lorem Ipsum</h1>
+                <p class="lead">Suspendisse nec aliquet arcu. Vivamus quis tempor lacus. Nam lectus mauris, tincidunt in mollis at, euismod ac erat. Vivamus ut purus non risus sollicitudin malesuada. Suspendisse ut scelerisque quam, at egestas nisi.</p> 
+            </div>
+          </div>
+      
+          <div class="row mt-5">
+            <div class="col-3">
+                <!--<nav id="navbarVertical" class="navbar navbar-light bg-light">
+                    <nav class="nav nav-pills flex-column">
+                    
+                        <a class="nav-link" href="#item1">Item 1</a>
+                        
+                        <nav class="nav nav-pills flex-column">
+                        
+                            <a class="nav-link ml-3" href="#item1-1">Item 1.1</a>
+                            <a class="nav-link ml-3" href="#item1-2">Item 1.2</a>
+                        
+                        </nav>
+                        
+                        <a class="nav-link mt-2" href="#item2">Item 2</a>
+                        <a class="nav-link mt-2" href="#item3">Item 3</a>
+                        
+                        <nav class="nav nav-pills flex-column">
+                        
+                            <a class="nav-link ml-3" href="#item3-1">Item 3.1</a>
+                            <a class="nav-link ml-3" href="#item3-2">Item 3.2</a>
+                            <a class="nav-link ml-3" href="#item3-3">Item 3.3</a>
+                        
+                        </nav>
+                    
+                    </nav>
+                </nav>-->
+                <div id="navbarVertical" class="list-group shadow-sm">
+                
+                    <a class="list-group-item list-group-item-action" href="#item1">Item 1</a>
+                    
+                    <a class="list-group-item list-group-item-action" href="#item2">Item 2</a>
+                    
+                    <a class="list-group-item list-group-item-action" href="#item3">Item 3</a>
+                
+                </div>
+            </div>
+              
+            <div class="col-9">
+                
+                <div data-spy="scroll" data-target="#navbarVertical" data-offset="0" class="scrollspySite">
+                
+                    <h4 id="item1">Nullam facilisis</h4>
+                    <p>Suspendisse nec aliquet arcu. Vivamus quis tempor lacus. Nam lectus mauris, tincidunt in mollis at, euismod ac erat. Vivamus ut purus non risus sollicitudin malesuada</p>
+                    
+                        <h5 id="item1-1">Maecenas</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu aliquam risus, id congue felis. Etiam ac vestibulum magna. Integer eget ultrices orci. Fusce scelerisque sodales convallis. Quisque vitae lorem eleifend, aliquet velit maximus, condimentum ipsum. Donec in congue felis, ut blandit erat. Vestibulum nisi ante, fermentum eget libero non, molestie semper velit. Curabitur sit amet orci ac magna accumsan accumsan id eget ipsum. Quisque quis turpis metus.</p>
+
+                        <h5 id="item1-2">Sed</h5>
+                        <p>Suspendisse ut consequat ipsum. Maecenas viverra facilisis mollis. Maecenas sagittis iaculis arcu nec luctus. Integer sed ornare nunc. Sed sollicitudin rutrum tortor vehicula dignissim. Phasellus tincidunt massa in orci dictum auctor. Maecenas a velit et eros efficitur dictum. Praesent sagittis, tortor commodo aliquam feugiat, nisi est aliquet leo, consequat euismod nulla magna et eros. Nullam quis tellus elementum, gravida risus porttitor, suscipit risus. Nunc viverra, turpis mattis ullamcorper congue, ante enim vehicula dolor, ut tincidunt lorem lectus sit amet sapien. In feugiat vitae ipsum vel consequat. Vivamus laoreet consequat leo. Vestibulum velit justo, malesuada ut hendrerit volutpat, cursus id neque.</p>
+                    
+                    <h4 id="item2">Ut egestas</h4>
+                    <p>Donec non cursus quam. Sed dictum lacus ut efficitur volutpat. Vivamus rhoncus aliquam justo nec mollis. Integer nec orci turpis. Donec pharetra, ante id tincidunt rhoncus, diam diam ullamcorper augue, sit amet accumsan ex lacus bibendum urna.</p>
+                    
+                    <h4 id="item3">Vestibulum velit justo</h4>
+                    <p>Suspendisse ut consequat ipsum. Maecenas viverra facilisis mollis. Maecenas sagittis iaculis arcu nec luctus.</p>
+                    
+                        <h5 id="item3-1">Donec</h5>
+                        <p>Donec non cursus quam. Sed dictum lacus ut efficitur volutpat. Vivamus rhoncus aliquam justo nec mollis. Integer nec orci turpis. Donec pharetra, ante id tincidunt rhoncus, diam diam ullamcorper augue, sit amet accumsan ex lacus bibendum urna. Maecenas non justo sem. Curabitur bibendum lacinia malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pharetra turpis eget nisl interdum aliquam id sit amet turpis. Nulla hendrerit pharetra mi ac dapibus. Phasellus ullamcorper volutpat semper. Integer tincidunt hendrerit ipsum, sed euismod elit suscipit id. Aliquam congue mollis nulla, vel volutpat quam ultrices congue. Mauris fermentum metus et ligula finibus ornare. Aenean at tincidunt sem, sit amet ultricies odio.</p>
+
+                        <h5 id="item3-2">Mauris</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu aliquam risus, id congue felis. Etiam ac vestibulum magna. Integer eget ultrices orci. Fusce scelerisque sodales convallis. Quisque vitae lorem eleifend, aliquet velit maximus, condimentum ipsum. Donec in congue felis, ut blandit erat. Vestibulum nisi ante, fermentum eget libero non, molestie semper velit. Curabitur sit amet orci ac magna accumsan accumsan id eget ipsum. Quisque quis turpis metus.</p>
+                    
+                        <h5 id="item3-2">Donec </h5>
+                        <p>Duis imperdiet, sapien eu suscipit gravida, tellus ante sollicitudin turpis, ac bibendum mi augue eu quam. Integer non sollicitudin sem. Nulla quis dictum tellus, vel tristique neque. Cras tempus, tortor a posuere ullamcorper, tortor tellus varius sem, eget vulputate mauris tortor eu urna. Nulla tempus leo non libero iaculis laoreet. Quisque et massa et urna vehicula pharetra. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                
+                </div>
+                
+            </div>
+          </div>
+          
+      </div>
+      
+<!---------------------------------CARDS--------------------------------->
+      
+      
+      
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+  </body>
+</html>

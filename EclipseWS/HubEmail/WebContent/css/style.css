@@ -20,3 +20,15 @@
   background-color: #ffd016;
   border-color: #ffd016;
 }
+
+.bg-null{
+    background: rgba(0,0,0,0);
+}
+
+.borderless{
+    border: none;
+}
+
+.inline{
+    display: inline;
+}

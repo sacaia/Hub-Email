@@ -13,3 +13,10 @@
 .imagemCard{
     height: 300px;
 }
+
+.list-group-item.active.scrollspy-item{
+  z-index: 2;
+  color: #fff;
+  background-color: #ffd016;
+  border-color: #ffd016;
+}

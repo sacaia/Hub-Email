@@ -32,3 +32,22 @@
 .inline{
     display: inline;
 }
+
+.pillMail{
+    color: #f8f9fa;
+    background-color: #343a40;
+}
+
+.pillMail:hover{
+    color: #343a40;
+    background-color: #f8f9fa;
+}
+/*
+.box-checkbox:hover{
+    background-color: rgba(125, 125, 125, 0.2);
+    border-radius: 2.5px;
+}
+*/
+.checkbox{
+    margin-top: 3.5px;
+}

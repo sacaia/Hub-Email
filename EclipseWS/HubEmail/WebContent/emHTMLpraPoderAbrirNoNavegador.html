@@ -46,14 +46,13 @@
                     <!-- Conteudo q vai expandir -->
                     <div class="collapse navbar-collapse" id="navbarSite">
                        
-                        <div class="list-group inline">
-                            <a href="#" class="list-group-item list-group-item-action inline">
-                            Cras
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action inline">Dapibus</a>
-                            <a href="#" class="list-group-item list-group-item-action inline">Morbi</a>
-                            <a href="#" class="list-group-item list-group-item-action inline">Porta</a>
-                        </div>
+                        <ul class="nav nav-pills mr-auto">
+                            <li class="nav-items align-middle box-checkbox">
+                                <i class="far fa-square not-checked fa-2x checkbox" id="checkboxAll"></i>
+                            </li>
+                    
+                            
+                        </ul>
                         
                         <form class="form-inline">
                             <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar...">
@@ -82,13 +81,51 @@
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
       
-      <script>
+    <script>
       
+        $(document).ready(function(){
+            $("#checkboxAll").click(function(){
+                if($("#checkboxAll").hasClass("not-checked"))
+                {
+                    $(".not-checked").addClass("checked");
+                    $(".not-checked").removeClass("far fa-square not-checked");
+                    $(".checked").addClass("fas fa-check-square");
+                } 
+                else 
+                {
+                    if($("#checkboxAll").hasClass("checked"))
+                    {
+                        $(".checked").addClass("not-checked");
+                        $(".checked").removeClass("fas fa-check-square checked");
+                        $(".not-checked").addClass("far fa-square not-checked");                   
+                    }
+                }
+            });
+            
+            $("#checkboxAll").hover(function(){
+                if($("#checkboxAll").hasClass("not-checked"))
+                {
+                    $(".not-checked").addClass("checked");
+                    $(".not-checked").removeClass("far fa-square not-checked");
+                    $(".checked").addClass("fas fa-check-square");
+                } 
+            },
+            function(){
+                if($("#checkboxAll").hasClass("checked"))
+                    {
+                        $(".checked").addClass("not-checked");
+                        $(".checked").removeClass("fas fa-check-square checked");
+                        $(".not-checked").addClass("far fa-square not-checked");                   
+                    }
+            }); 
+            
+        });
+
         $(function () {
-          $('[data-toggle="popover"]').popover()
+            $('[data-toggle="popover"]').popover()
         })
       
-      </script>
+    </script>
     
 </body>
 </html>

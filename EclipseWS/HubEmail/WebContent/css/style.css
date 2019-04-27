@@ -1,3 +1,23 @@
+/*
+Red         #F44336        
+Deep orange #FF5722    
+Orange      #FF9800    
+Amber       #FFC107
+Yellow      #FFEB3B        
+Lime        #CDDC39        
+Green       #8BC34A        
+Dark green  #4CAF50
+Teal        #009688        
+Cyan        #00BCD4        
+Blue        #03A9F4        
+Dark blue   #2196F3
+Indigo      #3F51B5        
+Deep Purple #673AB7    
+Purple      #9C27B0    
+Magenta     #E91E63
+Blue gray   #607D8B
+*/
+/*///////////////////////////////////////*/
 .scrollspySite{
     position: relative; 
     overflow: auto;
@@ -20,7 +40,7 @@
   background-color: #ffd016;
   border-color: #ffd016;
 }
-
+/*/////////////////////////////////////*/
 .bg-null{
     background: rgba(0,0,0,0);
 }
@@ -42,12 +62,35 @@
     color: #343a40;
     background-color: #f8f9fa;
 }
-/*
-.box-checkbox:hover{
+
+.icon-menu:hover{
     background-color: rgba(125, 125, 125, 0.2);
     border-radius: 2.5px;
+    cursor: pointer;
 }
-*/
-.checkbox{
-    margin-top: 3.5px;
+
+.centerY{
+    margin: auto;
+}
+
+.bg-selected{
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+#titulo-contas{
+    background-color: #FF9800;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.bg-navbar{
+    background-color: #FFC107;
+}
+
+.texto-limitado{
+    max-width: 25ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

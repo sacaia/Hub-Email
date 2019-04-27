@@ -22,42 +22,69 @@
 
   <!-- Linha Principal -->
 	<div class="row">
-    <!-- Coluna de Contas de Emails -->
-        <div class="col-sm-3">
-            
-            <h1 class="text-center">Contas</h1>
+    
+        <!-- Coluna de Pastas -->
+        <div class="col-sm-2 p-0">
+        
+            <h1 class="text-center">Pastas</h1>
         
         </div>
         
     <!-- Coluna de Emails -->
-        <div class="col-sm-7">
+        <div class="col-sm-7 p-0">
         
-            <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+            <nav class="navbar navbar-expand-lg bg-navbar">
             
-                <div class="container">
+                <div class="container px-1">
                     
-                    <a class="navbar-brand h1 mb-0" href="#">Emails</a>
+                    <!-- Botão de enviar email -->
+                    <a class="btn btn-outline-dark navbar-brand h1 mb-0" href="#">Enviar <i class="fas fa-paper-plane"></i></a>
                     
                     <!-- pra quando a tela ficar mt pequena aparece o botão -->
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+                    <button class="navbar-dark navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
                     <span class="navbar-toggler-icon"></span>
                     </button> 
                     
                     <!-- Conteudo q vai expandir -->
                     <div class="collapse navbar-collapse" id="navbarSite">
                        
+                        <!-- Icones de navegação -->
                         <ul class="nav nav-pills mr-auto">
-                            <li class="nav-items align-middle box-checkbox">
-                                <i class="far fa-square not-checked fa-2x checkbox" id="checkboxAll"></i>
+                            
+                            <li class="nav-items align-middle centerY mr-3">
+                                <i class="far fa-square not-checked fa-2x checkbox" id="checkboxAll" tabindex="1"></i>
+                            </li>
+                            
+                            <li class="nav-items align-middle centerY mr-2">
+                                <i class="fas fa-envelope fa-2x nao-lida" id="lida-naoLida" tabindex="1"></i>
+                            </li>
+                            
+                            <li class="nav-items align-middle centerY">
+                                <i class="fas fa-trash-alt fa-2x" id="deletar" tabindex="1"></i>
                             </li>
                     
-                            
                         </ul>
                         
-                        <form class="form-inline">
+                        <!-- Formulário de pesquisa -->
+                        <form class="form-inline d-flex justify-content-around">
                             <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar...">
-                            <button class="btn btn-dark" type="Submit"><i class="fas fa-search"></i></button>
+                            <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
                         </form>
+                        
+                        <!-- Pagination -->
+                        <nav class="ml-3">
+                            <ul class="pagination justify-content-end centerY">
+                                <li class="page-item">
+                                    <a class="page-link text-light bg-dark border-dark" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a>
+                                </li>
+                                <li class="page-item"><a class="page-link text-dark bg-selected" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link text-light bg-dark border-dark" href="#"><i class="fas fa-angle-right"></i></a>
+                                </li>
+                          </ul>
+                        </nav>
                         
                     </div>
                     
@@ -67,59 +94,40 @@
         
         </div>
         
-    <!-- Coluna de Pastas -->
-        <div class="col-sm-2">
-        
-            <h1 class="text-center">Pastas</h1>
+    <!-- Coluna de Contas de Emails -->
+        <div class="col-sm-3 p-0">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start p-0" id="titulo-contas">
+                    <h1 class="pl-4 text-light">Contas</h1>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 texto-limitado">cc17189@g.unicamp.br</h5><span class="badge badge-secondary centerY p-2 text-">New</span>
+                    </div>
+                    
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 texto-limitado">lucasalvimromani@gmail.com</h5><span class="badge badge-secondary centerY p-2 text-">New</span>
+                    </div>
+                    
+                </a>
+            </div>
         
         </div>
-    
-    </div>
 
+    </div>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-slim.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
-      
+    <script src="js/script.js"></script>
+    
     <script>
       
-        $(document).ready(function(){
-            $("#checkboxAll").click(function(){
-                if($("#checkboxAll").hasClass("not-checked"))
-                {
-                    $(".not-checked").addClass("checked");
-                    $(".not-checked").removeClass("far fa-square not-checked");
-                    $(".checked").addClass("fas fa-check-square");
-                } 
-                else 
-                {
-                    if($("#checkboxAll").hasClass("checked"))
-                    {
-                        $(".checked").addClass("not-checked");
-                        $(".checked").removeClass("fas fa-check-square checked");
-                        $(".not-checked").addClass("far fa-square not-checked");                   
-                    }
-                }
-            });
-            
-            $("#checkboxAll").hover(function(){
-                if($("#checkboxAll").hasClass("not-checked"))
-                {
-                    $(".not-checked").addClass("checked");
-                    $(".not-checked").removeClass("far fa-square not-checked");
-                    $(".checked").addClass("fas fa-check-square");
-                } 
-            },
-            function(){
-                if($("#checkboxAll").hasClass("checked"))
-                    {
-                        $(".checked").addClass("not-checked");
-                        $(".checked").removeClass("fas fa-check-square checked");
-                        $(".not-checked").addClass("far fa-square not-checked");                   
-                    }
-            }); 
-            
-        });
+        
 
         $(function () {
             $('[data-toggle="popover"]').popover()

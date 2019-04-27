@@ -26,7 +26,35 @@
         <!-- Coluna de Pastas -->
         <div class="col-sm-2 p-0">
         
-            <h1 class="text-center">Pastas</h1>
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action flex-column align-items-start p-0" id="titulo-pastas">
+                    <h1 class="text-center text-dark">Pastas</h1>
+                </a>
+            </div>
+            <nav id="navbarVertical" class="navbar navbar-light bg-light">
+                <nav class="nav nav-pills flex-column ml-3">
+
+                    <a class="nav-link" href="#item1">Item 1</a>
+
+                    <nav class="nav nav-pills flex-column">
+
+                        <a class="nav-link ml-3" href="#item1-1">Item 1.1</a>
+                        <a class="nav-link ml-3" href="#item1-2">Item 1.2</a>
+
+                    </nav>
+
+                    <a class="nav-link mt-2" href="#item2">Item 2</a>
+                    <a class="nav-link mt-2" href="#item3">Item 3</a>
+
+                    <nav class="nav nav-pills flex-column">
+
+                        <a class="nav-link ml-3" href="#item3-1">Item 3.1</a>
+                        <a class="nav-link ml-3" href="#item3-2">Item 3.2</a>
+                        <a class="nav-link ml-3" href="#item3-3">Item 3.3</a>
+
+                    </nav>
+                </nav>
+            </nav>
         
         </div>
         
@@ -52,15 +80,15 @@
                         <ul class="nav nav-pills mr-auto">
                             
                             <li class="nav-items align-middle centerY mr-3">
-                                <i class="far fa-square not-checked fa-2x checkbox" id="checkboxAll" tabindex="1"></i>
+                                <i class="far fa-square not-checked fa-2x icon-menu" id="checkboxAll" tabindex="1"></i>
                             </li>
                             
                             <li class="nav-items align-middle centerY mr-2">
-                                <i class="fas fa-envelope fa-2x nao-lida" id="lida-naoLida" tabindex="1"></i>
+                                <i class="fas fa-envelope fa-2x nao-lida icon-menu" id="lida-naoLida" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Marcar como lida"></i>
                             </li>
                             
                             <li class="nav-items align-middle centerY">
-                                <i class="fas fa-trash-alt fa-2x" id="deletar" tabindex="1"></i>
+                                <i class="fas fa-trash-alt fa-2x icon-menu" id="deletar" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Excluir"></i>
                             </li>
                     
                         </ul>
@@ -74,14 +102,14 @@
                         <!-- Pagination -->
                         <nav class="ml-3">
                             <ul class="pagination justify-content-end centerY">
-                                <li class="page-item">
-                                    <a class="page-link text-light bg-dark border-dark" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a>
+                                <li class="page-item disabled" id="pag-ant-container">
+                                    <a class="page-link text-light bg-dark border-dark" href="#" tabindex="-1" id="pag-ant"><i class="fas fa-angle-left"></i></a>
                                 </li>
-                                <li class="page-item"><a class="page-link text-dark bg-selected" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link text-light bg-dark border-dark" href="#"><i class="fas fa-angle-right"></i></a>
+                                <li class="page-item"><a class="page-link text-dark bg-selected" href="#" id="pag1">1</a></li>
+                                <li class="page-item"><a class="page-link text-dark" href="#" id="pag2">2</a></li>
+                                <li class="page-item"><a class="page-link text-dark" href="#" id="pag3">3</a></li>
+                                <li class="page-item" id="pag-prox-container">
+                                    <a class="page-link text-light bg-dark border-dark" href="#" id="pag-prox"><i class="fas fa-angle-right"></i></a>
                                 </li>
                           </ul>
                         </nav>
@@ -97,7 +125,7 @@
     <!-- Coluna de Contas de Emails -->
         <div class="col-sm-3 p-0">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start p-0" id="titulo-contas">
+                <a class="list-group-item list-group-item-action flex-column align-items-start p-0" id="titulo-contas">
                     <h1 class="pl-4 text-light">Contas</h1>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -110,10 +138,18 @@
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1 texto-limitado">lucasalvimromani@gmail.com</h5><span class="badge badge-secondary centerY p-2 text-">New</span>
+                        <h5 class="mb-1 texto-limitado">euNMudeiOEmailPraVcNver.com</h5><span class="badge badge-secondary centerY p-2 text-">New</span>
                     </div>
                     
                 </a>
+                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                    
+                    <div class="d-flex w-100 justify-content-between">
+                        <button class="btn btn-outline-danger btn-block btn-lg" id="btn-add-conta" href="#"><i class="fas fa-plus"></i> Nova conta</button>
+                    </div>
+                    
+                </a>
+                
             </div>
         
         </div>
@@ -126,12 +162,14 @@
     <script src="js/script.js"></script>
     
     <script>
-      
         
-
         $(function () {
             $('[data-toggle="popover"]').popover()
-        })
+        });
+        
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
       
     </script>
     

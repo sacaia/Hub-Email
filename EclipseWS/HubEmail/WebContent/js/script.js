@@ -1,5 +1,5 @@
-//////////////ON CLICK "CHECKBOX"////////////////////////////
 $(document).ready(function(){
+//////////////ON CLICK "CHECKBOX"////////////////////////////
     $("#checkboxAll").click(function(){
         if($(this).hasClass("not-checked"))
         {
@@ -14,7 +14,6 @@ $(document).ready(function(){
                 $(this).removeClass("fas fa-check-square checked");                 
             }
         }
-        
     });
 //////////////ON HOVER "CHECKBOX"////////////////////////////
     /*
@@ -80,7 +79,8 @@ $(document).ready(function(){
                     "data-original-title" : "Marcar como lida"
                 });
             }
-        }    
+        }  
+        // Ver se da pra tirar o foco e voltar pra resetar o tooltip //
     });
 //////////////ON CLICK PAG-PROX////////////////////////////
     $("#pag-prox").click(function(){
@@ -189,5 +189,52 @@ $(document).ready(function(){
             return;
         }
     });
+/////////////////ON CLICK PASTA1//////////////////////////
+    $("#pasta1").click(function(){
+        if($(this).hasClass("fechada"))
+        {
+            $(this).removeClass("fechada");
+            $(this).addClass("aberta");
+            $("#icon-pasta1").removeClass("fa-folder");
+            $("#icon-pasta1").addClass("fa-folder-open");
+        } 
+        else
+        {
+            if($(this).hasClass("aberta"))
+            {
+                $(this).removeClass("aberta");
+                $(this).addClass("fechada");
+                $("#icon-pasta1").removeClass("fa-folder-open");
+                $("#icon-pasta1").addClass("fa-folder");             
+            }
+        }
+    });
+/////////////////ON CLICK PAG1////////////////////////////
+    $("#conta1").click(function(){
+        if($(this).hasClass("active"))
+        {
+            return;
+        }
+        if($("#conta2").hasClass("active"))
+        {
+            $("#conta2").removeClass("active");
+            $(this).addClass("active");
+            return;
+        }
+    });
+/////////////////ON CLICK PAG2////////////////////////////
+    $("#conta2").click(function(){
+        if($(this).hasClass("active"))
+        {
+            return;
+        }
+        if($("#conta1").hasClass("active"))
+        {
+            $("#conta1").removeClass("active");
+            $(this).addClass("active");
+            return;
+        }
+    });
+    
 //////////////////////////////////////////////////////////
 });

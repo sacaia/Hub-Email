@@ -16,6 +16,7 @@ Deep Purple #673AB7
 Purple      #9C27B0    
 Magenta     #E91E63
 Blue gray   #607D8B
+Dark        #343A40
 */
 /*///////////////////////////////////////*/
 .scrollspySite{
@@ -49,6 +50,17 @@ Blue gray   #607D8B
     border: none;
 }
 
+.list-group-item.list-group-item-action{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.list-group-item.list-group-item-action.active{
+  color: #fff;
+  background-color: #343A40;
+  border-color: #343A40;
+}
+
 .inline{
     display: inline;
 }
@@ -79,8 +91,9 @@ Blue gray   #607D8B
 }
 
 #titulo-contas{
-    background-color: #FF9800;
+    background-color: #FFEB3B;
     border-radius: 0;
+    
 }
 
 #titulo-pastas{
@@ -89,7 +102,7 @@ Blue gray   #607D8B
 }
 
 .bg-navbar{
-    background-color: #FFC107;
+    background-color: #FFEB3B;
 }
 
 .texto-limitado{
@@ -97,4 +110,55 @@ Blue gray   #607D8B
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.titulo-nav-limitado{
+    max-width: 7ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn-outline-amarelo {
+  color: #343A40;
+  border-color: #FFEB3B;
+}
+
+.btn-outline-amarelo:hover {
+  color: #212529;
+  background-color: #FFEB3B;
+  border-color: #FFEB3B;
+}
+
+.btn-outline-amarelo:focus, .btn-outline-amarelo.focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 235, 59, 0.5);
+}
+
+.btn-outline-amarelo.disabled, .btn-outline-amarelo:disabled {
+  color: #FFEB3B;
+  background-color: transparent;
+}
+
+.btn-outline-amarelo:not(:disabled):not(.disabled):active, .btn-outline-amarelo:not(:disabled):not(.disabled).active,
+.show > .btn-outline-amarelo.dropdown-toggle {
+  color: #212529;
+  background-color: #FFEB3B;
+  border-color: #FFEB3B;
+}
+
+.btn-outline-amarelo:not(:disabled):not(.disabled):active:focus, .btn-outline-amarelo:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-amarelo.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 235, 59, 0.5);
+}
+
+.main-row{
+    height: 58px;
+}
+
+.item-conta{
+    width: inherit;
+}
+
+.absolute{
+    position: absolute;
 }

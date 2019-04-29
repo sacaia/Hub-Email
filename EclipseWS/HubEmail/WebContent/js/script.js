@@ -209,8 +209,8 @@ $(document).ready(function(){
             }
         }
     });
-/////////////////ON CLICK PAG1////////////////////////////
-    $("#conta1").click(function(){
+/////////////////ON CLICK CONTA1////////////////////////////
+    /*$("#conta1").click(function(){
         if($(this).hasClass("active"))
         {
             return;
@@ -222,7 +222,7 @@ $(document).ready(function(){
             return;
         }
     });
-/////////////////ON CLICK PAG2////////////////////////////
+/////////////////ON CLICK CONTA2////////////////////////////
     $("#conta2").click(function(){
         if($(this).hasClass("active"))
         {
@@ -234,6 +234,43 @@ $(document).ready(function(){
             $(this).addClass("active");
             return;
         }
+    });*/
+/////////////////ON CLICK CONTA////////////////////////////
+    $(function () {
+        $('[class!="active"][class~="list-group-item"][class~="conta"]').click(function () {
+            $('[class~="active"]').removeClass("active");
+            $(this).addClass("active");
+        });
+    });
+/////////////////ON CLICK DIVISÓRIA////////////////////////////
+    $(function () {
+        $('[class~="titulo-divisoria"]').click(function () {
+            if($(this).hasClass("collapsed"))
+            {
+                $(this).find("i").removeClass("fa-caret-right");
+                $(this).find("i").addClass("fa-caret-down");
+            }
+            else
+            {
+                $(this).find("i").removeClass("fa-caret-down");
+                $(this).find("i").addClass("fa-caret-right");
+            }
+        });
+    });
+/////////////////ON CLICK CHECKBOX////////////////////////////
+    $(function () {
+        $('[class~="checkbox"]').click(function () {
+            if($(this).hasClass("fa-square"))
+            {
+                $(this).removeClass("far fa-square");
+                $(this).addClass("fas fa-check-square");
+            }
+            else
+            {
+                $(this).removeClass("fas fa-check-square");
+                $(this).addClass("far fa-square");
+            }
+        });
     });
     
 //////////////////////////////////////////////////////////

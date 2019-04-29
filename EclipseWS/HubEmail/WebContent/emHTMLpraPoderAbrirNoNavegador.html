@@ -20,10 +20,10 @@
 </head>
 <body>
 
-  <!-- Linha Principal -->
+<!----------------------- Linha Principal ----------------------->
 	<div class="row">
     
-        <!-- Coluna de Pastas -->
+<!----------------------- Coluna de Pastas ----------------------->
         <div class="col-sm-2 p-0">
         
             <nav class="navbar navbar-expand-xl bg-navbar main-row py-0">
@@ -33,13 +33,107 @@
                         <h1 class="pl-4 text-dark titulo-nav-limitado">Pastas</h1>
                     </a>
 
-                    <!-- pra quando a tela ficar mt pequena aparece o botão -->
+<!----------------------- pra quando a tela ficar mt pequena aparece o botão ----------------------->
                         <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#pastas">
                         <span class="navbar-toggler-icon"></span>
                         </button> 
                     
                 </div>
             </nav>
+            
+        </div>
+        
+<!----------------------- Coluna de Emails ----------------------->
+        <div class="col-sm-7 p-0">
+        
+            <nav class="navbar navbar-expand-xl bg-navbar main-row">
+            
+                <div class="container px-1">
+                    
+<!----------------------- Botão de enviar email ----------------------->
+                    <a class="btn btn-outline-dark navbar-brand h1 mb-0" href="#" data-toggle="modal" data-target="#modal-email">Enviar <i class="fas fa-paper-plane"></i></a>
+                    
+<!----------------------- pra quando a tela ficar mt pequena aparece o botão ----------------------->
+                    <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEmails">
+                    <span class="navbar-toggler-icon"></span>
+                    </button> 
+                    
+<!----------------------- Conteudo q vai expandir ----------------------->
+                    <div class="collapse navbar-collapse" id="navbarEmails">
+                       
+<!----------------------- Icones de navegação ----------------------->
+                        <ul class="nav nav-pills mr-auto">
+                            
+                            <li class="nav-item align-middle centerY mr-3">
+                                <i class="far fa-square not-checked fa-2x icon-menu" id="checkboxAll" tabindex="1"></i>
+                            </li>
+                            
+                            <li class="nav-item align-middle centerY mr-2">
+                                <i class="fas fa-envelope fa-2x nao-lida icon-menu" id="lida-naoLida" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Marcar como lida"></i>
+                            </li>
+                            
+                            <li class="nav-item align-middle centerY">
+                                <i class="fas fa-trash-alt fa-2x icon-menu" id="deletar" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Excluir"></i>
+                            </li>
+                    
+                        </ul>
+                        
+<!----------------------- Formulário de pesquisa ----------------------->
+                        <form class="form-inline d-flex justify-content-around">
+                            <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar...">
+                            <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
+                        </form>
+                        
+<!----------------------- Pagination ----------------------->
+                        <nav class="ml-3">
+                            <ul class="pagination justify-content-end centerY">
+                                <li class="page-item disabled" id="pag-ant-container">
+                                    <a class="page-link text-light bg-dark border-dark" href="#" tabindex="-1" id="pag-ant"><i class="fas fa-angle-left"></i></a>
+                                </li>
+                                <li class="page-item"><a class="page-link text-dark bg-selected" href="#" id="pag1">1</a></li>
+                                <li class="page-item"><a class="page-link text-dark" href="#" id="pag2">2</a></li>
+                                <li class="page-item"><a class="page-link text-dark" href="#" id="pag3">3</a></li>
+                                <li class="page-item" id="pag-prox-container">
+                                    <a class="page-link text-light bg-dark border-dark" href="#" id="pag-prox"><i class="fas fa-angle-right"></i></a>
+                                </li>
+                          </ul>
+                        </nav>
+                        
+                    </div>
+                    
+                </div>
+            
+            </nav>
+        
+        </div>
+        
+<!----------------------- Coluna de Contas de Emails ----------------------->
+        <div class="col-sm-3 p-0">
+            
+            <nav class="navbar navbar-expand-xl bg-navbar main-row py-0">
+                <div class="container px-1">
+                
+                    <a class="nav-brand py-0 main-row" id="titulo-contas">
+                        <h1 class="pl-4 text-dark">Contas</h1>
+                    </a>
+
+<!----------------------- pra quando a tela ficar mt pequena aparece o botão ----------------------->
+                        <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#contas">
+                        <span class="navbar-toggler-icon"></span>
+                        </button> 
+                    
+                </div>
+            </nav>
+        
+        </div>
+
+    </div>
+<!----------------------- Segunda Linha ----------------------->
+    <div class="row">
+    
+<!----------------------- Coluna de Pastas ----------------------->
+        <div class="col-sm-2 p-0">
+            
             <div class="colapse show" id="pastas">
                 <nav id="navbarVertical" class="navbar navbar-light">
                     <nav class="nav nav-pills flex-column col-11 ml-3">
@@ -77,120 +171,85 @@
                     </nav>
                 </nav>
             </div>
+            
         </div>
         
-    <!-- Coluna de Emails -->
+<!----------------------- Coluna de Emails ----------------------->
         <div class="col-sm-7 p-0">
-        
-            <nav class="navbar navbar-expand-xl bg-navbar main-row">
-            
-                <div class="container px-1">
-                    
-                    <!-- Botão de enviar email -->
-                    <a class="btn btn-outline-dark navbar-brand h1 mb-0" href="#" data-toggle="modal" data-target="#modal-email">Enviar <i class="fas fa-paper-plane"></i></a>
-                    
-                    <!-- pra quando a tela ficar mt pequena aparece o botão -->
-                    <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEmails">
-                    <span class="navbar-toggler-icon"></span>
-                    </button> 
-                    
-                    <!-- Conteudo q vai expandir -->
-                    <div class="collapse navbar-collapse" id="navbarEmails">
-                       
-                        <!-- Icones de navegação -->
-                        <ul class="nav nav-pills mr-auto">
-                            
-                            <li class="nav-item align-middle centerY mr-3">
-                                <i class="far fa-square not-checked fa-2x icon-menu" id="checkboxAll" tabindex="1"></i>
-                            </li>
-                            
-                            <li class="nav-item align-middle centerY mr-2">
-                                <i class="fas fa-envelope fa-2x nao-lida icon-menu" id="lida-naoLida" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Marcar como lida"></i>
-                            </li>
-                            
-                            <li class="nav-item align-middle centerY">
-                                <i class="fas fa-trash-alt fa-2x icon-menu" id="deletar" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Excluir"></i>
-                            </li>
-                    
-                        </ul>
-                        
-                        <!-- Formulário de pesquisa -->
-                        <form class="form-inline d-flex justify-content-around">
-                            <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar...">
-                            <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
-                        </form>
-                        
-                        <!-- Pagination -->
-                        <nav class="ml-3">
-                            <ul class="pagination justify-content-end centerY">
-                                <li class="page-item disabled" id="pag-ant-container">
-                                    <a class="page-link text-light bg-dark border-dark" href="#" tabindex="-1" id="pag-ant"><i class="fas fa-angle-left"></i></a>
-                                </li>
-                                <li class="page-item"><a class="page-link text-dark bg-selected" href="#" id="pag1">1</a></li>
-                                <li class="page-item"><a class="page-link text-dark" href="#" id="pag2">2</a></li>
-                                <li class="page-item"><a class="page-link text-dark" href="#" id="pag3">3</a></li>
-                                <li class="page-item" id="pag-prox-container">
-                                    <a class="page-link text-light bg-dark border-dark" href="#" id="pag-prox"><i class="fas fa-angle-right"></i></a>
-                                </li>
-                          </ul>
-                        </nav>
-                        
-                    </div>
-                    
+            <div class="container pl-0 pt-3 ">
+                <a class="titulo-divisoria" href="#" data-toggle="collapse" data-target="#importantes">
+                    <h4 class="text-dark"><i class="fas fa-caret-down"> Importantes</i></h4>
+                </a>
+                <div class="collapse show pt-1" id="importantes">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-action pl-2">
+                            <i class="far fa-square checkbox"></i>
+                            <h6 class="username inline">Username Remetente</h6>
+                            <h7 class="assunto inline">Assunto Email</h7>
+                            <p class="conteudo inline text-muted">- Texto do email, bla bla bla......</p>
+                        </li>
+                        <li class="list-group-item list-group-item-action pl-2">
+                            <i class="far fa-square checkbox"></i>
+                            <h6 class="username inline">Sacaia</h6>
+                            <h7 class="assunto inline">Texto n fica fixo</h7>
+                            <p class="conteudo inline text-muted">- Já to ficando pito com esse texto</p>
+                        </li>
+                        <li class="list-group-item list-group-item-action pl-2">
+                            <i class="far fa-square checkbox"></i>
+                            <h6 class="username inline">Alguem ai</h6>
+                            <h7 class="assunto inline">Algum assunto ai</h7>
+                            <p class="conteudo inline text-muted">- bla bla bla......</p>
+                        </li>
+                        <li class="list-group-item list-group-item-action pl-2">
+                            <i class="far fa-square checkbox"></i>
+                            <h6 class="username inline">Maian</h6>
+                            <h7 class="assunto inline">N sei faze projeto</h7>
+                            <p class="conteudo inline text-muted">- bla bla bla......</p>
+                        </li>
+                        <li class="list-group-item list-group-item-action pl-2">
+                            <i class="far fa-square checkbox"></i>
+                            <h6 class="username inline">Maiana</h6>
+                            <h7 class="assunto inline">Esponjas</h7>
+                            <p class="conteudo inline text-muted">- Já to bla bla bla......</p>
+                        </li>
+                    </ul>
                 </div>
-            
-            </nav>
-        
+            </div>
         </div>
         
-    <!-- Coluna de Contas de Emails -->
+<!----------------------- Coluna de Contas de Emails ----------------------->
         <div class="col-sm-3 p-0">
-            
-            <nav class="navbar navbar-expand-xl bg-navbar main-row py-0">
-                <div class="container px-1">
-                
-                    <a class="nav-brand py-0 main-row" id="titulo-contas">
-                        <h1 class="pl-4 text-dark">Contas</h1>
-                    </a>
-
-                    <!-- pra quando a tela ficar mt pequena aparece o botão -->
-                        <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#contas">
-                        <span class="navbar-toggler-icon"></span>
-                        </button> 
-                    
-                </div>
-            </nav>
             
             <div class="collapse show" id="contas">
                 <div class="list-group">
 
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active" id="conta1">
+                    <a href="#" class="list-group-item list-group-item-action flex-column conta active">
 
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1 texto-limitado">cc17189@g.unicamp.br</h5><span class="badge badge-secondary centerY p-2">New</span>
+                            <h5 class="mb-1 texto-limitado">cc17189@g.unicamp.br</h5><span class="badge badge-danger p-2 text-end">10</span>
                         </div>
 
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" id="conta2">
+                    <a href="#" class="list-group-item list-group-item-action flex-column conta">
 
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1 texto-limitado">lucasalvimromani@gmail.com</h5><span class="badge badge-secondary centerY p-2">New</span>
+                            <h5 class="mb-1 texto-limitado">lucasalvimromani@gmail.com</h5><span class="badge badge-danger p-2">2</span>
                         </div>
 
                     </a>
-                    <a class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a class="list-group-item list-group-item-action flex-column" id="btnAdicionarConta">
 
                         <div class="d-flex w-100 justify-content-between">
-                            <button class="btn btn-outline-danger btn-block btn-lg" id="btn-add-conta" href="#" data-toggle="modal" data-target="#modal-conta"><i class="fas fa-plus"></i> Nova conta</button>
+                            <button class="btn btn-outline-danger btn-block btn-lg" href="#" data-toggle="modal" data-target="#modal-conta"><i class="fas fa-plus"></i> Nova conta</button>
                         </div>
 
                     </a>
 
                 </div>
             </div>
-        
+            
         </div>
-
+    
     </div>
     
 <!---------------------------------MODAL-EMAIL--------------------------------->

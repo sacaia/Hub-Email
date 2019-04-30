@@ -5,13 +5,19 @@ $(document).ready(function(){
         {
             $(this).addClass("fas fa-check-square checked");
             $(this).removeClass("far fa-square not-checked");
+            
+            $('[class~=checkbox][class~=fa-square]').addClass("fas fa-check-square");
+            $('[class~=checkbox][class~=fa-square]').removeClass("far fa-square");
         } 
         else
         {
             if($(this).hasClass("checked"))
             {
                 $(this).addClass("far fa-square not-checked");
-                $(this).removeClass("fas fa-check-square checked");                 
+                $(this).removeClass("fas fa-check-square checked");     
+                
+                $('[class~=checkbox][class~=fa-check-square]').addClass("far fa-square");
+                $('[class~=checkbox][class~=fa-check-square]').removeClass("fas fa-check-square");
             }
         }
     });

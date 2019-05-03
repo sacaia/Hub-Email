@@ -56,9 +56,13 @@ Dark        #343A40
 }
 
 .list-group-item.list-group-item-action.active{
-  color: #fff;
-  background-color: #343A40;
-  border-color: #343A40;
+    color: #fff;
+    background-color: #343A40;
+    border-color: #343A40;
+}
+
+.list-group-item.list-group-item-action.email{
+    cursor: pointer;
 }
 
 .inline{

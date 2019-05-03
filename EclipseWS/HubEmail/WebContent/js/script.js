@@ -8,6 +8,7 @@ $(document).ready(function(){
             
             $('[class~=checkbox][class~=fa-square]').addClass("fas fa-check-square");
             $('[class~=checkbox][class~=fa-square]').removeClass("far fa-square");
+            $('[class~=email]').addClass("active");
         } 
         else
         {
@@ -18,6 +19,7 @@ $(document).ready(function(){
                 
                 $('[class~=checkbox][class~=fa-check-square]').addClass("far fa-square");
                 $('[class~=checkbox][class~=fa-check-square]').removeClass("fas fa-check-square");
+                $('[class~=email]').removeClass("active");
             }
         }
     });
@@ -196,7 +198,7 @@ $(document).ready(function(){
         }
     });
 /////////////////ON CLICK PASTA1//////////////////////////
-    $("#pasta1").click(function(){
+    /*$("#pasta1").click(function(){
         if($(this).hasClass("fechada"))
         {
             $(this).removeClass("fechada");
@@ -214,7 +216,7 @@ $(document).ready(function(){
                 $("#icon-pasta1").addClass("fa-folder");             
             }
         }
-    });
+    });*/
 /////////////////ON CLICK CONTA1////////////////////////////
     /*$("#conta1").click(function(){
         if($(this).hasClass("active"))
@@ -275,6 +277,91 @@ $(document).ready(function(){
             {
                 $(this).removeClass("fas fa-check-square");
                 $(this).addClass("far fa-square");
+            }
+        });
+    });
+/////////////////ON CLICK EMAIL////////////////////////////
+    $(function () {
+        $('[class~="email"]').click(function () {
+            if($(this).hasClass("active"))
+            {
+                $(this).removeClass("active");
+                $(this).find("i").removeClass("fas fa-check-square");
+                $(this).find("i").addClass("far fa-square");
+                var allChecked = true;
+                $(".email").each(function() {
+                    allChecked = (allChecked && $(this).hasClass("active"));
+                });
+                    if(!allChecked)
+                    {
+                        $("#checkboxAll").addClass("far fa-square not-checked");
+                        $("#checkboxAll").removeClass("fas fa-check-square checked");
+                    }
+            }
+            else
+            {
+                //$(this).removeClass("");
+                $(this).addClass("active");
+                $(this).find("i").removeClass("far fa-square");
+                $(this).find("i").addClass("fas fa-check-square");
+                var allChecked = true;
+                $(".email").each(function() {
+                    allChecked = (allChecked && $(this).hasClass("active"));
+                });
+                    if(allChecked)
+                    {
+                        $("#checkboxAll").addClass("fas fa-check-square checked");
+                        $("#checkboxAll").removeClass("far fa-square not-checked");
+                    }
+            }
+        });
+    });
+/////////////////ON CLICK PASTA////////////////////////////
+    $(function () {
+        $(".pasta").click(function () {
+            if(!($(this).hasClass("active")))
+            {
+                $(".pasta").each(function() {
+                    $(this).removeClass("active");
+                    $(this).find("i").removeClass("fa-folder-open");
+                    $(this).find("i").addClass("fa-folder");                    
+                });
+                
+                if($(this).find("i").hasClass("fa-inbox"))
+                {
+                    $(this).addClass("active");
+                    return;
+                }
+                
+                $(this).addClass("active");
+                $(this).find("i").removeClass("fa-folder");
+                $(this).find("i").addClass("fa-folder-open");
+                
+                if($(this).attr("aria-expanded") == "true")
+                {
+                    //alert("a");
+                    $(this).find("i").addClass("fa-folder-open");
+                    $(this).find("i").removeClass("fa-folder");
+                }
+
+            }
+            else
+            {
+                /*if($(this).find("i").hasClass("fa-inbox"))
+                {
+                    $(this).removeClass("active");
+                    return;
+                }
+                if($(this).attr("aria-expanded") == "true")
+                {
+                    //alert("a");
+                    $(this).find("i").removeClass("fa-folder");
+                    $(this).find("i").addClass("fa-folder-open");
+                    return;
+                }
+                $(this).removeClass("active");
+                $(this).find("i").addClass("fa-folder");
+                $(this).find("i").removeClass("fa-folder-open");*/
             }
         });
     });

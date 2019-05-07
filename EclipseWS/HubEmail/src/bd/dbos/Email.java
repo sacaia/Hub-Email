@@ -8,7 +8,7 @@ public class Email implements Cloneable
     private String endereco;
     private String senha;
 
-    private Sring porta;
+    private String porta;
     private String protocolo;
  
     public void setIdEmail (int novoIdEmail) throws Exception
@@ -51,12 +51,20 @@ public class Email implements Cloneable
         setPorta(Integer.parseInt(porta));
     }
 
-    public void setPorta(int porta)
+    public void setPorta(int porta) throws Exception
     {
         if(porta < 0 || porta > 999999)
             throw new Exception ("porta inválida");
 
         this.porta = new Integer(porta).toString();
+    }
+    
+    public void setProtocolo(String novoProtocolo) throws Exception
+    {
+    	if (porta==null || porta.equals(""))
+            throw new Exception ("Porta nao fornecida");
+    	
+    	this.protocolo = novoProtocolo;
     }
 
     public int getIdEmail ()
@@ -169,7 +177,7 @@ public class Email implements Cloneable
         this.endereco  = modelo.endereco; // nao clono, pq nao eh clonavel
         this.senha     = modelo.senha;    // nao clono, pq nao eh clonavel
         this.porta     = modelo.porta;    // nao clono, pq nao eh clonavel
-        this.protocolo = modelo.protocolo // nao clono, pq nao eh clonavel
+        this.protocolo = modelo.protocolo; // nao clono, pq nao eh clonavel
     }
 
     public Object clone ()

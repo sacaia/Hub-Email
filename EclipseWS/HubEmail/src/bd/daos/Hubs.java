@@ -68,19 +68,14 @@ public class Hubs
             String sql;
 
             sql = "INSERT INTO Hub " +
-                  "(idHub,username,senha, emails, porta, protocolo) " +
+                  "(username,senha) " +
                   "VALUES " +
                   "(?, ?, ?, ?)";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
-            BDSQLServer.COMANDO.setInt    (1, hub.getIdHub    () );
-            BDSQLServer.COMANDO.setString (2, hub.getUsername () );
-            BDSQLServer.COMANDO.setString (3, hub.getSenha    () );
-            BDSQLServer.COMANDO.setInt    (4, hub.getEmails   () );
-            BDSQLServer.COMANDO.setString (5, hub.getPorta    () );
-            BDSQLServer.COMANDO.setString (6, hub.getProtocolo() );
-
+            BDSQLServer.COMANDO.setString (1, hub.getUsername () );
+            BDSQLServer.COMANDO.setString (2, hub.getSenha    () );
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();
@@ -130,16 +125,14 @@ public class Hubs
             sql = "UPDATE Hub " +
                   "SET username = ?" +
                   ", senha      = ?" +
-                  ", emails     = ?" +
                   "WHERE idHub  = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
             
             BDSQLServer.COMANDO.setString (1, hub.getUsername () );
             BDSQLServer.COMANDO.setString (2, hub.getSenha    () );
-            BDSQLServer.COMANDO.setInt    (3, hub.getEmails   () );
 
-            BDSQLServer.COMANDO.setInt    (4, hub.getIdHub() );
+            BDSQLServer.COMANDO.setInt    (3, hub.getIdHub() );
 
 
             BDSQLServer.COMANDO.executeUpdate ();

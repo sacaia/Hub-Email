@@ -46,10 +46,6 @@ public class Hub implements Cloneable
         return this.senha;
     }
     
-    public int getEmails ()
-    {
-        return this.emails;
-    }
 
     public Hub (int idHub, String username, String senha) throws Exception
     {

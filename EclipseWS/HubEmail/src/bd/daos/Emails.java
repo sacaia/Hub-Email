@@ -68,18 +68,17 @@ public class Emails
             String sql;
 
             sql = "INSERT INTO Email " +
-                  "(idEmail,idHub,endereco, senha, porta, protocolo) " +
+                  "(idHub,endereco, senha, porta, protocolo) " +
                   "VALUES " +
                   "(?, ?, ?, ?)";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
-            BDSQLServer.COMANDO.setInt    (1, email.getIdEmail() );
-            BDSQLServer.COMANDO.setInt    (2, email.getIdHub() );
-            BDSQLServer.COMANDO.setString (3, email.getEndereco() );
-            BDSQLServer.COMANDO.setString (4, email.getSenha() );
-            BDSQLServer.COMANDO.setString (5, hub.getPorta    () );
-            BDSQLServer.COMANDO.setString (6, hub.getProtocolo() );
+            BDSQLServer.COMANDO.setInt    (1, email.getIdHub() );
+            BDSQLServer.COMANDO.setString (2, email.getEndereco() );
+            BDSQLServer.COMANDO.setString (3, email.getSenha() );
+            BDSQLServer.COMANDO.setString (4, email.getPorta    () );
+            BDSQLServer.COMANDO.setString (5, email.getProtocolo() );
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();

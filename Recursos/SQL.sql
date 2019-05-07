@@ -1,11 +1,5 @@
-CREATE TABLE Email(
-idEmail INT IDENTITY(0, 1) PRIMARY KEY,
-
-idHub INT not null, -- para relacionar com o Hub
-
-endereco VARCHAR(200) not null, -- xxxx@dd.com
-senha VARCHAR(100) not null
-)
+drop table Email
+drop table Hub
 
 CREATE TABLE Hub(
 -- login --
@@ -13,12 +7,20 @@ CREATE TABLE Hub(
 idHub INT IDENTITY(0, 1) PRIMARY KEY,
 username VARCHAR(30) not null,
 senha VARCHAR(50) not null,
+)
 
--- dados --
+CREATE TABLE Email(
+idEmail INT IDENTITY(0, 1) PRIMARY KEY,
 
-emails INT
+idHub INT not null, -- para relacionar com o Hub
 
-CONSTRAINT FKemails FOREIGN KEY (emails) REFERENCES Email(idEmail)
+endereco VARCHAR(200) not null, -- xxxx@dd.com
+senha VARCHAR(100) not null,
+
+porta varchar(6) not null,
+protocolo varchar(4) not null,
+
+CONSTRAINT FKhub FOREIGN KEY (idHub) REFERENCES Hub(idHub)
 )
 
 SELECT * FROM Hub

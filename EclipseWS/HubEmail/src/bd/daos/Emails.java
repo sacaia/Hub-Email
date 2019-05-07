@@ -68,7 +68,7 @@ public class Emails
             String sql;
 
             sql = "INSERT INTO Email " +
-                  "(idEmail,idHub,endereco, senha) " +
+                  "(idEmail,idHub,endereco, senha, porta, protocolo) " +
                   "VALUES " +
                   "(?, ?, ?, ?)";
 
@@ -78,6 +78,8 @@ public class Emails
             BDSQLServer.COMANDO.setInt    (2, email.getIdHub() );
             BDSQLServer.COMANDO.setString (3, email.getEndereco() );
             BDSQLServer.COMANDO.setString (4, email.getSenha() );
+            BDSQLServer.COMANDO.setString (5, hub.getPorta    () );
+            BDSQLServer.COMANDO.setString (6, hub.getProtocolo() );
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();
@@ -125,9 +127,11 @@ public class Emails
             String sql;
 
             sql = "UPDATE Email " +
-                  "SET idHub = ?" +
-                  ", endereco = ?" +
-                  ", senha = ?" +
+                  "SET idHub   = ?" +
+                  ", endereco  = ?" +
+                  ", senha     = ?" +
+                  ", porta     = ?" +
+                  ", protocolo = ?" +
                   "WHERE idEmail = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
@@ -135,7 +139,10 @@ public class Emails
             BDSQLServer.COMANDO.setInt    (1, email.getIdHub() );
             BDSQLServer.COMANDO.setString (2, email.getEndereco() );
             BDSQLServer.COMANDO.setString (3, email.getSenha() );
-            BDSQLServer.COMANDO.setInt    (4, email.getIdEmail() );
+            BDSQLServer.COMANDO.setString (4, email.getPorta    () );
+            BDSQLServer.COMANDO.setString (5, email.getProtocolo() );
+            BDSQLServer.COMANDO.setInt    (6, email.getIdEmail() );
+            
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();
@@ -170,7 +177,9 @@ public class Emails
             email = new Email (resultado.getInt("idEmail"), 
             				   resultado.getInt("idHub"),
                                resultado.getString("endereço"),
-                               resultado.getString("senha"));
+                               resultado.getString("senha"),
+                               resultado.getString("porta"),
+                               resultado.getString("protocolo"));
         }
         catch (SQLException erro)
         {
@@ -228,7 +237,7 @@ public class Emails
             
             do
             {
-            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha")));
+            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("porta"), resultado.getString("protocolo")));
             	i++;
             }while(resultado.next() == true);
             	

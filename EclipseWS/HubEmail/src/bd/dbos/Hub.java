@@ -4,11 +4,11 @@ public class Hub implements Cloneable
 {
     private int idHub;
     private String username;
-    private String senha;
-    private int emails;    
+    private String senha;   
     
     public void setIdHub (int novoIdHub) throws Exception
     {
+
         if (novoIdHub < 0)
             throw new Exception ("id invalido");
 
@@ -29,14 +29,6 @@ public class Hub implements Cloneable
             throw new Exception ("Senha nao fornecida");
 
         this.senha = novaSenha;
-    }
-    
-    public void setEmails (int novoEmails) throws Exception
-    {
-        if (novoEmails < 0)
-            throw new Exception ("id invalido");
-
-        this.emails = novoEmails;
     }
 
     public int getIdHub ()
@@ -59,12 +51,11 @@ public class Hub implements Cloneable
         return this.emails;
     }
 
-    public Hub (int idHub, String username, String senha, int emails) throws Exception
+    public Hub (int idHub, String username, String senha) throws Exception
     {
         this.setIdHub    (idHub);
         this.setUsername (username);
         this.setSenha    (senha);
-        this.setEmails   (emails);
     }
 
     public String toString ()
@@ -73,8 +64,7 @@ public class Hub implements Cloneable
 
         ret+="idHub...: "+this.idHub    +"\n";
         ret+="username: "+this.username +"\n";
-        ret+="senha...: "+this.senha    +"\n";
-        ret+="emails..: "+this.emails;
+        ret+="senha...: "+this.senha;
 
         return ret;
     }
@@ -100,9 +90,6 @@ public class Hub implements Cloneable
         
         if (!this.senha.equals(hub.senha))
             return false;
-        
-        if (this.emails != hub.emails)
-            return false;
 
         return true;
     }
@@ -114,7 +101,6 @@ public class Hub implements Cloneable
         ret = 7*ret + new Integer(this.idHub).hashCode();
         ret = 7*ret + this.username.hashCode();
         ret = 7*ret + this.senha.hashCode();
-        ret = 7*ret + new Integer(this.emails).hashCode();
 
         return ret;
     }
@@ -125,7 +111,6 @@ public class Hub implements Cloneable
         this.idHub    = modelo.idHub;    // nao clono, pq nao eh clonavel
         this.username = modelo.username; // nao clono, pq nao eh objeto
         this.senha    = modelo.senha;    // nao clono, pq nao eh objeto
-        this.emails   = modelo.emails;   // nao clono, pq nao eh clonavel
     }
 
     public Object clone ()

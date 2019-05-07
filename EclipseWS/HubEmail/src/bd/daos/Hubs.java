@@ -68,16 +68,19 @@ public class Hubs
             String sql;
 
             sql = "INSERT INTO Hub " +
-                  "(idHub,username,senha, emails) " +
+                  "(idHub,username,senha, emails, porta, protocolo) " +
                   "VALUES " +
                   "(?, ?, ?, ?)";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
-            BDSQLServer.COMANDO.setInt    (1, hub.getIdHub() );
-            BDSQLServer.COMANDO.setString (2, hub.getUsername() );
-            BDSQLServer.COMANDO.setString (3, hub.getSenha() );
-            BDSQLServer.COMANDO.setInt    (4, hub.getEmails() );
+            BDSQLServer.COMANDO.setInt    (1, hub.getIdHub    () );
+            BDSQLServer.COMANDO.setString (2, hub.getUsername () );
+            BDSQLServer.COMANDO.setString (3, hub.getSenha    () );
+            BDSQLServer.COMANDO.setInt    (4, hub.getEmails   () );
+            BDSQLServer.COMANDO.setString (5, hub.getPorta    () );
+            BDSQLServer.COMANDO.setString (6, hub.getProtocolo() );
+
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();
@@ -126,16 +129,18 @@ public class Hubs
 
             sql = "UPDATE Hub " +
                   "SET username = ?" +
-                  ", senha = ?" +
-                  ", emails = ?" +
-                  "WHERE idHub = ?";
+                  ", senha      = ?" +
+                  ", emails     = ?" +
+                  "WHERE idHub  = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
             
-            BDSQLServer.COMANDO.setString (1, hub.getUsername() );
-            BDSQLServer.COMANDO.setString (2, hub.getSenha() );
-            BDSQLServer.COMANDO.setInt    (3, hub.getEmails() );
+            BDSQLServer.COMANDO.setString (1, hub.getUsername () );
+            BDSQLServer.COMANDO.setString (2, hub.getSenha    () );
+            BDSQLServer.COMANDO.setInt    (3, hub.getEmails   () );
+
             BDSQLServer.COMANDO.setInt    (4, hub.getIdHub() );
+
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();
@@ -167,10 +172,9 @@ public class Hubs
             if (!resultado.first())
                 throw new Exception ("Nao cadastrado");
 
-            hub = new Hub (resultado.getInt("idHub"), 
-            				   resultado.getString("username"),
-                               resultado.getString("senha"),
-                               resultado.getInt("emails"));
+            hub = new Hub ( resultado.getInt("idHub"), 
+            				resultado.getString("username"),
+                            resultado.getString("senha"));
         }
         catch (SQLException erro)
         {
@@ -228,7 +232,7 @@ public class Hubs
             
             do
             {
-            	lista.add(new Hub(resultado.getInt("idHub"), resultado.getString("username"), resultado.getString("senha"), resultado.getInt("emails")));
+            	lista.add(new Hub(resultado.getInt("idHub"), resultado.getString("username"), resultado.getString("senha")));
             	i++;
             }while(resultado.next() == true);
             	
@@ -257,7 +261,7 @@ public class Hubs
         {
             String sql;
 
-            sql = "SELECT idEmail, endereco, senha " +
+            sql = "SELECT idEmail, endereco, senha, porta, protocolo " +
                   "FROM Email " +
                   "WHERE idHub = ?";
 
@@ -275,7 +279,7 @@ public class Hubs
             
             do
             {
-            	lista.add(new Email(resultado.getInt("idEmail"), hub.getIdHub(), resultado.getString("endereco"), resultado.getString("senha")));
+            	lista.add(new Email(resultado.getInt("idEmail"), hub.getIdHub(), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("porta"), resultado.getString("protocolo")));
             	i++;
             }while(resultado.next() == true);
             	

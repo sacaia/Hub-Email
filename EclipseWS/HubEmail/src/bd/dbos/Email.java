@@ -4,8 +4,12 @@ public class Email implements Cloneable
 {
     private int idEmail;
     private int idHub;
+
     private String endereco;
     private String senha;
+
+    private Sring porta;
+    private String protocolo;
  
     public void setIdEmail (int novoIdEmail) throws Exception
     {
@@ -39,6 +43,22 @@ public class Email implements Cloneable
         this.senha = novaSenha;
     }
 
+    public void setPorta(String porta) throws Exception
+    {
+        if (porta==null || porta.equals(""))
+            throw new Exception ("Porta nao fornecida");
+
+        setPorta(Integer.parseInt(porta));
+    }
+
+    public void setPorta(int porta)
+    {
+        if(porta < 0 || porta > 999999)
+            throw new Exception ("porta inválida");
+
+        this.porta = new Integer(porta).toString();
+    }
+
     public int getIdEmail ()
     {
         return this.idEmail;
@@ -59,22 +79,36 @@ public class Email implements Cloneable
         return this.senha;
     }
 
-    public Email (int idEmail, int idHub, String endereco, String senha) throws Exception
+    public String getPorta()
     {
-        this.setIdEmail  (idEmail);
-        this.setIdHub    (idHub);
-        this.setEndereco (endereco);
-        this.setSenha    (senha);
+        return this.porta;
+    }
+
+    public String getProtocolo()
+    {
+        return this.protocolo;
+    }
+
+    public Email (int idEmail, int idHub, String endereco, String senha, String porta, String protocolo) throws Exception
+    {
+        this.setIdEmail   (idEmail);
+        this.setIdHub     (idHub);
+        this.setEndereco  (endereco);
+        this.setSenha     (senha);
+        this.setPorta     (porta);
+        this.setProtocolo (protocolo);
     }
 
     public String toString ()
     {
         String ret="";
 
-        ret+="idEmail.: "+this.idEmail  +"\n";
-        ret+="idHub...: "+this.idHub    +"\n";
-        ret+="endereco: "+this.endereco +"\n";
-        ret+="senha...: "+this.senha;
+        ret+="idEmail..: " + this.idEmail  +"\n";
+        ret+="idHub....: " + this.idHub    +"\n";
+        ret+="endereco.: " + this.endereco +"\n";
+        ret+="senha....: " + this.senha    +"\n";
+        ret+="porta....: " + this.porta    +"\n";
+        ret+="protocolo: " + this.protocolo;
 
         return ret;
     }
@@ -104,6 +138,12 @@ public class Email implements Cloneable
         if (!this.senha.equals(em.senha))
             return false;
 
+        if(!this.porta.equals(em.porta))
+            return false;
+
+        if(!this.protocolo.equals(em.protocolo))
+            return false;
+
         return true;
     }
 
@@ -115,6 +155,8 @@ public class Email implements Cloneable
         ret = 7*ret + new Integer(this.idHub).hashCode();
         ret = 7*ret + this.endereco.hashCode();
         ret = 7*ret + this.senha.hashCode();
+        ret = 7*ret + this.porta.hashCode();
+        ret = 7*ret + this.protocolo.hashCode();
 
         return ret;
     }
@@ -122,10 +164,12 @@ public class Email implements Cloneable
 
     public Email (Email modelo) throws Exception
     {
-        this.idEmail  = modelo.idEmail;  // nao clono, pq nao eh clonavel
-        this.idHub    = modelo.idHub;    // nao clono, pq nao eh clonavel
-        this.endereco = modelo.endereco; // nao clono, pq nao eh objeto
-        this.senha    = modelo.senha;    // nao clono, pq nao eh objeto
+        this.idEmail   = modelo.idEmail;  // nao clono, pq nao eh objeto
+        this.idHub     = modelo.idHub;    // nao clono, pq nao eh objeto
+        this.endereco  = modelo.endereco; // nao clono, pq nao eh clonavel
+        this.senha     = modelo.senha;    // nao clono, pq nao eh clonavel
+        this.porta     = modelo.porta;    // nao clono, pq nao eh clonavel
+        this.protocolo = modelo.protocolo // nao clono, pq nao eh clonavel
     }
 
     public Object clone ()

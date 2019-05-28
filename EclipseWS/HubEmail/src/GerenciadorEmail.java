@@ -144,7 +144,7 @@ public class GerenciadorEmail {
 		return ret;
 	}
 	
-	public void enviarEmailHTML(String assunto, String textoMensagem, String[] destinatarios, String[] CCs, String[] CCOs) throws MessagingException, UnsupportedEncodingException
+	public void enviarEmailHTML(String assunto, String textoMensagem, String[] anexos, String[] destinatarios, String[] CCs, String[] CCOs) throws MessagingException, UnsupportedEncodingException
 	{
 		MimeMessage msg = new MimeMessage(senderSession);
 		
@@ -158,27 +158,90 @@ public class GerenciadorEmail {
 		
 		for(int i = 0; i < destinatarios.length; i++)
 		{
-		msg.addRecipient(Message.RecipientType.TO,
-		InternetAddress.parse(destinatarios[i])[0]);
+			msg.addRecipient(Message.RecipientType.TO,
+			InternetAddress.parse(destinatarios[i])[0]);
 		}
 		
 		if(CCs != null)
-		for(int i = 0; i < CCs.length; i++)
-		{
-		msg.addRecipient(
-		Message.RecipientType.CC, InternetAddress.parse(CCs[i])[0]);
-		}
+			for(int i = 0; i < CCs.length; i++)
+			{
+				msg.addRecipient(
+				Message.RecipientType.CC, InternetAddress.parse(CCs[i])[0]);
+			}
 
 		if(CCOs != null)
-		for(int i = 0; i < CCOs.length; i++)
-		{
-		msg.addRecipient(
-		Message.RecipientType.BCC, InternetAddress.parse(CCOs[i])[0]);
-		}
+			for(int i = 0; i < CCOs.length; i++)
+			{
+				msg.addRecipient(
+				Message.RecipientType.BCC, InternetAddress.parse(CCOs[i])[0]);
+			}
 		
 		Multipart multipart = new MimeMultipart();
 		
 		MimeBodyPart messageBodyPart = new MimeBodyPart();
 		messageBodyPart.setText(textoMensagem, "UTF-8", "html");
+		
+		multipart.addBodyPart(messageBodyPart);
+		
+		if(anexos != null)
+			for(int i = 0; i < anexos.length; i++)
+			{
+				MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+				DataSource source = new FileDataSource(anexos[i]);
+				attachmentBodyPart.setDataHandler(new DataHandler(source));
+				attachmentBodyPart.setFileName(new File(anexos[i]).getName());
+				multipart.addBodyPart(attachmentBodyPart);
+			}	
+		
+		msg.setContent(multipart);
+		
+		Transport.send(msg);
+	}
+	
+	public void enviarEmail(String assunto, String textoMensagem, String[] anexos, String[] destinatarios, String[] CCs, String[] CCOs) throws MessagingException, UnsupportedEncodingException
+	{
+		Message msg = new MimeMessage(this.senderSession);
+		msg.setFrom(new InternetAddress(this.user));
+		
+		for(int i = 0; i < destinatarios.length; i++)
+		{
+			msg.addRecipient(Message.RecipientType.TO,
+			InternetAddress.parse(destinatarios[i])[0]);
+		}
+		
+		if(CCs != null)
+			for(int i = 0; i < CCs.length; i++)
+			{
+				msg.addRecipient(
+				Message.RecipientType.CC, InternetAddress.parse(CCs[i])[0]);
+			}
+
+		if(CCOs != null)
+			for(int i = 0; i < CCOs.length; i++)
+			{
+				msg.addRecipient(
+				Message.RecipientType.BCC, InternetAddress.parse(CCOs[i])[0]);
+			}
+		
+		msg.setSubject(assunto);
+		BodyPart msgBodyPart = new MimeBodyPart();
+		msgBodyPart.setText(textoMensagem);
+		
+		Multipart multipart = new MimeMultipart();
+		multipart.addBodyPart(msgBodyPart);
+		
+		if(anexos != null)
+			for(int i = 0; i < anexos.length; i++)
+			{
+				MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+				DataSource source = new FileDataSource(anexos[i]);
+				attachmentBodyPart.setDataHandler(new DataHandler(source));
+				attachmentBodyPart.setFileName(new File(anexos[i]).getName());
+				multipart.addBodyPart(attachmentBodyPart);
+			}	
+		
+		msg.setContent(multipart);
+		
+		Transport.send(msg);
 	}
 }

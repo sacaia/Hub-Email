@@ -1,11 +1,17 @@
 import java.util.ArrayList;
 import java.util.Properties;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.io.File;
 
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 
 
@@ -136,5 +142,43 @@ public class GerenciadorEmail {
 			ret.add(fd.getName());
 		
 		return ret;
+	}
+	
+	public void enviarEmailHTML(String assunto, String textoMensagem, String[] destinatarios, String[] CCs, String[] CCOs) throws MessagingException, UnsupportedEncodingException
+	{
+		MimeMessage msg = new MimeMessage(senderSession);
+		
+		msg.addHeader("Content-type", "text/HTML;charset=UTF-8");
+		msg.addHeader("format", "flowed");
+		msg.addHeader("Content-Transfer-Encoding", "8bit");
+		
+		msg.setFrom(new InternetAddress (this.user));
+		msg.setSubject(assunto, "UTF-8");
+		msg.setSentDate(new Date());
+		
+		for(int i = 0; i < destinatarios.length; i++)
+		{
+		msg.addRecipient(Message.RecipientType.TO,
+		InternetAddress.parse(destinatarios[i])[0]);
+		}
+		
+		if(CCs != null)
+		for(int i = 0; i < CCs.length; i++)
+		{
+		msg.addRecipient(
+		Message.RecipientType.CC, InternetAddress.parse(CCs[i])[0]);
+		}
+
+		if(CCOs != null)
+		for(int i = 0; i < CCOs.length; i++)
+		{
+		msg.addRecipient(
+		Message.RecipientType.BCC, InternetAddress.parse(CCOs[i])[0]);
+		}
+		
+		Multipart multipart = new MimeMultipart();
+		
+		MimeBodyPart messageBodyPart = new MimeBodyPart();
+		messageBodyPart.setText(textoMensagem, "UTF-8", "html");
 	}
 }

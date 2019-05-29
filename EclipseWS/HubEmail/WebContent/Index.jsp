@@ -36,7 +36,7 @@
                         <h1 class="pl-4 text-dark titulo-nav-limitado">Pastas</h1>
                     </a>
 
-<!----------------------- pra quando a tela ficar mt pequena aparece o bot√£o ----------------------->
+<!----------------------- pra quando a tela ficar mt pequena aparece o bot„o ----------------------->
                         <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#pastas">
                         <span class="navbar-toggler-icon"></span>
                         </button> 
@@ -53,10 +53,10 @@
             
                 <div class="container px-1">
                     
-<!----------------------- Bot√£o de enviar email ----------------------->
+<!----------------------- Bot„o de enviar email ----------------------->
                     <a class="btn btn-outline-dark navbar-brand h1 mb-0" href="#" data-toggle="modal" data-target="#modal-email">Enviar <i class="fas fa-paper-plane"></i></a>
                     
-<!----------------------- pra quando a tela ficar mt pequena aparece o bot√£o ----------------------->
+<!----------------------- pra quando a tela ficar mt pequena aparece o bot„o ----------------------->
                     <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEmails">
                     <span class="navbar-toggler-icon"></span>
                     </button> 
@@ -64,7 +64,7 @@
 <!----------------------- Conteudo q vai expandir ----------------------->
                     <div class="collapse navbar-collapse" id="navbarEmails">
                        
-<!----------------------- Icones de navega√ß√£o ----------------------->
+<!----------------------- Icones de navegaÁ„o ----------------------->
                         <ul class="nav nav-pills mr-auto">
                             
                             <li class="nav-item align-middle centerY mr-3">
@@ -81,7 +81,7 @@
                     
                         </ul>
                         
-<!----------------------- Formul√°rio de pesquisa ----------------------->
+<!----------------------- Formul·rio de pesquisa ----------------------->
                         <form class="form-inline d-flex justify-content-around">
                             <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar...">
                             <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
@@ -120,7 +120,7 @@
                         <h1 class="pl-4 text-dark">Contas</h1>
                     </a>
 
-<!----------------------- pra quando a tela ficar mt pequena aparece o bot√£o ----------------------->
+<!----------------------- pra quando a tela ficar mt pequena aparece o bot„o ----------------------->
                         <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#contas">
                         <span class="navbar-toggler-icon"></span>
                         </button> 
@@ -138,35 +138,35 @@
         <div class="col-sm-2 p-0">
             
             <div class="colapse show" id="pastas">
-                <nav id="navbarVertical" class="navbar navbar-light">
+                <nav id="navbarVertical" class="navbar navbar-light pt-3">
                     <nav class="nav nav-pills flex-column col-11 ml-3">
 
                         <div id="collapse-group">
-                            <a class="nav-link btn btn-outline-amarelo" data-toggle="collapse"role="button" href="#inbox-collapse" aria-expanded="false"><i class="fas fa-inbox fa-lg"></i> Inbox</a>
+                            <a class="nav-link btn btn-outline-amarelo pasta active" data-toggle="collapse"role="button" href="#inbox-collapse" aria-expanded="false"><i class="fas fa-inbox fa-lg"></i> Inbox</a>
 
                             <div class="collapse" id="inbox-collapse" data-parent="#collapse-group"></div>
 
-                            <a class="nav-link btn btn-outline-amarelo mt-3 fechada" data-toggle="collapse" href="#sub-pasta1" role="button" aria-expanded="false" id="pasta1"><i class="fas fa-folder fa-lg" id="icon-pasta1"></i> Pasta 1</a>
+                            <a class="nav-link btn btn-outline-amarelo mt-3 pasta" data-toggle="collapse" href="#sub-pasta1" role="button" aria-expanded="false"><i class="fas fa-folder fa-lg"></i> Pasta 1</a>
 
                             <div class="collapse" id="sub-pasta1" data-parent="#collapse-group">
                                 <nav class="nav nav-pills flex-column">
 
-                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 fechada" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 1.1</a>
-                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 fechada" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 1.2</a>
+                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 pasta" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 1.1</a>
+                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 pasta" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 1.2</a>
 
                                 </nav>
                             </div>
 
 
 
-                            <a class="nav-link btn btn-outline-amarelo mt-3 fechada" data-toggle="collapse" href="#sub-pasta2" role="button" aria-expanded="false" id="pasta2"><i class="fas fa-folder fa-lg" id="icon-pasta2"></i> Pasta 2</a>
+                            <a class="nav-link btn btn-outline-amarelo mt-3 pasta" data-toggle="collapse" href="#sub-pasta2" role="button" aria-expanded="false"><i class="fas fa-folder fa-lg"></i> Pasta 2</a>
 
                             <div class="collapse" id="sub-pasta2" data-parent="#collapse-group">
                                 <nav class="nav nav-pills flex-column">
 
-                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 fechada" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 2.1</a>
-                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 fechada" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 2.2</a>
-                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 fechada" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 2.3</a>
+                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 pasta" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 2.1</a>
+                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 pasta" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 2.2</a>
+                                    <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 pasta" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 2.3</a>
 
                                 </nav>
                             </div>
@@ -185,35 +185,35 @@
                 </a>
                 <div class="collapse show pt-1" id="importantes">
                     <ul class="list-group">
-                        <li class="list-group-item list-group-item-action pl-2">
+                        <li class="list-group-item list-group-item-action pl-2 email">
                             <i class="far fa-square checkbox"></i>
                             <h6 class="username inline">Username Remetente</h6>
                             <h7 class="assunto inline">Assunto Email</h7>
                             <p class="conteudo inline text-muted">- Texto do email, bla bla bla......</p>
                         </li>
-                        <li class="list-group-item list-group-item-action pl-2">
+                        <li class="list-group-item list-group-item-action pl-2 email">
                             <i class="far fa-square checkbox"></i>
                             <h6 class="username inline">Sacaia</h6>
                             <h7 class="assunto inline">Texto n fica fixo</h7>
-                            <p class="conteudo inline text-muted">- J√° to ficando pito com esse texto</p>
+                            <p class="conteudo inline text-muted">- J· to ficando pito com esse texto</p>
                         </li>
-                        <li class="list-group-item list-group-item-action pl-2">
+                        <li class="list-group-item list-group-item-action pl-2 email">
                             <i class="far fa-square checkbox"></i>
                             <h6 class="username inline">Alguem ai</h6>
                             <h7 class="assunto inline">Algum assunto ai</h7>
                             <p class="conteudo inline text-muted">- bla bla bla......</p>
                         </li>
-                        <li class="list-group-item list-group-item-action pl-2">
+                        <li class="list-group-item list-group-item-action pl-2 email">
                             <i class="far fa-square checkbox"></i>
                             <h6 class="username inline">Maian</h6>
                             <h7 class="assunto inline">N sei faze projeto</h7>
                             <p class="conteudo inline text-muted">- bla bla bla......</p>
                         </li>
-                        <li class="list-group-item list-group-item-action pl-2">
+                        <li class="list-group-item list-group-item-action pl-2 email">
                             <i class="far fa-square checkbox"></i>
                             <h6 class="username inline">Maiana</h6>
                             <h7 class="assunto inline">Esponjas</h7>
-                            <p class="conteudo inline text-muted">- J√° to bla bla bla......</p>
+                            <p class="conteudo inline text-muted">- J· to bla bla bla......</p>
                         </li>
                     </ul>
                 </div>
@@ -256,7 +256,7 @@
     </div>
     
 <!---------------------------------MODAL-EMAIL--------------------------------->
-    <div class="modal fade" id="modal-email" tabindex="-1" role="dialog"> <!-- fade = anima√ß√£o -->
+    <div class="modal fade" id="modal-email" tabindex="-1" role="dialog"> <!-- fade = animaÁ„o -->
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
             
@@ -272,13 +272,13 @@
                 
                 <div class="modal-body">
                     
-                    <form>
+                    <form action="ENVIAREMAIL" method="POST">
                         
                         <div class="form-row">  
 
                             <div class="form-group col-sm-12">
 
-                                <label for="inputDestinatario">Destinat√°rio:</label>
+                                <label for="inputDestinatario">Destinat·rio:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Para:</div>
@@ -293,7 +293,7 @@
 
                             <div class="form-group col-sm-6">
 
-                                <label for="inputCc">Com c√≥pia:</label>
+                                <label for="inputCc">Com cÛpia:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Cc:</div>
@@ -305,7 +305,7 @@
 
                              <div class="form-group col-sm-6">
 
-                                <label for="inputCco">Com c√≥pia oculta:</label>
+                                <label for="inputCco">Com cÛpia oculta:</label>
                                  <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Cco:</div>
@@ -362,7 +362,7 @@
       </div>
 <!---------------------------------MODAL-CONTA--------------------------------->
       
-      <div class="modal fade" id="modal-conta" tabindex="-1" role="dialog"> <!-- fade = anima√ß√£o -->
+      <div class="modal fade" id="modal-conta" tabindex="-1" role="dialog"> <!-- fade = animaÁ„o -->
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
             
@@ -386,8 +386,8 @@
 
                                 <div class="form-group col-sm-12">
 
-                                    <label for="inputEndereco">Endere√ßo de email:</label>
-                                    <input type="email" class="form-control" id="inputEndereco" placeholder="Endere√ßo">
+                                    <label for="inputEndereco">EndereÁo de email:</label>
+                                    <input type="email" class="form-control" id="inputEndereco" placeholder="EndereÁo">
 
                                 </div>
 
@@ -409,7 +409,7 @@
                                     <div class="form-check">
 
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox"> Abrir ao final da inser√ß√£o
+                                            <input class="form-check-input" type="checkbox"> Abrir ao final da inserÁ„o
                                         </label>
 
                                     </div>
@@ -426,14 +426,6 @@
                         
                     </div>
                 </div>
-                    
-                <!--
-                <div class="modal-footer">
-                    
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                    
-                </div>
-                -->
             </div>
         </div>
       </div>

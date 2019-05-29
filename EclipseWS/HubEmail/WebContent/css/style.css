@@ -86,6 +86,16 @@ Dark        #343A40
 }
 
 .centerY{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.centerX{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center{
     margin: auto;
 }
 
@@ -208,4 +218,18 @@ Dark        #343A40
     white-space: nowrap;
     display: inline-flex;
     margin-bottom: 0;
+}
+
+.imagem-carousel{
+    width: 101vw; 
+    height: 101vh;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.btn-entrar{
+    width: 10%;
 }

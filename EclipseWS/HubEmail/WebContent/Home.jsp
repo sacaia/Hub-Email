@@ -77,7 +77,7 @@
                 </div>
             </div>
               
-            <div class="carousel-item imagem-carousel" style="background-image: url('img/Tartaruga4.jpg')">        
+            <div class="carousel-item imagem-carousel" style="background-image: url('img/Tartaruga6.jpg')">        
                 
                 <div class="carousel-caption d-none d-sm-block">
                     <h1>Facilidade</h1>
@@ -85,7 +85,7 @@
                 </div>
             </div>
               
-            <div class="carousel-item imagem-carousel" style="background-image: url('img/Tartaruga6.jpg')">       
+            <div class="carousel-item imagem-carousel" style="background-image: url('img/Tartaruga4.jpg')">       
                 
                 <div class="carousel-caption d-none d-sm-block">
                     <h1>Segurança</h1>

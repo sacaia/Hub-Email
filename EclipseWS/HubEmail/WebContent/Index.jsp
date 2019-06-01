@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"
     import="bd.dbos.*, bd.daos.*"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,7 @@
                         <h1 class="pl-4 text-dark titulo-nav-limitado">Pastas</h1>
                     </a>
 
-<!----------------------- pra quando a tela ficar mt pequena aparece o bot„o ----------------------->
+<!----------------------- pra quando a tela ficar mt pequena aparece o bot√£o ----------------------->
                         <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#pastas">
                         <span class="navbar-toggler-icon"></span>
                         </button> 
@@ -53,10 +53,10 @@
             
                 <div class="container px-1">
                     
-<!----------------------- Bot„o de enviar email ----------------------->
+<!----------------------- Bot√£o de enviar email ----------------------->
                     <a class="btn btn-outline-dark navbar-brand h1 mb-0" href="#" data-toggle="modal" data-target="#modal-email">Enviar <i class="fas fa-paper-plane"></i></a>
                     
-<!----------------------- pra quando a tela ficar mt pequena aparece o bot„o ----------------------->
+<!----------------------- pra quando a tela ficar mt pequena aparece o bot√£o ----------------------->
                     <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEmails">
                     <span class="navbar-toggler-icon"></span>
                     </button> 
@@ -64,7 +64,7 @@
 <!----------------------- Conteudo q vai expandir ----------------------->
                     <div class="collapse navbar-collapse" id="navbarEmails">
                        
-<!----------------------- Icones de navegaÁ„o ----------------------->
+<!----------------------- Icones de navega√ß√£o ----------------------->
                         <ul class="nav nav-pills mr-auto">
                             
                             <li class="nav-item align-middle centerY mr-3">
@@ -81,7 +81,7 @@
                     
                         </ul>
                         
-<!----------------------- Formul·rio de pesquisa ----------------------->
+<!----------------------- Formul√°rio de pesquisa ----------------------->
                         <form class="form-inline d-flex justify-content-around">
                             <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar...">
                             <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
@@ -120,7 +120,7 @@
                         <h1 class="pl-4 text-dark">Contas</h1>
                     </a>
 
-<!----------------------- pra quando a tela ficar mt pequena aparece o bot„o ----------------------->
+<!----------------------- pra quando a tela ficar mt pequena aparece o bot√£o ----------------------->
                         <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#contas">
                         <span class="navbar-toggler-icon"></span>
                         </button> 
@@ -195,7 +195,7 @@
                             <i class="far fa-square checkbox"></i>
                             <h6 class="username inline">Sacaia</h6>
                             <h7 class="assunto inline">Texto n fica fixo</h7>
-                            <p class="conteudo inline text-muted">- J· to ficando pito com esse texto</p>
+                            <p class="conteudo inline text-muted">- J√° to ficando pito com esse texto</p>
                         </li>
                         <li class="list-group-item list-group-item-action pl-2 email">
                             <i class="far fa-square checkbox"></i>
@@ -213,7 +213,7 @@
                             <i class="far fa-square checkbox"></i>
                             <h6 class="username inline">Maiana</h6>
                             <h7 class="assunto inline">Esponjas</h7>
-                            <p class="conteudo inline text-muted">- J· to bla bla bla......</p>
+                            <p class="conteudo inline text-muted">- J√° to bla bla bla......</p>
                         </li>
                     </ul>
                 </div>
@@ -256,7 +256,7 @@
     </div>
     
 <!---------------------------------MODAL-EMAIL--------------------------------->
-    <div class="modal fade" id="modal-email" tabindex="-1" role="dialog"> <!-- fade = animaÁ„o -->
+    <div class="modal fade" id="modal-email" tabindex="-1" role="dialog"> <!-- fade = anima√ß√£o -->
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
             
@@ -278,7 +278,7 @@
 
                             <div class="form-group col-sm-12">
 
-                                <label for="inputDestinatario">Destinat·rio:</label>
+                                <label for="inputDestinatario">Destinat√°rio:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Para:</div>
@@ -293,7 +293,7 @@
 
                             <div class="form-group col-sm-6">
 
-                                <label for="inputCc">Com cÛpia:</label>
+                                <label for="inputCc">Com c√≥pia:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Cc:</div>
@@ -305,7 +305,7 @@
 
                              <div class="form-group col-sm-6">
 
-                                <label for="inputCco">Com cÛpia oculta:</label>
+                                <label for="inputCco">Com c√≥pia oculta:</label>
                                  <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Cco:</div>
@@ -362,7 +362,7 @@
       </div>
 <!---------------------------------MODAL-CONTA--------------------------------->
       
-      <div class="modal fade" id="modal-conta" tabindex="-1" role="dialog"> <!-- fade = animaÁ„o -->
+      <div class="modal fade" id="modal-conta" tabindex="-1" role="dialog"> <!-- fade = anima√ß√£o -->
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
             
@@ -386,8 +386,8 @@
 
                                 <div class="form-group col-sm-12">
 
-                                    <label for="inputEndereco">EndereÁo de email:</label>
-                                    <input type="email" class="form-control" id="inputEndereco" placeholder="EndereÁo">
+                                    <label for="inputEndereco">Endere√ßo de email:</label>
+                                    <input type="email" class="form-control" id="inputEndereco" placeholder="Endere√ßo">
 
                                 </div>
 
@@ -409,7 +409,7 @@
                                     <div class="form-check">
 
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox"> Abrir ao final da inserÁ„o
+                                            <input class="form-check-input" type="checkbox"> Abrir ao final da inser√ß√£o
                                         </label>
 
                                     </div>

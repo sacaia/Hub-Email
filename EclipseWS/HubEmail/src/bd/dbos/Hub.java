@@ -53,6 +53,12 @@ public class Hub implements Cloneable
         this.setUsername (username);
         this.setSenha    (senha);
     }
+    
+    public Hub (String username, String senha) throws Exception
+    {
+        this.setUsername (username);
+        this.setSenha    (senha);
+    }
 
     public String toString ()
     {

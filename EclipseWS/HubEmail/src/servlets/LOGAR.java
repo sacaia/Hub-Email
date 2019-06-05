@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bd.daos.Hubs;
+import bd.dbos.Hub;
+
 /**
  * Servlet implementation class LOGAR
  */
@@ -28,8 +31,21 @@ public class LOGAR extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String ra = (String)request.getParameter("usuario");
-        String nome = (String)request.getParameter("senha");
+		String usuario = (String)request.getParameter("usuario");
+        String senha = (String)request.getParameter("senha");
+        
+        try {
+        	Hub h = new Hub(usuario, senha);
+            Hubs.incluir(h);
+            
+            request.setAttribute("logado", true);
+            request.setAttribute("hub", h);
+            response.sendRedirect("Index.jsp");
+        }
+        catch(Exception e)
+        {
+        	response.sendRedirect(response));
+        }
 	}
 
 	/**

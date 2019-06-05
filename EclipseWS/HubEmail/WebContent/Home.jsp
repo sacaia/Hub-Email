@@ -21,6 +21,11 @@
     
 </head>
 <body>
+<%
+
+	session.setAttribute("logado", false);
+
+%>
 
 <!----------------------- Linha Principal ----------------------->
 	<div class="row">

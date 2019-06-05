@@ -70,7 +70,7 @@ public class Hubs
             sql = "INSERT INTO Hub " +
                   "(username,senha) " +
                   "VALUES " +
-                  "(?, ?, ?, ?)";
+                  "(?, ?)";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 

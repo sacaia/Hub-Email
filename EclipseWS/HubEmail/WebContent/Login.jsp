@@ -29,14 +29,14 @@
               <div class="row">
                 <div class="col-md-9 col-lg-8 mx-auto">
                   <h3 class="login-heading mb-4 pl-3">Java Mali</h3>
-                  <form>
+                  <form method="POST" action="LOGAR">
                     <div class="form-label-group">
-                      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                      <input type="email" name="usuario" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                       <label for="inputEmail">Usuário</label>
                     </div>
 
                     <div class="form-label-group">
-                      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                      <input type="password" name="senha" id="inputPassword" class="form-control" placeholder="Password" required>
                       <label for="inputPassword">Senha</label>
                     </div>
 

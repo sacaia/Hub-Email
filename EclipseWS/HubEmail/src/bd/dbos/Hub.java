@@ -4,7 +4,7 @@ public class Hub implements Cloneable
 {
     private int idHub;
     private String username;
-    private String senha;   
+    private String senha;
     
     public void setIdHub (int novoIdHub) throws Exception
     {

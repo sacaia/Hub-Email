@@ -35,8 +35,7 @@ public class LOGAR extends HttpServlet {
         String senha = (String)request.getParameter("senha");
         
         try {
-        	Hub h = new Hub(usuario, senha);
-            Hubs.incluir(h);
+        	Hub h = Hubs.getHub(usuario, senha);
             
             request.setAttribute("logado", true);
             request.setAttribute("hub", h);
@@ -44,7 +43,7 @@ public class LOGAR extends HttpServlet {
         }
         catch(Exception e)
         {
-        	response.sendRedirect(response));
+        	response.sendRedirect(request.));
         }
 	}
 

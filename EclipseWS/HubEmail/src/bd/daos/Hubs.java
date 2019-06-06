@@ -176,6 +176,40 @@ public class Hubs
 
         return hub;
     }
+    
+    public static Hub getHub(String usuario, String senha) throws Exception
+    {
+    	Hub hub = null;
+
+        try
+        {
+            String sql;
+
+            sql = "SELECT * " +
+                  "FROM Hub " +
+                  "WHERE username = ? AND senha = ?";
+
+            BDSQLServer.COMANDO.prepareStatement (sql);
+
+            BDSQLServer.COMANDO.setString (1, usuario);
+            BDSQLServer.COMANDO.setString (2, senha);
+
+            MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
+
+            if (!resultado.first())
+                throw new Exception ("Nao cadastrado");
+
+            hub = new Hub ( resultado.getInt("idHub"), 
+            				resultado.getString("username"),
+                            resultado.getString("senha"));
+        }
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao procurar hub");
+        }
+
+        return hub;
+    }
 
     public static MeuResultSet getHubs () throws Exception
     {

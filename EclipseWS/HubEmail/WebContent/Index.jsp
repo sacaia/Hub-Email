@@ -33,13 +33,19 @@
 	if(request.getAttribute("hub") != null)
 		session.setAttribute("hub", request.getAttribute("hub"));
 	
-	if(((boolean)session.getAttribute("logado")) == false)
+	if(session.getAttribute("logado") == null)
 		response.sendRedirect("Login.jsp");
+
+	if(session.getAttribute("logado") != null)
+		if(!(boolean)session.getAttribute("logado"))
+			response.sendRedirect("Login.jsp");
 		
 
 	/*Pega o email*/
 	Hub hub = (Hub)session.getAttribute("hub");
-	session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
+	System.err.println("Hub: "+hub);
+	if(session.getAttribute("emails") == null && hub != null)
+		session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
 %>
 
 <!----------------------- Linha Principal ----------------------->
@@ -247,6 +253,8 @@
                 <div class="list-group">
 					
 				<%
+			if(session.getAttribute("emails") != null)
+			{
             	Email[] emails = (Email[])session.getAttribute("emails");
             
             	for(int i = 0; i < emails.length; i++)
@@ -255,9 +263,20 @@
             		ge.setSenderSession(emails[i].getPorta(), emails[i].getHost());
             		
             		ge.setStore(emails[i].getHost(), emails[i].getProtocolo() + "s");
+            		
+            		if(i == 0)
+            		{
             	%>
                     <a href="#" class="list-group-item list-group-item-action flex-column conta active">
-
+				<%
+            		}
+            		else
+            		{
+				%>
+					<a href="#" class="list-group-item list-group-item-action flex-column conta">
+				<%
+            		}
+				%>
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1 texto-limitado"><%= emails[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><%= ge.receive().size() %></span>
                         </div>
@@ -266,6 +285,7 @@
                  <%
                  ge.closeStore();
             	}
+			}
                  %>
                     <a class="list-group-item list-group-item-action flex-column" id="btnAdicionarConta">
 
@@ -299,7 +319,7 @@
                 
                 <div class="modal-body">
                     
-                    <form action="ENVIAREMAIL" method="POST">
+                    <form action="ENVIAREMAIL" method="POST" id="formEnviar">
                         
                         <div class="form-row">  
 
@@ -310,7 +330,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Para:</div>
                                     </div>
-                                    <input type="text" class="form-control" id="inputDestinatario" placeholder="">
+                                    <input type="text" name="destinatario" class="form-control" id="inputDestinatario" placeholder="">
                                 </div>
 
                             </div>
@@ -325,7 +345,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Cc:</div>
                                     </div>
-                                    <input type="text" class="form-control" id="inputCc" placeholder="">
+                                    <input type="text" name="cc" class="form-control" id="inputCc" placeholder="">
                                 </div>
                                 
                             </div>
@@ -337,7 +357,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Cco:</div>
                                     </div>
-                                    <input type="text" class="form-control" id="inputCco" placeholder="">
+                                    <input type="text" name="cco" class="form-control" id="inputCco" placeholder="">
                                 </div>
 
                             </div>
@@ -348,7 +368,7 @@
                             <div class="form-group col-sm-12">
 
                                 <label for="inputAssunto">Assunto:</label>
-                                <input type="text" class="form-control" id="inputAssunto">
+                                <input type="text" name="assunto" class="form-control" id="inputAssunto">
 
                             </div>
 
@@ -358,7 +378,7 @@
                             <div class="form-group col-sm-12">
 
                                 <label for="inputMensagem">Mensagem:</label>
-                                <textarea class="form-control" id="inputMensagem"></textarea>
+                                <textarea name="mensagem" class="form-control" id="inputMensagem" form ="formEnviar"></textarea>
 
                             </div>
 
@@ -369,7 +389,7 @@
 
                                 <label for="inputAnexo">Anexo:</label>
                                 <br/>
-                                <input type="file" class="form-control-file" id="inputAnexo">
+                                <input type="file" name="anexo" class="form-control-file" id="inputAnexo">
 
                             </div>
 
@@ -377,8 +397,8 @@
                         
                   
                         <div class="modal-footer">
-                    
-                            <button type="submit" class="btn btn-danger btn-block" data-dismiss="modal">Enviar</button>
+                    		<input type="hidden" name="gerenciador" value="<%= %>">
+                            <button type="submit" class="btn btn-danger btn-block">Enviar</button>
 
                         </div>
                     </form>

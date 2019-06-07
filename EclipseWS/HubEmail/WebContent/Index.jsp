@@ -40,7 +40,7 @@
 		
 	}catch (Exception erro)
 	{
-		//System.err.println(erro.getMessage());
+		System.err.println(erro.getMessage());
 		response.sendRedirect("Login.jsp");
 	}
 	/*Pega o email*/

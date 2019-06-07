@@ -207,7 +207,7 @@ public class Emails
             MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
 
             if (!resultado.first())
-                throw new Exception ("Nao ha emails cadastrados para esse usuario");
+                return new Email[0];
 
             ArrayList<Email> lista = new ArrayList<Email>();
             int i=0;

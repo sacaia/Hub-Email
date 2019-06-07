@@ -1,3 +1,4 @@
+<%@page import="javafx.scene.control.Alert"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <html>
@@ -61,7 +62,7 @@
 <!-- -------------------------------------- -->
 <%
 try{
-	if((boolean)session.getAttribute("senhasDiferentes"))
+	if((boolean)request.getAttribute("senhasDiferentes"))
 	{
 %>
 	<div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="toast" style="position: absolute; bottom: 0; right: 0; max-width: 38vh; width: 38vh">
@@ -80,6 +81,30 @@ try{
 	}
 }catch(Exception e) {}
 %>
+
+<!-- -------------------------------------- -->
+<%
+try{
+	if((boolean)request.getAttribute("UsuarioJaCadastrado"))
+	{
+%>
+	<div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="toast" style="position: absolute; bottom: 0; right: 0; max-width: 38vh; width: 38vh">
+  <div class="toast-header">
+    <strong class="mr-auto">Usuario já cadastrado</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Tente outro nome de usuário ou vá para o <a href="Login.jsp">login</a>
+  </div>
+</div>
+<%
+		session.setAttribute("UsuarioJaCadastrado", false);
+	}
+}catch(Exception e) {}
+%>
+
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-slim.min.js"></script>
     <script src="js/popper.js"></script>

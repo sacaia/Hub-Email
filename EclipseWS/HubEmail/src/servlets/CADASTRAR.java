@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,15 +40,25 @@ public class CADASTRAR extends HttpServlet {
         if(!senha.equals(confirmarSenha))
         {
         	request.setAttribute("senhasDiferentes", true);
-        	response.sendRedirect("Cadastro.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("Cadastro.jsp");
+            dispatcher.forward( request, response);
+        	//response.sendRedirect("Cadastro.jsp");
+        	return;
         }
     	try {
     		Hub h = Hubs.getHub(usuario, senha);
+    		if(Hubs.cadastrado(h.getIdHub()))
+    		{
+    			request.setAttribute("UsuarioJaCadastrado", true);
+    			RequestDispatcher dispatcher = request.getRequestDispatcher("Cadastro.jsp");
+                dispatcher.forward( request, response);
+            	//response.sendRedirect("Cadastro.jsp");
+    			return;
+    		}
     	}
         catch (Exception e)
     	{
-			request.setAttribute("UsuarioJaCadastrado", true);
-			response.sendRedirect("Cadastro.jsp");
+			
 		}
         try {
         	Hub hub = new Hub(usuario, senha);

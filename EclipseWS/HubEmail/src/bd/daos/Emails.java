@@ -68,17 +68,18 @@ public class Emails
             String sql;
 
             sql = "INSERT INTO Email " +
-                  "(idHub,endereco, senha, porta, protocolo) " +
+                  "(idHub,endereco, senha, host, porta, protocolo) " +
                   "VALUES " +
-                  "(?, ?, ?, ?)";
+                  "(?, ?, ?, ?, ?)";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
             BDSQLServer.COMANDO.setInt    (1, email.getIdHub() );
             BDSQLServer.COMANDO.setString (2, email.getEndereco() );
             BDSQLServer.COMANDO.setString (3, email.getSenha() );
-            BDSQLServer.COMANDO.setString (4, email.getPorta    () );
-            BDSQLServer.COMANDO.setString (5, email.getProtocolo() );
+            BDSQLServer.COMANDO.setString (4, email.getHost()  );
+            BDSQLServer.COMANDO.setString (5, email.getPorta    () );
+            BDSQLServer.COMANDO.setString (6, email.getProtocolo() );
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();
@@ -129,6 +130,7 @@ public class Emails
                   "SET idHub   = ?" +
                   ", endereco  = ?" +
                   ", senha     = ?" +
+                  ", host      = ?" +
                   ", porta     = ?" +
                   ", protocolo = ?" +
                   "WHERE idEmail = ?";
@@ -177,6 +179,7 @@ public class Emails
             				   resultado.getInt("idHub"),
                                resultado.getString("endereco"),
                                resultado.getString("senha"),
+                               resultado.getString("host"),
                                resultado.getString("porta"),
                                resultado.getString("protocolo"));
         }
@@ -214,7 +217,7 @@ public class Emails
             
             do
             {
-            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("porta"), resultado.getString("protocolo")));
+            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("host"), resultado.getString("porta"), resultado.getString("protocolo")));
             	i++;
             }while(resultado.next() == true);
             	
@@ -280,7 +283,7 @@ public class Emails
             
             do
             {
-            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("porta"), resultado.getString("protocolo")));
+            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("host"), resultado.getString("porta"), resultado.getString("protocolo")));
             	i++;
             }while(resultado.next() == true);
             	

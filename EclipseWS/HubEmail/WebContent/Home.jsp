@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8"
+    session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,21 +22,6 @@
     
 </head>
 <body>
-<%
-	try{
-		if((boolean)request.getAttribute("logado"))
-		{
-			session.setAttribute("logado", true);
-			session.setAttribute("hub", request.getAttribute("logado"));
-		}
-	}
-	catch (Exception e)
-	{
-		
-	}
-
-%>
-
 <!----------------------- Linha Principal ----------------------->
 	<div class="row">
 	
@@ -44,26 +30,26 @@
 		<div class="container">
 			<a class="navbar-brand">Java Mali</a>
 				<%
-				try
+				if(session.getAttribute("logado") != null)
 				{
 					if((boolean)session.getAttribute("logado"))
 					{
-				%>		
+						%>		
 						<form action="Index.jsp">
-				<%
+						<%
 					}
 					else
 					{
-				%>
+						%>
 						<form action="Login.jsp">
-				<%
+						<%
 					}
 				}
-				catch (Exception e)
+				else
 				{
-				%>
+					%>
 					<form action="Login.jsp">
-				<%
+					<%
 				}
 				%>
 					<input type="submit" value="Entrar" class="btn btn-primary ml-2">

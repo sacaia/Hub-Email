@@ -31,8 +31,8 @@
                   <h3 class="login-heading mb-4 pl-3">Java Mali</h3>
                   <form method="POST" action="LOGAR">
                     <div class="form-label-group">
-                      <input type="email" name="usuario" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                      <label for="inputEmail">Usuário</label>
+                      <input type="text" name="usuario" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                      <label for="inputUsername">Usuário</label>
                     </div>
 
                     <div class="form-label-group">

@@ -44,8 +44,8 @@
 		response.sendRedirect("Login.jsp");
 	}
 	/*Pega o email*/
-	Hub hub = (Hub)session.getAttribute("hub");
-	session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
+	//Hub hub = (Hub)session.getAttribute("hub");
+	//session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
 	
 %>
 

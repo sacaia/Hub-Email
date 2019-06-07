@@ -317,7 +317,7 @@ public class Hubs
             
             do
             {
-            	lista.add(new Email(resultado.getInt("idEmail"), hub.getIdHub(), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("porta"), resultado.getString("protocolo")));
+            	lista.add(new Email(resultado.getInt("idEmail"), hub.getIdHub(), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("host"), resultado.getString("porta"), resultado.getString("protocolo")));
             	i++;
             }while(resultado.next() == true);
             	

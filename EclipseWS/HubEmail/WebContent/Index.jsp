@@ -2,7 +2,7 @@
 	contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
     session="true"
-    import="bd.dbos.*, bd.daos.*, util.*"%>
+    import="bd.dbos.*, bd.daos.*, util.*, java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,11 @@
 <%
 	/*Setando as Sessions*/
 	if(request.getAttribute("logado") != null)
+	{
 		session.setAttribute("logado", true);
+		if(((boolean)session.getAttribute("logado")) == false)
+			response.sendRedirect("Login.jsp");
+	}
 
 	if(request.getAttribute("hub") != null)
 		session.setAttribute("hub", request.getAttribute("hub"));
@@ -42,10 +46,25 @@
 		
 
 	/*Pega o email*/
-	Hub hub = (Hub)session.getAttribute("hub");
+    Hub hub = (Hub)session.getAttribute("hub");
+    
 	System.err.println("Hub: "+hub);
 	if(session.getAttribute("emails") == null && hub != null)
-		session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
+        session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
+        
+	session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
+	Email[] emails = (Email[])session.getAttribute("emails");
+	
+	int selectedItem = 0;
+	if(session.getAttribute("selectedItem") != null)
+		selectedItem = (int)session.getAttribute("selectedItem");
+	
+	String selectedFolder = "INBOX";
+	if(session.getAttribute("selectedItem") != null)
+		selectedFolder = (String)session.getAttribute("selectedFolder");
+	else
+		session.setAttribute("selectedFolder", selectedFolder);
+
 %>
 
 <!----------------------- Linha Principal ----------------------->
@@ -168,11 +187,40 @@
                     <nav class="nav nav-pills flex-column col-11 ml-3">
 
                         <div id="collapse-group">
-                            <a class="nav-link btn btn-outline-amarelo pasta active" data-toggle="collapse"role="button" href="#inbox-collapse" aria-expanded="false"><i class="fas fa-inbox fa-lg"></i> Inbox</a>
+                        	<%
+                        	
+                        	GerenciadorEmail geMain = new GerenciadorEmail(emails[selectedItem].getEndereco(), emails[selectedItem].getSenha());
+                        	geMain.setSenderSession(emails[selectedItem].getPorta(), emails[selectedItem].getHost());
+                    		
+                        	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
+                        	
+                        	ArrayList<String> folderNames = geMain.listarPastas("0");
+                        	
+                        	for(int i = 0; i < folderNames.size(); i++)
+                        	{
+                        		String nomeSing = folderNames.get(i);
+                        		
+                        		String aux = ";";
+                        		if(nomeSing == "INBOX")
+                        			aux = "pasta";
+                        		else
+                        			aux = "mt-3 pasta";
+                        		
+                        		String active  = "";
+                        		
+                        		if(i == selectedItem)
+                        			active  = "active";
+                        		
+                        	%>
+                            <a class="nav-link btn btn-outline-amarelo <%= aux + " " + active %>" data-toggle="collapse"role="button" href="#inbox-collapse" aria-expanded="false"><i class="fas fa-inbox fa-lg"></i> <%= folderNames.get(i)%></a>
 
                             <div class="collapse" id="inbox-collapse" data-parent="#collapse-group"></div>
+                            
+                            <%
+                        	}
+                            %>
 
-                            <a class="nav-link btn btn-outline-amarelo mt-3 pasta" data-toggle="collapse" href="#sub-pasta1" role="button" aria-expanded="false"><i class="fas fa-folder fa-lg"></i> Pasta 1</a>
+                            <!-- <a class="nav-link btn btn-outline-amarelo mt-3 pasta" data-toggle="collapse" href="#sub-pasta1" role="button" aria-expanded="false"><i class="fas fa-folder fa-lg"></i> Pasta 1</a>
 
                             <div class="collapse" id="sub-pasta1" data-parent="#collapse-group">
                                 <nav class="nav nav-pills flex-column">
@@ -195,7 +243,7 @@
                                     <a class="nav-link btn btn-outline-amarelo ml-3 mt-2 pasta" href="#"><i class="fas fa-folder fa-lg"></i> Pasta 2.3</a>
 
                                 </nav>
-                            </div>
+                            </div> -->
                         </div>
                     </nav>
                 </nav>
@@ -252,7 +300,8 @@
             <div class="collapse show" id="contas">
                 <div class="list-group">
 					
-				<%
+                <%
+                
 			if(session.getAttribute("emails") != null)
 			{
             	Email[] emails = (Email[])session.getAttribute("emails");

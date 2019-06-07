@@ -57,9 +57,60 @@ public class Hubs
 
         return retorno;
     }
+    
+    public static boolean cadastrado (String username) throws Exception
+    {
+        boolean retorno = false;
+
+        try
+        {
+            String sql;
+
+            sql = "SELECT * " +
+                  "FROM Hub " +
+                  "WHERE username = ?";
+
+            BDSQLServer.COMANDO.prepareStatement (sql);
+
+            BDSQLServer.COMANDO.setString(1, username);
+
+            MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
+
+            retorno = resultado.first(); // pode-se usar resultado.last() ou resultado.next() ou resultado.previous() ou resultado.absotule(numeroDaLinha)
+
+            /* // ou, se preferirmos,
+
+            String sql;
+
+            sql = "SELECT COUNT(*) AS QUANTOS " +
+                  "FROM ALUNO " +
+                  "WHERE CODIGO = ?";
+
+            BDSQLServer.COMANDO.prepareStatement (sql);
+
+            BDSQLServer.COMANDO.setInt (1, codigo);
+
+            MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
+
+            resultado.first();
+
+            retorno = resultado.getInt("QUANTOS") != 0;
+
+            */
+        }
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao procurar hub");
+        }
+
+        return retorno;
+    }
 
     public static void incluir (Hub hub) throws Exception
     {
+    	if(cadastrado(hub.getUsername()))
+    		throw new Exception("Username ja cadastrado");
+    	
         if (hub==null)
             throw new Exception ("Hub nao fornecido");
 

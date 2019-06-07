@@ -6,7 +6,7 @@ CREATE TABLE Hub(
 
 idHub INT IDENTITY(0, 1) PRIMARY KEY,
 username VARCHAR(30) not null,
-senha VARCHAR(50) not null,
+senha VARCHAR(100) not null,
 )
 
 CREATE TABLE Email(

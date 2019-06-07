@@ -44,9 +44,8 @@
 		response.sendRedirect("Login.jsp");
 	}
 	/*Pega o email*/
-	//Hub hub = (Hub)session.getAttribute("hub");
-	//session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
-	
+	Hub hub = (Hub)session.getAttribute("hub");
+	session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
 %>
 
 <!----------------------- Linha Principal ----------------------->
@@ -140,11 +139,11 @@
         <div class="col-sm-3 p-0">
             
             <nav class="navbar navbar-expand-xl bg-navbar main-row py-0">
-                <div class="container px-1">
-                
-                    <a class="nav-brand py-0 main-row" id="titulo-contas">
-                        <h1 class="pl-4 text-dark">Contas</h1>
-                    </a>
+            <div class="container px-1">
+            
+                <a class="nav-brand py-0 main-row" id="titulo-contas">
+                    <h1 class="pl-4 text-dark">Contas</h1>
+                </a>
 
 <!----------------------- pra quando a tela ficar mt pequena aparece o botão ----------------------->
                         <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#contas">
@@ -251,21 +250,27 @@
             
             <div class="collapse show" id="contas">
                 <div class="list-group">
-
+					
+				<%
+            	Email[] emails = (Email[])session.getAttribute("emails");
+            
+            	for(int i = 0; i < emails.length; i++)
+            	{
+            		GerenciadorEmail ge = new GerenciadorEmail(emails[i].getEndereco(), emails[i].getSenha());
+            		ge.setSenderSession(emails[i].getPorta(), emails[i].getHost());
+            		
+            		ge.setStore(emails[i].getHost(), emails[i].getProtocolo());
+            	%>
                     <a href="#" class="list-group-item list-group-item-action flex-column conta active">
 
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1 texto-limitado">cc17189@g.unicamp.br</h5><span class="badge badge-danger p-2 text-end">10</span>
+                            <h5 class="mb-1 texto-limitado"><%= emails[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><% %></span>
                         </div>
 
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column conta">
-
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1 texto-limitado">lucasalvimromani@gmail.com</h5><span class="badge badge-danger p-2">2</span>
-                        </div>
-
-                    </a>
+                 <%
+            	}
+                 %>
                     <a class="list-group-item list-group-item-action flex-column" id="btnAdicionarConta">
 
                         <div class="d-flex w-100 justify-content-between">

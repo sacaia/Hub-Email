@@ -8,6 +8,7 @@ public class Email implements Cloneable
     private String endereco;
     private String senha;
 
+    private String host;
     private String porta;
     private String protocolo;
  
@@ -43,6 +44,14 @@ public class Email implements Cloneable
         this.senha = novaSenha;
     }
 
+    public void setHost(String host) throws Exception
+    {
+        if (host==null || host.equals(""))
+            throw new Exception ("Host nao fornecida");
+
+        this.host = host;
+    }
+    
     public void setPorta(String porta) throws Exception
     {
         if (porta==null || porta.equals(""))
@@ -86,6 +95,11 @@ public class Email implements Cloneable
     {
         return this.senha;
     }
+    
+    public String getHost()
+    {
+    	return this.host;
+    }
 
     public String getPorta()
     {
@@ -97,12 +111,13 @@ public class Email implements Cloneable
         return this.protocolo;
     }
 
-    public Email (int idEmail, int idHub, String endereco, String senha, String porta, String protocolo) throws Exception
+    public Email (int idEmail, int idHub, String endereco, String senha, String host, String porta, String protocolo) throws Exception
     {
         this.setIdEmail   (idEmail);
         this.setIdHub     (idHub);
         this.setEndereco  (endereco);
         this.setSenha     (senha);
+        this.setHost(host);
         this.setPorta     (porta);
         this.setProtocolo (protocolo);
     }
@@ -142,6 +157,9 @@ public class Email implements Cloneable
 
         if (!this.endereco.equals(em.endereco))
             return false;
+        
+        if(!this.host.equals(em.host))
+        	return false;
         
         if (!this.senha.equals(em.senha))
             return false;

@@ -12,11 +12,12 @@ senha VARCHAR(100) not null,
 CREATE TABLE Email(
 idEmail INT IDENTITY(0, 1) PRIMARY KEY,
 
-idHub INT not null, -- para relacionar com o Hub
+idHub INT not null, -- para relacionar com o Hub,
 
 endereco VARCHAR(200) not null, -- xxxx@dd.com
 senha VARCHAR(100) not null,
 
+host varchar(100) not null,
 porta varchar(6) not null,
 protocolo varchar(4) not null,
 

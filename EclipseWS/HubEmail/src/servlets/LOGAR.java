@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +49,8 @@ public class LOGAR extends HttpServlet {
             
             request.setAttribute("logado", true);
             request.setAttribute("hub", h);
-            response.sendRedirect("Index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
+            dispatcher.forward( request, response);
         }
         catch(Exception e)
         {

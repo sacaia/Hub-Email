@@ -22,6 +22,32 @@
     
 </head>
 <body>
+<%
+	/*Setando as Sessions*/
+	
+	try
+	{
+		session.setAttribute("logado", request.getAttribute("logado"));
+		session.setAttribute("hub", request.getAttribute("hub"));
+	}
+	catch (Exception erro)
+	{}
+
+	try
+	{		
+		if(((boolean)session.getAttribute("logado")) == false)
+			throw new Exception();
+		
+	}catch (Exception erro)
+	{
+		//System.err.println(erro.getMessage());
+		response.sendRedirect("Login.jsp");
+	}
+	/*Pega o email*/
+	Hub hub = (Hub)session.getAttribute("hub");
+	session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
+	
+%>
 
 <!----------------------- Linha Principal ----------------------->
 	<div class="row">

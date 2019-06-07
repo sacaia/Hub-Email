@@ -175,7 +175,7 @@ public class Emails
 
             email = new Email (resultado.getInt("idEmail"), 
             				   resultado.getInt("idHub"),
-                               resultado.getString("endereço"),
+                               resultado.getString("endereco"),
                                resultado.getString("senha"),
                                resultado.getString("porta"),
                                resultado.getString("protocolo"));
@@ -186,6 +186,50 @@ public class Emails
         }
 
         return email;
+    }
+    
+    public static Email[] getEmailsFromHub (int idHub) throws Exception
+    {
+        Email[] emails = null;
+
+        try
+        {
+            String sql;
+
+            sql = "SELECT * " +
+                  "FROM Email " +
+                  "WHERE idHub = ?";
+
+            BDSQLServer.COMANDO.prepareStatement (sql);
+
+            BDSQLServer.COMANDO.setInt (1, idHub);
+
+            MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
+
+            if (!resultado.first())
+                throw new Exception ("Nao ha emails cadastrados para esse usuario");
+
+            ArrayList<Email> lista = new ArrayList<Email>();
+            int i=0;
+            
+            do
+            {
+            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("porta"), resultado.getString("protocolo")));
+            	i++;
+            }while(resultado.next() == true);
+            	
+            emails = new Email[i];
+            for(int j=0; j<i; j++)
+            {
+            	emails[j] = lista.get(j);
+            }
+        }
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao procurar email");
+        }
+
+        return emails;
     }
 
     public static MeuResultSet getEmails () throws Exception

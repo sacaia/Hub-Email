@@ -44,16 +44,18 @@ public class LOGAR extends HttpServlet {
     		encrypt.update(senha.getBytes());
     		byte[] digest = encrypt.digest();
     		senha = DatatypeConverter.printHexBinary(digest);
-        	
-        	Hub h = Hubs.getHub(usuario, senha);
-            
-            request.setAttribute("logado", true);
+
+    		Hub h = Hubs.getHub(usuario, senha);
+    		request.setAttribute("logado", true);
             request.setAttribute("hub", h);
             RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
             dispatcher.forward( request, response);
+          
         }
         catch(Exception e)
         {
+        	//e.printStackTrace();
+        	System.err.println(e.getMessage());
         	response.sendRedirect("Login.jsp");
         }
 	}

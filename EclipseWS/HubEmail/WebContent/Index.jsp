@@ -259,11 +259,12 @@
                     <a href="#" class="list-group-item list-group-item-action flex-column conta active">
 
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1 texto-limitado"><%= emails[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><% %></span>
+                            <h5 class="mb-1 texto-limitado"><%= emails[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><%= ge.receive().size() %></span>
                         </div>
 
                     </a>
                  <%
+                 ge.closeStore();
             	}
                  %>
                     <a class="list-group-item list-group-item-action flex-column" id="btnAdicionarConta">

@@ -81,8 +81,17 @@ public class GerenciadorEmail {
 		ArrayList<Message> ret = new ArrayList<>();
 		
 		for(Folder fd:f)
+		{
+			try {
+			fd.open(Folder.READ_ONLY);
 			for(Message msg:fd.getMessages())
-				ret.add(msg);	
+				ret.add(msg);
+			}
+			catch (Exception erro)
+			{
+				
+			}
+		}
 		
 		return ret;
 	}
@@ -245,5 +254,15 @@ public class GerenciadorEmail {
 		msg.setContent(multipart);
 		
 		Transport.send(msg);
+	}
+	
+	public void closeStore()
+	{
+		try {
+			this.emailStore.close();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

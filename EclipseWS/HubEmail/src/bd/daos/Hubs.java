@@ -28,27 +28,6 @@ public class Hubs
 
             MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
 
-            retorno = resultado.first(); // pode-se usar resultado.last() ou resultado.next() ou resultado.previous() ou resultado.absotule(numeroDaLinha)
-
-            /* // ou, se preferirmos,
-
-            String sql;
-
-            sql = "SELECT COUNT(*) AS QUANTOS " +
-                  "FROM ALUNO " +
-                  "WHERE CODIGO = ?";
-
-            BDSQLServer.COMANDO.prepareStatement (sql);
-
-            BDSQLServer.COMANDO.setInt (1, codigo);
-
-            MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
-
-            resultado.first();
-
-            retorno = resultado.getInt("QUANTOS") != 0;
-
-            */
         }
         catch (SQLException erro)
         {
@@ -78,25 +57,6 @@ public class Hubs
 
             retorno = resultado.first(); // pode-se usar resultado.last() ou resultado.next() ou resultado.previous() ou resultado.absotule(numeroDaLinha)
 
-            /* // ou, se preferirmos,
-
-            String sql;
-
-            sql = "SELECT COUNT(*) AS QUANTOS " +
-                  "FROM ALUNO " +
-                  "WHERE CODIGO = ?";
-
-            BDSQLServer.COMANDO.prepareStatement (sql);
-
-            BDSQLServer.COMANDO.setInt (1, codigo);
-
-            MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
-
-            resultado.first();
-
-            retorno = resultado.getInt("QUANTOS") != 0;
-
-            */
         }
         catch (SQLException erro)
         {

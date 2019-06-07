@@ -33,7 +33,7 @@
                 <div class="container px-2">
                 
                     <a class="nav-brand p-0 main-row" id="titulo-pastas">
-                        <h1 class="pl-4 text-dark titulo-nav-limitado">Pastas</h1>
+                        <h1 class="pl-4 text-dark titulo-nav-limitado"><a href="Home.jsp">Pastas</a></h1>
                     </a>
 
 <!----------------------- pra quando a tela ficar mt pequena aparece o botão ----------------------->

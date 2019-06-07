@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.DatatypeConverter;
 
 import bd.daos.Hubs;
 import bd.dbos.Hub;
@@ -39,8 +40,9 @@ public class LOGAR extends HttpServlet {
         
         try {
         	MessageDigest encrypt = MessageDigest.getInstance("MD5");
-			byte[] digest = encrypt.digest(senha.getBytes());
-			senha = digest.toString();
+    		encrypt.update(senha.getBytes());
+    		byte[] digest = encrypt.digest();
+    		senha = DatatypeConverter.printHexBinary(digest);
         	
         	Hub h = Hubs.getHub(usuario, senha);
             

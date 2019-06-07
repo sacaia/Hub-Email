@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.DatatypeConverter;
 
 import bd.daos.Hubs;
 import bd.dbos.Hub;
@@ -52,9 +53,10 @@ public class CADASTRAR extends HttpServlet {
 			response.sendRedirect("Cadastro.jsp");
 		}
         try {
-			MessageDigest encrypt = MessageDigest.getInstance("MD5");
-			byte[] digest = encrypt.digest(senha.getBytes());
-			senha = digest.toString();
+    		MessageDigest encrypt = MessageDigest.getInstance("MD5");
+    		encrypt.update(senha.getBytes());
+    		byte[] digest = encrypt.digest();
+    		senha = DatatypeConverter.printHexBinary(digest);
         	
         	Hub hub = new Hub(usuario, senha);
         	Hubs.incluir(hub);

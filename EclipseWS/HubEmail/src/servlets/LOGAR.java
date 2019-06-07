@@ -38,15 +38,10 @@ public class LOGAR extends HttpServlet {
         String senha = (String)request.getParameter("senha");
         
         try {
-			MessageDigest encrypt = MessageDigest.getInstance("MD5");
+        	MessageDigest encrypt = MessageDigest.getInstance("MD5");
 			byte[] digest = encrypt.digest(senha.getBytes());
 			senha = digest.toString();
-		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        
-        try {
+        	
         	Hub h = Hubs.getHub(usuario, senha);
             
             request.setAttribute("logado", true);

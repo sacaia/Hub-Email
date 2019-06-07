@@ -49,8 +49,7 @@ public class CADASTRAR extends HttpServlet {
         	return;
         }
     	try {
-    		Hub h = Hubs.getHub(usuario, senha);
-    		if(Hubs.cadastrado(h.getIdHub()))
+    		if(Hubs.cadastrado(usuario))
     		{
     			request.setAttribute("UsuarioJaCadastrado", true);
     			RequestDispatcher dispatcher = request.getRequestDispatcher("Cadastro.jsp");

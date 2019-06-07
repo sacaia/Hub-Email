@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
-    import="bd.dbos.*, bd.daos.*, java.security.*"%>
+    import="bd.dbos.*, bd.daos.*"%>
 <!DOCTYPE html>
 <html>
 <head>

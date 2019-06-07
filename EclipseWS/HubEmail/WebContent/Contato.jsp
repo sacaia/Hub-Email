@@ -30,7 +30,29 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
 			<a class="navbar-brand">Java Mali</a>
-				<form action="Login.jsp">
+				<%
+				if(session.getAttribute("logado") != null)
+				{
+					if((boolean)session.getAttribute("logado"))
+					{
+						%>		
+						<form action="Index.jsp">
+						<%
+					}
+					else
+					{
+						%>
+						<form action="Login.jsp">
+						<%
+					}
+				}
+				else
+				{
+					%>
+					<form action="Login.jsp">
+					<%
+				}
+				%>
 					<input type="submit" value="Entrar" class="btn btn-primary ml-2">
 				</form>
             

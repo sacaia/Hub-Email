@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
-    import="bd.dbos.*, bd.daos.*"%>
+    import="bd.dbos.*, bd.daos.*"
+    session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,25 +25,16 @@
 <body>
 <%
 	/*Setando as Sessions*/
-	
-	try
-	{
-		session.setAttribute("logado", request.getAttribute("logado"));
-		session.setAttribute("hub", request.getAttribute("hub"));
-	}
-	catch (Exception erro)
-	{}
+	if(request.getAttribute("logado") != null)
+		session.setAttribute("logado", true);
 
-	try
-	{		
-		if(((boolean)session.getAttribute("logado")) == false)
-			throw new Exception();
-		
-	}catch (Exception erro)
-	{
-		System.err.println(erro.getMessage());
+	if(request.getAttribute("hub") != null)
+		session.setAttribute("hub", request.getAttribute("hub"));
+	
+	if(((boolean)session.getAttribute("logado")) == false)
 		response.sendRedirect("Login.jsp");
-	}
+		
+
 	/*Pega o email*/
 	//Hub hub = (Hub)session.getAttribute("hub");
 	//session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
@@ -59,7 +51,8 @@
                 <div class="container px-2">
                 
                     <a class="nav-brand p-0 main-row" id="titulo-pastas">
-                        <h1 class="pl-4 text-dark titulo-nav-limitado"><a href="Home.jsp">Pastas</a></h1>
+                        <h1 class="pl-4 text-dark titulo-nav-limitado"><form action="Home.jsp" method="get"><input type="submit" value="Pastas"></form></h1>
+                    
                     </a>
 
 <!----------------------- pra quando a tela ficar mt pequena aparece o botão ----------------------->

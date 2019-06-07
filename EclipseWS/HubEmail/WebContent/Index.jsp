@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" 
+	contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
-    import="bd.dbos.*, bd.daos.*"
-    session="true"%>
+    session="true"
+    import="bd.dbos.*, bd.daos.*, util.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -252,7 +254,7 @@
             		GerenciadorEmail ge = new GerenciadorEmail(emails[i].getEndereco(), emails[i].getSenha());
             		ge.setSenderSession(emails[i].getPorta(), emails[i].getHost());
             		
-            		ge.setStore(emails[i].getHost(), emails[i].getProtocolo());
+            		ge.setStore(emails[i].getHost(), emails[i].getProtocolo() + "s");
             	%>
                     <a href="#" class="list-group-item list-group-item-action flex-column conta active">
 

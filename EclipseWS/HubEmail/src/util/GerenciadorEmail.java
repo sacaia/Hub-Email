@@ -1,3 +1,5 @@
+package util;
+
 import java.util.ArrayList;
 import java.util.Properties;
 import java.io.UnsupportedEncodingException;
@@ -59,7 +61,7 @@ public class GerenciadorEmail {
 		this.senderSession = sessao;
 	}
 	
-	protected void setStore(String host, String mode) throws Exception
+	public void setStore(String host, String mode) throws Exception
 	{
 		if(host == null || host.equals("") || user == null || user.equals("") || senha == null || senha.equals(""))
 			throw new Exception ("Algum dos parâmetros esta vazio");

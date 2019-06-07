@@ -21,6 +21,11 @@
     
 </head>
 <body>
+<%
+if(session.getAttribute("logado") != null)
+	if((boolean)session.getAttribute("logado"))
+		response.sendRedirect("Index.jsp");
+%>
     <div class="container-fluid">
       <div class="row no-gutter">
         <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>

@@ -22,6 +22,11 @@
     
 </head>
 <body>
+<%
+if(session.getAttribute("logado") != null)
+	if((boolean)session.getAttribute("logado"))
+		response.sendRedirect("Index.jsp");
+%>
     <div class="container">
         <div class="row">
           <div class="col-lg-10 col-xl-9 mx-auto">
@@ -62,8 +67,10 @@
     </div>
 <!-- -------------------------------------- -->
 <%
-try{
-	if((boolean)request.getAttribute("senhasDiferentes"))
+if(request.getAttribute("senhasDiferentes") != null)
+{
+	session.setAttribute("senhasDiferentes", (boolean)request.getAttribute("senhasDiferentes"));
+	if((boolean)session.getAttribute("senhasDiferentes"))
 	{
 %>
 	<div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="toast" style="position: absolute; bottom: 0; right: 0; max-width: 38vh; width: 38vh">
@@ -80,13 +87,15 @@ try{
 <%
 		session.setAttribute("senhasDiferentes", false);
 	}
-}catch(Exception e) {}
+}
 %>
 
 <!-- -------------------------------------- -->
 <%
-try{
-	if((boolean)request.getAttribute("UsuarioJaCadastrado"))
+if(request.getAttribute("UsuarioJaCadastrado") != null)
+{
+	session.setAttribute("UsuarioJaCadastrado", (boolean)request.getAttribute("UsuarioJaCadastrado"));
+	if((boolean)session.getAttribute("UsuarioJaCadastrado"))
 	{
 %>
 	<div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="toast" style="position: absolute; bottom: 0; right: 0; max-width: 38vh; width: 38vh">
@@ -103,7 +112,7 @@ try{
 <%
 		session.setAttribute("UsuarioJaCadastrado", false);
 	}
-}catch(Exception e) {}
+}
 %>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

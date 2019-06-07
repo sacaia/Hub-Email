@@ -52,7 +52,7 @@
                 <div class="container px-2">
                 
                     <a class="nav-brand p-0 main-row" id="titulo-pastas">
-                        <h1 class="pl-4 text-dark titulo-nav-limitado"><form action="Home.jsp" method="get"><input type="submit" value="Pastas"></form></h1>
+                        <h1 class="pl-4 text-dark titulo-nav-limitado">Pastas</h1>
                     
                     </a>
 

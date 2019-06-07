@@ -65,6 +65,36 @@ public class Hubs
 
         return retorno;
     }
+    
+    public static boolean cadastrado (String username, String senha) throws Exception
+    {
+        boolean retorno = false;
+
+        try
+        {
+            String sql;
+
+            sql = "SELECT * " +
+                  "FROM Hub " +
+                  "WHERE username = ? AND senha = ?";
+
+            BDSQLServer.COMANDO.prepareStatement (sql);
+
+            BDSQLServer.COMANDO.setString(1, username);
+            BDSQLServer.COMANDO.setString(1, senha);
+
+            MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
+
+            retorno = resultado.first(); // pode-se usar resultado.last() ou resultado.next() ou resultado.previous() ou resultado.absotule(numeroDaLinha)
+
+        }
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao procurar hub");
+        }
+
+        return retorno;
+    }
 
     public static void incluir (Hub hub) throws Exception
     {
@@ -216,7 +246,7 @@ public class Hubs
         }
         catch (SQLException erro)
         {
-            throw new Exception ("Erro ao procurar hub");
+            throw new Exception ("Erro ao pegar hub");
         }
 
         return hub;

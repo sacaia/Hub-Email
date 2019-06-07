@@ -29,21 +29,21 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title text-center">Cadastro</h5>
-                <form class="form-signin">
+                <form class="form-signin" method="POST" action="CADASTRAR">
                   <div class="form-label-group">
-                    <input type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
+                    <input type="text" name="usuario" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
                     <label for="inputUserame">Usuario</label>
                   </div>
 
                   <hr>
 
                   <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input type="password" name="senha" id="inputPassword" class="form-control" placeholder="Password" required>
                     <label for="inputPassword">Senha</label>
                   </div>
 
                   <div class="form-label-group">
-                    <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+                    <input type="password" name="confirmarSenha" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
                     <label for="inputConfirmPassword">Confirmar senha</label>
                   </div>
 
@@ -58,6 +58,28 @@
           </div>
         </div>
     </div>
+<!-- -------------------------------------- -->
+<%
+try{
+	if((boolean)session.getAttribute("senhasDiferentes"))
+	{
+%>
+	<div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false" id="toast" style="position: absolute; bottom: 0; right: 0; max-width: 38vh; width: 38vh">
+  <div class="toast-header">
+    <strong class="mr-auto">Senhas diferentes</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Digite senhas iguais
+  </div>
+</div>
+<%
+		session.setAttribute("senhasDiferentes", false);
+	}
+}catch(Exception e) {}
+%>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-slim.min.js"></script>
     <script src="js/popper.js"></script>
@@ -73,6 +95,8 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
+        
+        $('#toast').toast('show')
       
     </script>
     

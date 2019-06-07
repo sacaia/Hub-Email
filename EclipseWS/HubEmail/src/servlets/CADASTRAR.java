@@ -11,16 +11,16 @@ import bd.daos.Hubs;
 import bd.dbos.Hub;
 
 /**
- * Servlet implementation class LOGAR
+ * Servlet implementation class CADASTRAR
  */
-@WebServlet("/LOGAR")
-public class LOGAR extends HttpServlet {
+@WebServlet("/CADASTRAR")
+public class CADASTRAR extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LOGAR() {
+    public CADASTRAR() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,8 +33,25 @@ public class LOGAR extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String usuario = (String)request.getParameter("usuario");
         String senha = (String)request.getParameter("senha");
+        String confirmarSenha = (String)request.getParameter("confirmarSenha");
         
+        if(!senha.equals(confirmarSenha))
+        {
+        	request.setAttribute("senhasDiferentes", true);
+        	response.sendRedirect("Cadastro.jsp");
+        }
+    	try {
+    		Hub h = Hubs.getHub(usuario, senha);
+    	}
+        catch (Exception e)
+    	{
+			request.setAttribute("UsuarioJaCadastrado", true);
+			response.sendRedirect("Cadastro.jsp");
+		}
         try {
+        	Hub hub = new Hub(usuario, senha);
+        	Hubs.incluir(hub);
+        	
         	Hub h = Hubs.getHub(usuario, senha);
             
             request.setAttribute("logado", true);
@@ -43,7 +60,8 @@ public class LOGAR extends HttpServlet {
         }
         catch(Exception e)
         {
-        	response.sendRedirect("Login.jsp");
+        	request.setAttribute("erro", e.getMessage());
+        	response.sendRedirect("Cadastro.jsp");
         }
 	}
 

@@ -304,17 +304,18 @@
                 
 			if(session.getAttribute("emails") != null)
 			{
-            	Email[] emails = (Email[])session.getAttribute("emails");
+            	Email[] ems = (Email[])session.getAttribute("emails");
             
-            	for(int i = 0; i < emails.length; i++)
+            	for(int i = 0; i < ems.length; i++)
             	{
-            		GerenciadorEmail ge = new GerenciadorEmail(emails[i].getEndereco(), emails[i].getSenha());
-            		ge.setSenderSession(emails[i].getPorta(), emails[i].getHost());
+            		GerenciadorEmail ge = new GerenciadorEmail(ems[i].getEndereco(), ems[i].getSenha());
+            		ge.setSenderSession(ems[i].getPorta(), ems[i].getHost());
             		
-            		ge.setStore(emails[i].getHost(), emails[i].getProtocolo() + "s");
+            		ge.setStore(ems[i].getHost(), ems[i].getProtocolo() + "s");
             		
             		if(i == 0)
             		{
+            			session.setAttribute("emailAtual", ems[i]);
             	%>
                     <a href="#" class="list-group-item list-group-item-action flex-column conta active">
 				<%
@@ -327,7 +328,7 @@
             		}
 				%>
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1 texto-limitado"><%= emails[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><%= ge.receive().size() %></span>
+                            <h5 class="mb-1 texto-limitado"><%= ems[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><%= ge.receive().size() %></span>
                         </div>
 
                     </a>
@@ -446,9 +447,17 @@
                         
                   
                         <div class="modal-footer">
-                    		<input type="hidden" name="gerenciador" value="<%= %>">
+                        <%
+                        	if(session.getAttribute("emailAtual") != null)
+                        	{
+                        %>
+                    		<input type="hidden" name="enderecoH" value="<%=((Email)session.getAttribute("emailAtual")).getEndereco() %>">
+                            <input type="hidden" name="senhaH" value="<%=((Email)session.getAttribute("emailAtual")).getSenha() %>">
+                         <%
+                        	}
+                         %>   
                             <button type="submit" class="btn btn-danger btn-block">Enviar</button>
-
+						
                         </div>
                     </form>
                 </div>

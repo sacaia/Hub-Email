@@ -33,10 +33,17 @@
 
 	if(request.getAttribute("hub") != null)
 		session.setAttribute("hub", request.getAttribute("hub"));
+	
+	if(session.getAttribute("logado") == null)
+		response.sendRedirect("Login.jsp");
+
+	if(session.getAttribute("logado") != null)
+		if(!(boolean)session.getAttribute("logado"))
+			response.sendRedirect("Login.jsp");
 		
 
 	/*Pega o email*/
-	Hub hub = (Hub)session.getAttribute("hub");
+	/*Hub hub = (Hub)session.getAttribute("hub");
 	
 	try{
 	session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
@@ -44,7 +51,13 @@
 	{
 		session.setAttribute("logado", false);
 		response.sendRedirect("Login.jsp");
-	}
+	}*/
+    Hub hub = (Hub)session.getAttribute("hub");
+    
+	System.err.println("Hub: "+hub);
+	if(session.getAttribute("emails") == null && hub != null)
+        session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
+        
 	Email[] emails = (Email[])session.getAttribute("emails");
 	
 	int selectedItem = 0;
@@ -58,6 +71,7 @@
 		selectedFolder = (String)session.getAttribute("selectedFolder");
 	else
 		session.setAttribute("selectedFolder", selectedFolder);
+
 %>
 	
 <%!
@@ -328,24 +342,42 @@
             <div class="collapse show" id="contas">
                 <div class="list-group">
 					
-				<%
-            	for(int i = 0; i < emails.length; i++)
+                <%
+                
+			if(session.getAttribute("emails") != null)
+			{
+            	Email[] ems = (Email[])session.getAttribute("emails");
+            
+            	for(int i = 0; i < ems.length; i++)
             	{
-            		GerenciadorEmail ge = new GerenciadorEmail(emails[i].getEndereco(), emails[i].getSenha());
-            		ge.setSenderSession(emails[i].getPorta(), emails[i].getHost());
+            		GerenciadorEmail ge = new GerenciadorEmail(ems[i].getEndereco(), ems[i].getSenha());
+            		ge.setSenderSession(ems[i].getPorta(), ems[i].getHost());
             		
-            		ge.setStore(emails[i].getHost(), emails[i].getProtocolo() + "s");
+            		ge.setStore(ems[i].getHost(), ems[i].getProtocolo() + "s");
+            		
+            		if(i == 0)
+            		{
+            			session.setAttribute("emailAtual", ems[i]);
             	%>
                     <a href="#" class="list-group-item list-group-item-action flex-column conta active">
-
+				<%
+            		}
+            		else
+            		{
+				%>
+					<a href="#" class="list-group-item list-group-item-action flex-column conta">
+				<%
+            		}
+				%>
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1 texto-limitado"><%= emails[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><%= ge.receive().size() %></span>
+                            <h5 class="mb-1 texto-limitado"><%= ems[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><%= ge.receive().size() %></span>
                         </div>
 
                     </a>
                  <%
                  ge.closeStore();
             	}
+			}
                  %>
                     <a class="list-group-item list-group-item-action flex-column" id="btnAdicionarConta">
 
@@ -379,7 +411,7 @@
                 
                 <div class="modal-body">
                     
-                    <form action="ENVIAREMAIL" method="POST">
+                    <form action="ENVIAREMAIL" method="POST" id="formEnviar">
                         
                         <div class="form-row">  
 
@@ -390,7 +422,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Para:</div>
                                     </div>
-                                    <input type="text" class="form-control" id="inputDestinatario" placeholder="">
+                                    <input type="text" name="destinatario" class="form-control" id="inputDestinatario" placeholder="">
                                 </div>
 
                             </div>
@@ -405,7 +437,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Cc:</div>
                                     </div>
-                                    <input type="text" class="form-control" id="inputCc" placeholder="">
+                                    <input type="text" name="cc" class="form-control" id="inputCc" placeholder="">
                                 </div>
                                 
                             </div>
@@ -417,7 +449,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Cco:</div>
                                     </div>
-                                    <input type="text" class="form-control" id="inputCco" placeholder="">
+                                    <input type="text" name="cco" class="form-control" id="inputCco" placeholder="">
                                 </div>
 
                             </div>
@@ -428,7 +460,7 @@
                             <div class="form-group col-sm-12">
 
                                 <label for="inputAssunto">Assunto:</label>
-                                <input type="text" class="form-control" id="inputAssunto">
+                                <input type="text" name="assunto" class="form-control" id="inputAssunto">
 
                             </div>
 
@@ -438,7 +470,7 @@
                             <div class="form-group col-sm-12">
 
                                 <label for="inputMensagem">Mensagem:</label>
-                                <textarea class="form-control" id="inputMensagem"></textarea>
+                                <textarea name="mensagem" class="form-control" id="inputMensagem" form ="formEnviar"></textarea>
 
                             </div>
 
@@ -449,7 +481,7 @@
 
                                 <label for="inputAnexo">Anexo:</label>
                                 <br/>
-                                <input type="file" class="form-control-file" id="inputAnexo">
+                                <input type="file" name="anexo" class="form-control-file" id="inputAnexo">
 
                             </div>
 
@@ -457,9 +489,17 @@
                         
                   
                         <div class="modal-footer">
-                    
-                            <button type="submit" class="btn btn-danger btn-block" data-dismiss="modal">Enviar</button>
-
+                        <%
+                        	if(session.getAttribute("emailAtual") != null)
+                        	{
+                        %>
+                    		<input type="hidden" name="enderecoH" value="<%=((Email)session.getAttribute("emailAtual")).getEndereco() %>">
+                            <input type="hidden" name="senhaH" value="<%=((Email)session.getAttribute("emailAtual")).getSenha() %>">
+                         <%
+                        	}
+                         %>   
+                            <button type="submit" class="btn btn-danger btn-block">Enviar</button>
+						
                         </div>
                     </form>
                 </div>
@@ -486,7 +526,7 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         
-                        <form>
+                        <form action="NOVACONTA" method="POST">
                   
                             
                             <div class="form-row">  
@@ -494,7 +534,7 @@
                                 <div class="form-group col-sm-12">
 
                                     <label for="inputEndereco">Endereço de email:</label>
-                                    <input type="email" class="form-control" id="inputEndereco" placeholder="Endereço">
+                                    <input type="email" name="enderecoC" class="form-control" id="inputEndereco" placeholder="Endereço">
 
                                 </div>
 
@@ -503,8 +543,41 @@
 
                                 <div class="form-group col-sm-12">
 
-                                    <label for="inputEndereco">Senha:</label>
-                                    <input type="password" class="form-control" id="inputSenha" placeholder="Senha">
+                                    <label for="inputSenha">Senha:</label>
+                                    <input type="password" name="senhaC" class="form-control" id="inputSenha" placeholder="Senha">
+
+                                </div>
+
+                            </div>
+                            
+                            <div class="form-row">  
+
+                                <div class="form-group col-sm-12">
+
+                                    <label for="inputPorta">Porta:</label>
+                                    <input type="number" name="portaC" class="form-control" id="inputPorta" placeholder="Porta">
+
+                                </div>
+
+                            </div>
+                            
+                            <div class="form-row">  
+
+                                <div class="form-group col-sm-12">
+
+                                    <label for="inputHost">Host:</label>
+                                    <input type="text" name="hostC" class="form-control" id="inputHost" placeholder="Host">
+
+                                </div>
+
+                            </div>
+                            
+                            <div class="form-row">  
+
+                                <div class="form-group col-sm-12">
+
+                                    <label for="inputMode">Protocolo:</label>
+                                    <input type="text" name="modeC" class="form-control" id="inputMode" placeholder="Protocolo">
 
                                 </div>
 
@@ -526,7 +599,17 @@
                             </div>
                             
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Adicionar</button>
+                            <%
+                        		if(session.getAttribute("hub") != null)
+                        	{
+                        	%>
+                    			<input type="hidden" name="hubC" value="<%=((Hub)session.getAttribute("hub")).getIdHub() %>">
+                         	<%
+                        		}
+                         	%> 
+                            
+                            
+                                <button type="submit" class="btn btn-danger btn-block">Adicionar</button>
                             </div>
 
                         </form>

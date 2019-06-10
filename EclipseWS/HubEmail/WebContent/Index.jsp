@@ -484,7 +484,7 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         
-                        <form>
+                        <form action="NOVACONTA" method="POST">
                   
                             
                             <div class="form-row">  
@@ -492,7 +492,7 @@
                                 <div class="form-group col-sm-12">
 
                                     <label for="inputEndereco">Endereço de email:</label>
-                                    <input type="email" class="form-control" id="inputEndereco" placeholder="Endereço">
+                                    <input type="email" name="enderecoC" class="form-control" id="inputEndereco" placeholder="Endereço">
 
                                 </div>
 
@@ -501,8 +501,41 @@
 
                                 <div class="form-group col-sm-12">
 
-                                    <label for="inputEndereco">Senha:</label>
-                                    <input type="password" class="form-control" id="inputSenha" placeholder="Senha">
+                                    <label for="inputSenha">Senha:</label>
+                                    <input type="password" name="senhaC" class="form-control" id="inputSenha" placeholder="Senha">
+
+                                </div>
+
+                            </div>
+                            
+                            <div class="form-row">  
+
+                                <div class="form-group col-sm-12">
+
+                                    <label for="inputPorta">Porta:</label>
+                                    <input type="number" name="portaC" class="form-control" id="inputPorta" placeholder="Porta">
+
+                                </div>
+
+                            </div>
+                            
+                            <div class="form-row">  
+
+                                <div class="form-group col-sm-12">
+
+                                    <label for="inputHost">Host:</label>
+                                    <input type="text" name="hostC" class="form-control" id="inputHost" placeholder="Host">
+
+                                </div>
+
+                            </div>
+                            
+                            <div class="form-row">  
+
+                                <div class="form-group col-sm-12">
+
+                                    <label for="inputMode">Protocolo:</label>
+                                    <input type="text" name="modeC" class="form-control" id="inputMode" placeholder="Protocolo">
 
                                 </div>
 
@@ -524,7 +557,17 @@
                             </div>
                             
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Adicionar</button>
+                            <%
+                        		if(session.getAttribute("hub") != null)
+                        	{
+                        	%>
+                    			<input type="hidden" name="hubC" value="<%=((Hub)session.getAttribute("hub")).getIdHub() %>">
+                         	<%
+                        		}
+                         	%> 
+                            
+                            
+                                <button type="submit" class="btn btn-danger btn-block">Adicionar</button>
                             </div>
 
                         </form>

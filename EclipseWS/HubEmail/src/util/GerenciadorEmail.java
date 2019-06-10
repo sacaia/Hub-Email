@@ -24,7 +24,7 @@ public class GerenciadorEmail {
 	private Session senderSession;
 	private Store emailStore;
 	
-	public GerenciadorEmail(String usuario, String senha) throws Exception
+	public GerenciadorEmail(String usuario, String senha)
 	{
 		this.user = usuario;
 		this.senha = senha;
@@ -40,6 +40,7 @@ public class GerenciadorEmail {
 		this.emailStore = null;
 	}
 	
+
 	public boolean senderNull()
 	{
 		if(senderSession == null)
@@ -48,7 +49,8 @@ public class GerenciadorEmail {
 		return false;
 	}
 	
-	public void setSenderSession(String porta, String host)
+
+	public void setSenderSession(String porta, String host) throws Exception
 	{
 		Properties propri = new Properties();
 		propri.put("mail.smtp.auth", "true");
@@ -66,13 +68,32 @@ public class GerenciadorEmail {
 			}
 		});
 		
+		if (!ehValido(sessao))
+			throw new Exception("Sessao invalida");
+		
+		
 		this.senderSession = sessao;
+	}
+	
+	private boolean ehValido (Session sessao)
+	{
+		try {
+			Transport transport = sessao.getTransport();
+		    transport.connect();
+		    transport.close();
+		}
+		catch (Exception erro)
+		{
+			return false;
+		}
+		
+		return true;
 	}
 	
 	public void setStore(String host, String mode) throws Exception
 	{
 		if(host == null || host.equals("") || user == null || user.equals("") || senha == null || senha.equals(""))
-			throw new Exception ("Algum dos parâmetros esta vazio");
+			throw new Exception ("Algum dos parï¿½metros esta vazio");
 		
 		Properties props = System.getProperties();
 		Session session = Session.getDefaultInstance(props);
@@ -131,7 +152,7 @@ public class GerenciadorEmail {
 		Folder pasta = emailStore.getFolder(original);
 		
 		if(!pasta.exists())
-			throw new Exception ("Pasta não pode ser renomeada por não existir");
+			throw new Exception ("Pasta nï¿½o pode ser renomeada por nï¿½o existir");
 		
 		if(pasta.isOpen())
 			pasta.close();
@@ -144,7 +165,7 @@ public class GerenciadorEmail {
 		Folder pasta = emailStore.getFolder(nomePasta);
 		
 		if(!pasta.exists())
-			throw new Exception ("Pasta não pode ser renomeada por não existir");
+			throw new Exception ("Pasta nï¿½o pode ser renomeada por nï¿½o existir");
 		
 		if(pasta.isOpen())
 			pasta.close();

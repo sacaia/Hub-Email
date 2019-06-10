@@ -75,12 +75,14 @@ public class CADASTRAR extends HttpServlet {
             
             request.setAttribute("logado", true);
             request.setAttribute("hub", h);
-            response.sendRedirect("Index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
+            dispatcher.forward( request, response);
         }
         catch(Exception e)
         {
         	request.setAttribute("erro", e.getMessage());
-        	response.sendRedirect("Cadastro.jsp");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("Cadastro.jsp");
+            dispatcher.forward( request, response);
         }
 	}
 

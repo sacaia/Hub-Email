@@ -2,7 +2,7 @@
 	contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
     session="true"
-    import="bd.dbos.*, bd.daos.*, util.*, java.util.ArrayList"%>
+    import="bd.dbos.*, bd.daos.*, util.*, java.util.ArrayList, javax.mail.*, javax.mail.internet.MimeMultipart, java.io.File, java.util.Arrays"%>
 
 <!DOCTYPE html>
 <html>
@@ -21,10 +21,7 @@
 <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.css">
     
-	<title>Mali Mail</title>
-    
-</head>
-<body>
+	<title>Alguém que veio no PC desbloqueado passou por aqui</title>
 <%
 	/*Setando as Sessions*/
 	if(request.getAttribute("logado") != null)
@@ -40,19 +37,72 @@
 
 	/*Pega o email*/
 	Hub hub = (Hub)session.getAttribute("hub");
+	
+	try{
 	session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
+	}catch (Exception ex)
+	{
+		session.setAttribute("logado", false);
+		response.sendRedirect("Login.jsp");
+	}
 	Email[] emails = (Email[])session.getAttribute("emails");
 	
 	int selectedItem = 0;
 	if(session.getAttribute("selectedItem") != null)
 		selectedItem = (int)session.getAttribute("selectedItem");
+	else
+		session.setAttribute("selectedItem", selectedItem);
 	
 	String selectedFolder = "INBOX";
-	if(session.getAttribute("selectedItem") != null)
+	if(session.getAttribute("selectedFolder") != null)
 		selectedFolder = (String)session.getAttribute("selectedFolder");
 	else
 		session.setAttribute("selectedFolder", selectedFolder);
 %>
+	
+<%!
+	Folder toList = null;
+
+   	public String ListarPastas(int dentro, String selectedFolder, Folder[] folder, String id)
+   	{
+		if(folder == null)
+			return "";
+		
+		String ret = "";
+		
+    	for(int i = 0; i < folder.length; i++)
+    	{
+    		String active = "";
+    		 if(folder[i].getName().equals(selectedFolder))
+    		 {
+    			 toList = folder[i];
+				active = "active";
+    		 }
+    		 
+    		 String icon = "fa-folder";
+    		 
+    		 if(folder[i].getName().equals("INBOX"))
+    			 icon = "fa-inbox";
+    		 
+     		ret += "<a class='nav-link btn btn-outline-amarelo mt-3 pasta onclick='sessionStorage.setItem('selectedFolder', "+ folder[i].getName() + "); location.reload();' " + active + " 'data-toggle='collapse'role='button' href='#sub-pasta-"+ (id + "_" + i) + "' aria-expanded='false'><i class='fas " + icon + " fa-lg'></i>" + folder[i].getName() + "</a>";
+         try{
+         Folder [] foldersAuxiliares = folder[i].list();
+         ret += "<div class='collapse' id='sub-pasta-" + id + "_" + i + "' data-parent='#collapse-group'> <nav class='nav nav-pills flex-column'>";
+         ret += ListarPastas(dentro + 1, selectedFolder, foldersAuxiliares, id + "_" + i);
+         ret += "</nav></div>";
+         }
+         catch (Exception erro)
+         {
+        	 
+         }
+    	}
+    	
+    	return ret;
+   	}
+%>
+    
+</head>
+<body>
 
 <!----------------------- Linha Principal ----------------------->
 	<div class="row">
@@ -181,30 +231,10 @@
                     		
                         	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
                         	
-                        	ArrayList<String> folderNames = geMain.listarPastas("0");
-                        	
-                        	for(int i = 0; i < folderNames.size(); i++)
-                        	{
-                        		String nomeSing = folderNames.get(i);
-                        		
-                        		String aux = ";";
-                        		if(nomeSing == "INBOX")
-                        			aux = "pasta";
-                        		else
-                        			aux = "mt-3 pasta";
-                        		
-                        		String active  = "";
-                        		
-                        		if(i == selectedItem)
-                        			active  = "active";
-                        		
+                        	Folder[] folders = geMain.getFolders();
                         	%>
-                            <a class="nav-link btn btn-outline-amarelo <%= aux + " " + active %>" data-toggle="collapse"role="button" href="#inbox-collapse" aria-expanded="false"><i class="fas fa-inbox fa-lg"></i> <%= folderNames.get(i)%></a>
-
-                            <div class="collapse" id="inbox-collapse" data-parent="#collapse-group"></div>
-                            
-                            <%
-                        	}
+                        	<%=
+                        	ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "")
                             %>
 
                             <!-- <a class="nav-link btn btn-outline-amarelo mt-3 pasta" data-toggle="collapse" href="#sub-pasta1" role="button" aria-expanded="false"><i class="fas fa-folder fa-lg"></i> Pasta 1</a>
@@ -246,36 +276,47 @@
                 </a>
                 <div class="collapse show pt-1" id="importantes">
                     <ul class="list-group">
-                        <li class="list-group-item list-group-item-action pl-2 email">
+	                    <%
+	                    	toList.open(Folder.READ_ONLY);
+	                    	Message[] msgs = toList.getMessages();
+	                   		for(int i = 0; i < msgs.length; i++)
+	                   		{
+	                   			String auxFrom = Arrays.toString(msgs[i].getFrom());
+	                   			auxFrom = auxFrom.substring(1);
+	                   			auxFrom = auxFrom.substring(0, auxFrom.length() - 1);
+	                   			if(auxFrom.length() > 20)
+	                   				auxFrom = auxFrom.substring(0, 17) + "...";
+	                   			
+	                   			while(auxFrom.length() < 20)
+	                   				auxFrom += "";
+	                   			
+	                   			String auxSub = msgs[i].getSubject();
+	                   			if(auxSub.length() > 20)
+	                   				auxSub = auxSub.substring(0, 17) + "...";
+	                   			if(auxSub.trim().equals(""))
+	                   				auxSub = "sem assunto...";
+	                   			
+	                   			while(auxSub.length() < 20)
+	                   				auxSub += "";
+	                   			
+	                   			String auxCont = (String)msgs[i].getContent().toString();
+	                   	%>
+	                   	<li class="list-group-item list-group-item-action pl-2 email">
                             <i class="far fa-square checkbox"></i>
-                            <h6 class="username inline">Username Remetente</h6>
-                            <h7 class="assunto inline">Assunto Email</h7>
-                            <p class="conteudo inline text-muted">- Texto do email, bla bla bla......</p>
+                            <h6 class="username inline"><%= auxFrom %></h6>
+                            <h7 class="assunto inline"><%= auxSub %></h7>
+                            <p class="conteudo inline text-muted"><%= auxCont %></p>
                         </li>
-                        <li class="list-group-item list-group-item-action pl-2 email">
-                            <i class="far fa-square checkbox"></i>
-                            <h6 class="username inline">Sacaia</h6>
-                            <h7 class="assunto inline">Texto n fica fixo</h7>
-                            <p class="conteudo inline text-muted">- Já to ficando pito com esse texto</p>
-                        </li>
-                        <li class="list-group-item list-group-item-action pl-2 email">
-                            <i class="far fa-square checkbox"></i>
-                            <h6 class="username inline">Alguem ai</h6>
-                            <h7 class="assunto inline">Algum assunto ai</h7>
-                            <p class="conteudo inline text-muted">- bla bla bla......</p>
-                        </li>
-                        <li class="list-group-item list-group-item-action pl-2 email">
-                            <i class="far fa-square checkbox"></i>
-                            <h6 class="username inline">Maian</h6>
-                            <h7 class="assunto inline">N sei faze projeto</h7>
-                            <p class="conteudo inline text-muted">- bla bla bla......</p>
-                        </li>
-                        <li class="list-group-item list-group-item-action pl-2 email">
-                            <i class="far fa-square checkbox"></i>
-                            <h6 class="username inline">Maiana</h6>
-                            <h7 class="assunto inline">Esponjas</h7>
-                            <p class="conteudo inline text-muted">- Já to bla bla bla......</p>
-                        </li>
+	                   	<%
+	                   		}
+	                   		if(msgs.length == 0)
+	                   		{
+	                   		%>
+	                   			Sem emails aqui amigão :^|
+	                   		<%
+	                   		}
+	                   		toList.close();
+	                   	%>
                     </ul>
                 </div>
             </div>

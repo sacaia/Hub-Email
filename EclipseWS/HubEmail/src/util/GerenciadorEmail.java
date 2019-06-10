@@ -155,6 +155,20 @@ public class GerenciadorEmail {
 		return ret;
 	}
 	
+	public Folder[] getFolders()
+	{
+		
+		Folder[] f = null;
+		try {
+			f = emailStore.getDefaultFolder().list();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return f;
+	}
+	
 	public void enviarEmailHTML(String assunto, String textoMensagem, String[] anexos, String[] destinatarios, String[] CCs, String[] CCOs) throws MessagingException, UnsupportedEncodingException
 	{
 		MimeMessage msg = new MimeMessage(senderSession);

@@ -40,6 +40,14 @@ public class GerenciadorEmail {
 		this.emailStore = null;
 	}
 	
+	public boolean senderNull()
+	{
+		if(senderSession == null)
+			return true;
+					
+		return false;
+	}
+	
 	public void setSenderSession(String porta, String host)
 	{
 		Properties propri = new Properties();

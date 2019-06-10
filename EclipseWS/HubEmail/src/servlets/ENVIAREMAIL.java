@@ -48,34 +48,55 @@ public class ENVIAREMAIL extends HttpServlet {
         System.err.println("endereco: "+ endereco);
         System.err.println("senha: "+ senha);
         String[] aux = new String[0];
+        String[] destinatarios;
+        String[] CCs;
+        String[] CCOs;
         
         if(destinatario.indexOf(",") != -1)
-        	aux = destinatario.split(",");
-        String[] destinatarios = new String[aux.length];
-        
-        for(int i=0; i<destinatarios.length; i++)
         {
-        	destinatarios[i] = aux[i].trim();
+	        aux = destinatario.split(",");
+	        destinatarios = new String[aux.length];
+	        
+	        for(int i=0; i<destinatarios.length; i++)
+	        {
+	        	destinatarios[i] = aux[i].trim();
+	        }
+        } else {
+        	destinatarios = new String[1];
+        	destinatarios[0] = destinatario;
         }
         
-        aux = cc.split(",");
-        String[] CCs = new String[aux.length];
-        
-        for(int i=0; i<destinatarios.length; i++)
+        if(cc.indexOf(",") != -1)
         {
-        	destinatarios[i] = aux[i].trim();
+	        aux = cc.split(",");
+	        CCs = new String[aux.length];
+	        
+	        for(int i=0; i<CCs.length; i++)
+	        {
+	        	CCs[i] = aux[i].trim();
+	        }
+        } else {
+        	CCs = new String[1];
+        	CCs[0] = cc;
         }
         
-        aux = cco.split(",");
-        String[] CCOs = new String[aux.length];
-        
-        for(int i=0; i<destinatarios.length; i++)
+        if(cco.indexOf(",") != -1)
         {
-        	destinatarios[i] = aux[i].trim();
-        }
+	        aux = cco.split(",");
+	        CCOs = new String[aux.length];
+	        
+	        for(int i=0; i<CCOs.length; i++)
+	        {
+	        	CCOs[i] = aux[i].trim();
+	        }
+        } else {
+        	CCOs = new String[1];
+        	CCOs[0] = cco;
+        } 
         
         try {
 			GerenciadorEmail ge = new GerenciadorEmail(endereco, senha);
+			ge.setSenderSession("587", "smtp.gmail.com");
 			ge.enviarEmail(assunto, mensagem, null, destinatarios, CCs, CCOs);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

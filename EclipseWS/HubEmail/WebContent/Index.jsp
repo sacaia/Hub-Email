@@ -52,7 +52,7 @@
 	if(session.getAttribute("emails") == null && hub != null)
         session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
         
-	session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
+	//session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
 	Email[] emails = (Email[])session.getAttribute("emails");
 	
 	int selectedItem = 0;

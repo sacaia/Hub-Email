@@ -40,7 +40,7 @@ public class GerenciadorEmail {
 		this.emailStore = null;
 	}
 	
-	public void setSenderSession(String porta, String host)
+	public void setSenderSession(String porta, String host) throws Exception
 	{
 		Properties propri = new Properties();
 		propri.put("mail.smtp.auth", "true");
@@ -58,7 +58,26 @@ public class GerenciadorEmail {
 			}
 		});
 		
+		if (!ehValido(sessao))
+			throw new Exception("Sessao invalida");
+		
+		
 		this.senderSession = sessao;
+	}
+	
+	private boolean ehValido (Session sessao)
+	{
+		try {
+			Transport transport = sessao.getTransport();
+		    transport.connect();
+		    transport.close();
+		}
+		catch (Exception erro)
+		{
+			return false;
+		}
+		
+		return true;
 	}
 	
 	public void setStore(String host, String mode) throws Exception

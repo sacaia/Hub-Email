@@ -121,6 +121,16 @@ public class Email implements Cloneable
         this.setPorta     (porta);
         this.setProtocolo (protocolo);
     }
+    
+    public Email (int idHub, String endereco, String senha, String host, String porta, String protocolo) throws Exception
+    {
+        this.setIdHub     (idHub);
+        this.setEndereco  (endereco);
+        this.setSenha     (senha);
+        this.setHost(host);
+        this.setPorta     (porta);
+        this.setProtocolo (protocolo);
+    }
 
     public String toString ()
     {

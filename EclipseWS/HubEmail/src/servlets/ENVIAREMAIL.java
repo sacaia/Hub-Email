@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import util.*;
 
 /**
  * Servlet implementation class ENVIAREMAIL
@@ -35,15 +36,51 @@ public class ENVIAREMAIL extends HttpServlet {
         String assunto = (String)request.getParameter("assunto");
         String mensagem = (String)request.getParameter("mensagem");
         String anexo = (String)request.getParameter("anexo");
-        /*
+        String endereco = (String)request.getParameter("enderecoH");
+        String senha = (String)request.getParameter("senhaH");
+        
         System.err.println("destinatario: "+ destinatario);
         System.err.println("cc: "+ cc);
         System.err.println("cco: "+ cco);
         System.err.println("assunto: "+ assunto);
         System.err.println("msg: "+ mensagem);
         System.err.println("anexo: "+ anexo);
-        */
+        System.err.println("endereco: "+ endereco);
+        System.err.println("senha: "+ senha);
+        String[] aux = new String[0];
         
+        if(destinatario.indexOf(",") != -1)
+        	aux = destinatario.split(",");
+        String[] destinatarios = new String[aux.length];
+        
+        for(int i=0; i<destinatarios.length; i++)
+        {
+        	destinatarios[i] = aux[i].trim();
+        }
+        
+        aux = cc.split(",");
+        String[] CCs = new String[aux.length];
+        
+        for(int i=0; i<destinatarios.length; i++)
+        {
+        	destinatarios[i] = aux[i].trim();
+        }
+        
+        aux = cco.split(",");
+        String[] CCOs = new String[aux.length];
+        
+        for(int i=0; i<destinatarios.length; i++)
+        {
+        	destinatarios[i] = aux[i].trim();
+        }
+        
+        try {
+			GerenciadorEmail ge = new GerenciadorEmail(endereco, senha);
+			ge.enviarEmail(assunto, mensagem, null, destinatarios, CCs, CCOs);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

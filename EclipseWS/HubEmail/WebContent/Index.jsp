@@ -483,7 +483,7 @@
                                 <div class="form-group col-sm-12">
 
                                     <label for="inputEndereco">Endereço de email:</label>
-                                    <input type="email" class="form-control" id="inputEndereco" placeholder="Endereço">
+                                    <input type="email" name="enderecoC" class="form-control" id="inputEndereco" placeholder="Endereço">
 
                                 </div>
 
@@ -493,7 +493,7 @@
                                 <div class="form-group col-sm-12">
 
                                     <label for="inputEndereco">Senha:</label>
-                                    <input type="password" class="form-control" id="inputSenha" placeholder="Senha">
+                                    <input type="password" name="senhaC" class="form-control" id="inputSenha" placeholder="Senha">
 
                                 </div>
 

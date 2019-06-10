@@ -24,7 +24,7 @@ public class GerenciadorEmail {
 	private Session senderSession;
 	private Store emailStore;
 	
-	public GerenciadorEmail(String usuario, String senha) throws Exception
+	public GerenciadorEmail(String usuario, String senha)
 	{
 		this.user = usuario;
 		this.senha = senha;

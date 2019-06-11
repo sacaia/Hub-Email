@@ -2,7 +2,7 @@
 	contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
     session="true"
-    import="bd.dbos.*, bd.daos.*, util.*, java.util.ArrayList, javax.mail.*, javax.mail.internet.MimeMultipart, java.io.File, java.util.Arrays"%>
+    import="bd.dbos.*, bd.daos.*, util.*, java.util.ArrayList, javax.mail.*, javax.mail.internet.MimeMultipart, java.io.File, java.util.Arrays, org.jsoup.Jsoup, javax.mail.internet.MimeMessage, javax.mail.internet.MimeBodyPart"%>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,7 @@
 <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="fontawesome-free-5.8.1-web/css/all.css">
     
-	<title>Alguém que veio no PC desbloqueado passou por aqui</title>
+	<title>MALI MAIL</title>
 <%
 	/*Setando as Sessions*/
 	if(request.getAttribute("logado") != null)
@@ -86,6 +86,10 @@
 		
     	for(int i = 0; i < folder.length; i++)
     	{
+    		try{
+    		folder[i].open(Folder.READ_ONLY);
+    		}
+    		catch (Exception erro){}
     		String active = "";
     		 if(folder[i].getName().equals(selectedFolder))
     		 {
@@ -109,10 +113,52 @@
          {
         	 
          }
+         try{
+     		folder[i].close();
+     		}
+     		catch (Exception erro){}
     	}
     	
     	return ret;
    	}
+%>
+
+<%!
+private static String getTextFromMimeMultipart(
+	    MimeMultipart mimeMultipart){
+	    String result = "";
+	    int count = 0;
+	    try{
+	    count = mimeMultipart.getCount();}
+	    catch (Exception erro){}
+	    for (int i = 0; i < count; i++) {
+	    	try{
+	        BodyPart bodyPart = null;
+	        
+	        mimeMultipart.getBodyPart(i);
+	        
+	        if (bodyPart.isMimeType("text/plain")) 
+	        {
+	        	//is a text
+	            result = result + "\n" + bodyPart.getContent();
+	            break; // without break same text appears twice in my tests
+	        } else 
+	        	if (bodyPart.isMimeType("text/html")) 
+	        	{
+		            String html = (String) bodyPart.getContent();
+		            //to read html and exibit it, jsoup library whould be needed
+	        	}
+	        	else
+        		if (bodyPart.getContent() instanceof MimeMultipart)
+        		{
+        			//is a MimeMultipart
+        			result = result + getTextFromMimeMultipart((MimeMultipart)bodyPart.getContent());
+        		}
+	        }catch (Exception erro){}
+	    }
+	    return result;
+	    
+	}
 %>
     
 </head>
@@ -293,33 +339,43 @@
 	                    <%
 	                    	toList.open(Folder.READ_ONLY);
 	                    	Message[] msgs = toList.getMessages();
-	                   		for(int i = 0; i < msgs.length; i++)
+	                   		for(int i = msgs.length - 1; i > -1; i--)
 	                   		{
 	                   			String auxFrom = Arrays.toString(msgs[i].getFrom());
 	                   			auxFrom = auxFrom.substring(1);
 	                   			auxFrom = auxFrom.substring(0, auxFrom.length() - 1);
+	                   			auxFrom = Jsoup.parse(auxFrom).text();
 	                   			if(auxFrom.length() > 20)
 	                   				auxFrom = auxFrom.substring(0, 17) + "...";
 	                   			
 	                   			while(auxFrom.length() < 20)
-	                   				auxFrom += "";
+	                   				auxFrom += " ";
 	                   			
 	                   			String auxSub = msgs[i].getSubject();
+	                   			auxSub = Jsoup.parse(auxSub).text();
 	                   			if(auxSub.length() > 20)
 	                   				auxSub = auxSub.substring(0, 17) + "...";
 	                   			if(auxSub.trim().equals(""))
 	                   				auxSub = "sem assunto...";
 	                   			
 	                   			while(auxSub.length() < 20)
-	                   				auxSub += "";
+	                   				auxSub += " ";
 	                   			
-	                   			String auxCont = (String)msgs[i].getContent().toString();
+	                   			String auxCont = getTextFromMimeMultipart((MimeMultipart)msgs[i].getContent());
+	                   			
+	                   			auxCont = Jsoup.parse(auxCont).text();
 	                   	%>
 	                   	<li class="list-group-item list-group-item-action pl-2 email">
                             <i class="far fa-square checkbox"></i>
-                            <h6 class="username inline"><%= auxFrom %></h6>
-                            <h7 class="assunto inline"><%= auxSub %></h7>
-                            <p class="conteudo inline text-muted"><%= auxCont %></p>
+                            <h5 class="username inline">
+                            	<%= auxFrom %>
+                            </h5>
+                            <h6 class="assunto inline">
+                            	<%= auxSub %>
+                            </h6>
+                            <p class="conteudo inline text-muted">
+                            	<%= auxCont %>
+                            </p>
                         </li>
 	                   	<%
 	                   		}

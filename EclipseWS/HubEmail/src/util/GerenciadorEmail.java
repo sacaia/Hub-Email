@@ -68,8 +68,8 @@ public class GerenciadorEmail {
 			}
 		});
 		
-		if (!ehValido(sessao))
-			throw new Exception("Sessao invalida");
+		/*if (!ehValido(sessao))
+			throw new Exception("Sessao invalida");*/
 		
 		
 		this.senderSession = sessao;

@@ -68,8 +68,8 @@ public class GerenciadorEmail {
 			}
 		});
 		
-		if (!ehValido(sessao))
-			throw new Exception("Sessao invalida");
+		//if (!ehValido(sessao))
+			//throw new Exception("Sessao invalida");
 		
 		
 		this.senderSession = sessao;
@@ -259,8 +259,9 @@ public class GerenciadorEmail {
 		
 		for(int i = 0; i < destinatarios.length; i++)
 		{
-			msg.addRecipient(Message.RecipientType.TO,
-			InternetAddress.parse(destinatarios[i])[0]);
+			if(destinatarios[i] != null)
+				if(!destinatarios[i].equals(""))
+					msg.addRecipient(Message.RecipientType.TO, InternetAddress.parse(destinatarios[i])[0]);
 		}
 		
 		if(CCs != null)

@@ -124,7 +124,7 @@
 %>
 
 <%!
-private static String getTextFromMimeMultipart(
+public static String getTextFromMimeMultipart(
 	    MimeMultipart mimeMultipart){
 	    String result = "";
 	    int count = 0;
@@ -133,9 +133,7 @@ private static String getTextFromMimeMultipart(
 	    catch (Exception erro){}
 	    for (int i = 0; i < count; i++) {
 	    	try{
-	        BodyPart bodyPart = null;
-	        
-	        mimeMultipart.getBodyPart(i);
+	        BodyPart bodyPart = mimeMultipart.getBodyPart(i);
 	        
 	        if (bodyPart.isMimeType("text/plain")) 
 	        {
@@ -159,6 +157,24 @@ private static String getTextFromMimeMultipart(
 	    return result;
 	    
 	}
+public String getTextFromMessage(Message message) {
+    String result = "";
+    try{
+    	result = message.getContent().toString();
+	    if (message.isMimeType("text/plain")) {
+	        result = message.getContent().toString();
+	    } else
+	    	if (message.isMimeType("multipart/*")) {
+	        MimeMultipart mimeMultipart = (MimeMultipart) message.getContent();
+	        result = getTextFromMimeMultipart(mimeMultipart);
+	    }
+    }
+    catch (Exception erro)
+    {
+    	
+    }
+    return result;
+}
 %>
     
 </head>
@@ -361,7 +377,7 @@ private static String getTextFromMimeMultipart(
 	                   			while(auxSub.length() < 20)
 	                   				auxSub += " ";
 	                   			
-	                   			String auxCont = getTextFromMimeMultipart((MimeMultipart)msgs[i].getContent());
+	                   			String auxCont = getTextFromMessage(msgs[i]);
 	                   			
 	                   			auxCont = Jsoup.parse(auxCont).text();
 	                   	%>

@@ -42,14 +42,15 @@ public class NOVACONTA extends HttpServlet {
         String hub      = (String)request.getParameter("hubC");
         
         try {
-        	GerenciadorEmail a = new GerenciadorEmail(endereco, senha);
-        	a.setStore(host, mode);
+        	//GerenciadorEmail a = new GerenciadorEmail(endereco, senha);
+        	//a.setStore(host, mode);
         	
         } catch (Exception e)
         {        	
-        	request.setAttribute("autenticacaoInvalida", true);
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
-        	dispatcher.forward( request, response);
+        	//request.setAttribute("autenticacaoInvalida", true);
+        	//RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
+        	//dispatcher.forward( request, response);
+        	System.err.println(e.getMessage());
         	return;
         }
         
@@ -58,7 +59,9 @@ public class NOVACONTA extends HttpServlet {
         try {
         email = new Email(Integer.parseInt(hub), endereco, senha, host, porta, mode);
         Emails.incluir(email);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        	System.err.println(e.getMessage());
+        }
         
                     
 	}

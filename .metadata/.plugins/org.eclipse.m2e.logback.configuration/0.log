@@ -29,3 +29,4 @@
 2019-06-12 09:52:28,643 [Worker-19: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\main\resources
 2019-06-12 09:52:28,651 [Worker-19: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
 2019-06-12 09:52:28,651 [Worker-19: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\test\resources
+2019-06-12 11:38:11,309 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

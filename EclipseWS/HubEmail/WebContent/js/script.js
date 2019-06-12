@@ -339,16 +339,15 @@ $(document).ready(function(){
                 
                 if($(this).attr("aria-expanded") == "true")
                 {
-                    //alert("a");
+                    alert("a");
                     $(this).find("i").addClass("fa-folder-open");
                     $(this).find("i").removeClass("fa-folder");
                 }
-                alert("KKK");
-                document.getElementById('form-folder-' + $(this).find("div").attr("innerHTML")).submit();
-
+              document.getElementById('form-folder-' + $(this).find("div").html()).submit();
             }
             else
             {
+            	
                 /*if($(this).find("i").hasClass("fa-inbox"))
                 {
                     $(this).removeClass("active");

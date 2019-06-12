@@ -24,7 +24,6 @@
     <script src="js/jquery.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
-    <script src="js/script.js"></script>
 
 <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -47,6 +46,9 @@
 
 	if(request.getAttribute("hub") != null)
 		session.setAttribute("hub", request.getAttribute("hub"));
+
+	if(session.getAttribute("hub") == null)
+		response.sendRedirect("Login.jsp");
 	
 	if(session.getAttribute("logado") == null)
 		response.sendRedirect("Login.jsp");
@@ -55,6 +57,8 @@
 		if(!(boolean)session.getAttribute("logado"))
 			response.sendRedirect("Login.jsp");
 		
+	if(request.getAttribute("selectedFolder") != null)
+		session.setAttribute("selectedFolder", request.getAttribute("selectedFolder"));
 
 	/*Pega o email*/
 	/*Hub hub = (Hub)session.getAttribute("hub");
@@ -68,7 +72,7 @@
 	}*/
     Hub hub = (Hub)session.getAttribute("hub");
     
-	System.err.println("Hub: "+hub);
+	//System.err.println("Hub: "+hub);
 	if(session.getAttribute("emails") == null && hub != null)
         session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
         
@@ -122,7 +126,13 @@
     		 if(folder[i].getName().equals("INBOX"))
     			 icon = "fa-inbox";
     		 
-     		ret += "<form id='form-folder-" + id + "_" + i +"' action='index.jsp'><a name='selectedFolder' class='nav-link btn btn-outline-amarelo mt-3 pasta " + active + " 'data-toggle='collapse'role='button' href='#sub-pasta-"+ (id + "_" + i) + "' aria-expanded='false'><i class='fas " + icon + " fa-lg'></i>" + folder[i].getName() + "</a></form>";
+     		ret += "<form id='form-folder-" + (id + "_" + i) +"' action='Index.jsp'>"
+     		+ "<a name='selectedFolder' class='nav-link btn btn-outline-amarelo mt-3 pasta "
+     		+ active + " ' data-toggle='collapse'role='button' href='#sub-pasta-" + (id + "_" + i)
+     		+ "' aria-expanded='false'>" 
+     		+ "<i class='fas " + icon + " fa-lg'></i><div class='inline' style='visibility: hidden' name=>" + (id + "_" + i) + "</div><div class='inline' name='selectedFolder'>"
+     		+ folder[i].getName() 
+     		+ "</div></a></form>";
          try{
          Folder [] foldersAuxiliares = folder[i].list();
          ret += "<div class='collapse' id='sub-pasta-" + id + "_" + i + "' data-parent='#collapse-group'> <nav class='nav nav-pills flex-column'>";
@@ -860,6 +870,8 @@ public String getTextFromMessage(Message message, int i) {
         
         
     </script>
+    
+    <script src="js/script.js"></script>
     
 </body>
 </html>

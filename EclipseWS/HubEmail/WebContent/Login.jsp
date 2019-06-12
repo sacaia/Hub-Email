@@ -24,7 +24,12 @@
 <%
 if(session.getAttribute("logado") != null)
 	if((boolean)session.getAttribute("logado"))
-		response.sendRedirect("Index.jsp");
+	{
+		if(session.getAttribute("hub") != null)
+			response.sendRedirect("Index.jsp");
+		else
+			session.setAttribute("logado", false);
+	}
 %>
     <div class="container-fluid">
       <div class="row no-gutter">

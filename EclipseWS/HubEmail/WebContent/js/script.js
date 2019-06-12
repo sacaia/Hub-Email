@@ -266,7 +266,7 @@ $(document).ready(function(){
         });
     });
 /////////////////ON CLICK CHECKBOX////////////////////////////
-    $(function () {
+    /*$(function () {
         $('[class~="checkbox"]').click(function () {
             if($(this).hasClass("fa-square"))
             {
@@ -279,18 +279,18 @@ $(document).ready(function(){
                 $(this).addClass("far fa-square");
             }
         });
-    });
-/////////////////ON CLICK EMAIL////////////////////////////
+    });*/
+/////////////////ON CLICK CHECKBOX+EMAIL////////////////////////////
     $(function () {
-        $('[class~="email"]').click(function () {
-            if($(this).hasClass("active"))
+        $('[class~="checkbox"]').click(function () {
+            if($(this).closest(".email").hasClass("active"))
             {
-                $(this).removeClass("active");
-                $(this).find("i").removeClass("fas fa-check-square");
-                $(this).find("i").addClass("far fa-square");
+                $(this).closest(".email").removeClass("active");
+                $(this).removeClass("fas fa-check-square");
+                $(this).addClass("far fa-square");
                 var allChecked = true;
                 $(".email").each(function() {
-                    allChecked = (allChecked && $(this).hasClass("active"));
+                    allChecked = (allChecked && $(this).closest(".email").hasClass("active"));
                 });
                     if(!allChecked)
                     {
@@ -301,12 +301,12 @@ $(document).ready(function(){
             else
             {
                 //$(this).removeClass("");
-                $(this).addClass("active");
-                $(this).find("i").removeClass("far fa-square");
-                $(this).find("i").addClass("fas fa-check-square");
+                $(this).closest(".email").addClass("active");
+                $(this).removeClass("far fa-square");
+                $(this).addClass("fas fa-check-square");
                 var allChecked = true;
                 $(".email").each(function() {
-                    allChecked = (allChecked && $(this).hasClass("active"));
+                    allChecked = (allChecked && $(this).closest(".email").hasClass("active"));
                 });
                     if(allChecked)
                     {

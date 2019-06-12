@@ -454,7 +454,7 @@ public String getTextFromMessage(Message message, int i) {
 					            
 					                <div class="modal-header">
 					                    
-					                    <h3 class="modal-title">Email <%= i %></h3>
+					                    <h3 class="modal-title"><%= msgs[i].getSubject() %></h3>
 					                    
 					                    <button type="button" class="close" data-dismiss="modal">
 					                        <span>&times;</span><!-- $time; = x -->
@@ -467,45 +467,25 @@ public String getTextFromMessage(Message message, int i) {
 				                        <div class="form-row">  
 				
 				                            <div class="form-group col-sm-12">
-				                                <div class="input-group">
-				                                    <div class="input-group-prepend">
-				                                        <div class="input-group-text">De:</div>
-				                                    </div>
-				                                    <input type="text" name="destinatario" class="form-control" id="inputDestinatario-<%= i %>" placeholder="" value="<%= from %>" readonly>
-				                                </div>
-				
-				                            </div>
-				
-				                        </div>
-				                        <div class="form-row">
-				
-				                            <div class="form-group col-sm-12">
-				                                <div class="input-group">
-				                                    <div class="input-group-prepend">
-				                                        <div class="input-group-text">Cc:</div>
-				                                    </div>
-				                                    <input type="text" name="cc" value="<%= allRecipients %>" class="form-control" id="ccEmail-<%= i %>" placeholder=""  readonly>
-				                                </div>
 				                                
+				                                    
+				                                        <h4 class="h4 inline">De: </h4>
+				                                    
+				                                    <label id="inputDestinatario-<%= i %>" class="inline"><%= from %></label>
+				                                <br>
+														<h5 class="h5 inline">Cc:&nbsp&nbsp</h5>
+				                                    
+				                                    <label id="ccEmail-<%= i %>" class="inline text-muted"><%= allRecipients %></label>
 				                            </div>
 				
 				                        </div>
+				                       
 				                        <div class="form-row">  
 				
 				                            <div class="form-group col-sm-12">
 				
-				                                <label for="assuntoEmail-<%= i %>>">Assunto:</label>
-				                                <input type="text" name="assunto" class="form-control" id="assuntoEmail-<%= i %>" value="<%= msgs[i].getSubject() %>" readonly>
-				
-				                            </div>
-				
-				                        </div>
-				                        <div class="form-row">  
-				
-				                            <div class="form-group col-sm-12">
-				
-				                                <label for="mensagemEmail-<%= i %>">Mensagem:</label>
-				                                <textarea name="mensagem" class="form-control" id="mensagemEmail-<%= i %>" form ="formEnviar" readonly><%= contWithHTML %></textarea>
+				                                <h4 class="h4">Mensagem:</h4>
+				                                <p id="mensagemEmail-<%= i %>">&nbsp<%= contWithHTML %></p>
 				
 				                            </div>
 					

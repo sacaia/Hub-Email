@@ -166,6 +166,7 @@ public String getTextFromMimeMultipart(
 	        	if (bodyPart.isMimeType("text/html")) 
 	        	{
 		            String html = (String) bodyPart.getContent();
+		            result += Jsoup.parse(html).text();
 		            //to read html and exibit it, jsoup library whould be needed
 	        	}
 	        	else
@@ -413,6 +414,7 @@ public String getTextFromMessage(Message message, int i) {
 	                   			
 	                   			attachs = new ArrayList<MimeBodyPart>();
 	                   			String auxCont = getTextFromMessage(msgs[i], i);
+	                   			String contWithHTML = auxCont;
 	                   			
 	                   			auxCont = Jsoup.parse(auxCont).text();
 	                   			
@@ -424,10 +426,10 @@ public String getTextFromMessage(Message message, int i) {
 	                   	
 	                   	<li class="list-group-item list-group-item-action pl-2 email">
                             <i class="far fa-square checkbox"></i>
-                            <div id="email-<%= i %>">
-	                            <h5 class="username inline">
+                            <div id="email-<%= i %>" class="display inline">
+	                            <h6 class="username inline">
 	                            	<%= auxFrom %>
-	                            </h5>
+	                            </h6>
 	                            <h6 class="assunto inline">
 	                            	<%= auxSub %>
 	                            </h6>
@@ -500,7 +502,7 @@ public String getTextFromMessage(Message message, int i) {
 				                            <div class="form-group col-sm-12">
 				
 				                                <label for="mensagemEmail-<%= i %>">Mensagem:</label>
-				                                <textarea name="mensagem" class="form-control" id="mensagemEmail-<%= i %>" form ="formEnviar" readonly><%= auxCont %></textarea>
+				                                <textarea name="mensagem" class="form-control" id="mensagemEmail-<%= i %>" form ="formEnviar" readonly><%= contWithHTML %></textarea>
 				
 				                            </div>
 					
@@ -511,9 +513,11 @@ public String getTextFromMessage(Message message, int i) {
 					                            <%
 					                            	if(attachs.size() == 0){
 					                            %>
-					                                <label for="anexoEmail-<%= i %>">Anexo:</label>
+					                                <label for="anexoEmail-<%= i %>">Anexos:</label>
+					                                
+					                                <input type="file" value="choose file">
+					                                
 					                                <br/>
-					                                <Button>Baixar anexos</Button>
 					                            <%
 					                            	}
 					                            %>
@@ -699,9 +703,9 @@ public String getTextFromMessage(Message message, int i) {
 
                             <div class="form-group col-sm-12">
 
-                                <label for="inputAnexo">Anexo:</label>
+                                <label for="inputAnexo">Anexos:</label>
                                 <br/>
-                                <input type="file" name="anexo" class="form-control-file" id="inputAnexo">
+                                <input type="file" id="filePathPicker"/>
 
                             </div>
 

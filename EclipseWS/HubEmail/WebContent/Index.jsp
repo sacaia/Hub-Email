@@ -122,7 +122,7 @@
     		 if(folder[i].getName().equals("INBOX"))
     			 icon = "fa-inbox";
     		 
-     		ret += "<a class='nav-link btn btn-outline-amarelo mt-3 pasta onclick='sessionStorage.setItem('selectedFolder', "+ folder[i].getName() + "); location.reload();' " + active + " 'data-toggle='collapse'role='button' href='#sub-pasta-"+ (id + "_" + i) + "' aria-expanded='false'><i class='fas " + icon + " fa-lg'></i>" + folder[i].getName() + "</a>";
+     		ret += "<form id='form-folder-" + id + "_" + i +"' action='index.jsp'><a name='selectedFolder' class='nav-link btn btn-outline-amarelo mt-3 pasta " + active + " 'data-toggle='collapse'role='button' href='#sub-pasta-"+ (id + "_" + i) + "' aria-expanded='false'><i class='fas " + icon + " fa-lg'></i>" + folder[i].getName() + "</a></form>";
          try{
          Folder [] foldersAuxiliares = folder[i].list();
          ret += "<div class='collapse' id='sub-pasta-" + id + "_" + i + "' data-parent='#collapse-group'> <nav class='nav nav-pills flex-column'>";
@@ -344,8 +344,9 @@ public String getTextFromMessage(Message message, int i) {
 	                        	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
 	                        	
 	                        	Folder[] folders = geMain.getFolders();
-	                        	
-	                        	ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "");
+	                        %>
+	                        	<%= ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "") %>
+	                        <%
                         	}
                             %>
 
@@ -470,7 +471,7 @@ public String getTextFromMessage(Message message, int i) {
 				                                    <div class="input-group-prepend">
 				                                        <div class="input-group-text">De:</div>
 				                                    </div>
-				                                    <input type="text" name="destinatario" class="form-control" id="inputDestinatario" placeholder="" value="<%= from %>" readonly>
+				                                    <input type="text" name="destinatario" class="form-control" id="inputDestinatario-<%= i %>" placeholder="" value="<%= from %>" readonly>
 				                                </div>
 				
 				                            </div>

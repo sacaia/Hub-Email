@@ -327,15 +327,15 @@ $(document).ready(function(){
                     $(this).find("i").addClass("fa-folder");                    
                 });
                 
-                if($(this).find("i").hasClass("fa-inbox"))
+                /*if($(this).find("i").hasClass("fa-inbox"))
                 {
                     $(this).addClass("active");
                     return;
-                }
+                }*/
                 
                 $(this).addClass("active");
-                $(this).find("i").removeClass("fa-folder");
-                $(this).find("i").addClass("fa-folder-open");
+                /*$(this).find("i").removeClass("fa-folder");
+                $(this).find("i").addClass("fa-folder-open");*/
                 
                 if($(this).attr("aria-expanded") == "true")
                 {
@@ -343,6 +343,8 @@ $(document).ready(function(){
                     $(this).find("i").addClass("fa-folder-open");
                     $(this).find("i").removeClass("fa-folder");
                 }
+                alert("KKK");
+                document.getElementById('form-folder-' + $(this).find("div").attr("innerHTML")).submit();
 
             }
             else

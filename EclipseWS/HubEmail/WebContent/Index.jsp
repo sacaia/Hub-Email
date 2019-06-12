@@ -12,7 +12,6 @@
        org.jsoup.Jsoup,
        javax.mail.*,
        javax.mail.internet.*"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -310,8 +309,10 @@ public String getTextFromMessage(Message message, int i) {
                 <a class="nav-brand py-0 main-row" id="titulo-contas">
                     <h1 class="pl-4 text-dark">Contas</h1>
                 </a>
-                <button class="btn btn-warning" onclick="location.reload(true);"><i class="power_settings_new"></i></button>
-
+                
+                <a class="btn btn-outline-dark navbar-brand h4 mb-0" href="Deslogar.jsp"><i class="fas fa-sign-out-alt fa-lg"></i></a>
+                    
+                
 <!----------------------- pra quando a tela ficar mt pequena aparece o botão ----------------------->
                         <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#contas">
                         <span class="navbar-toggler-icon"></span>
@@ -335,16 +336,17 @@ public String getTextFromMessage(Message message, int i) {
 
                         <div id="collapse-group">
                         	<%
-                        	
-                        	GerenciadorEmail geMain = new GerenciadorEmail(emails[selectedItem].getEndereco(), emails[selectedItem].getSenha());
-                        	geMain.setSenderSession(emails[selectedItem].getPorta(), emails[selectedItem].getHost());
-                    		
-                        	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
-                        	
-                        	Folder[] folders = geMain.getFolders();
-                        	%>
-                        	<%=
-                        	ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "")
+                        	if(emails.length != 0)
+                        	{
+	                        	GerenciadorEmail geMain = new GerenciadorEmail(emails[selectedItem].getEndereco(), emails[selectedItem].getSenha());
+	                        	geMain.setSenderSession(emails[selectedItem].getPorta(), emails[selectedItem].getHost());
+	                    		
+	                        	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
+	                        	
+	                        	Folder[] folders = geMain.getFolders();
+	                        	
+	                        	ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "");
+                        	}
                             %>
 
                             <!-- <a class="nav-link btn btn-outline-amarelo mt-3 pasta" data-toggle="collapse" href="#sub-pasta1" role="button" aria-expanded="false"><i class="fas fa-folder fa-lg"></i> Pasta 1</a>

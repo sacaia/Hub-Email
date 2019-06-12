@@ -70,7 +70,7 @@ public class Emails
             sql = "INSERT INTO Email " +
                   "(idHub,endereco, senha, host, porta, protocolo) " +
                   "VALUES " +
-                  "(?, ?, ?, ?, ?)";
+                  "(?, ?, ?, ?, ?, ?)";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 

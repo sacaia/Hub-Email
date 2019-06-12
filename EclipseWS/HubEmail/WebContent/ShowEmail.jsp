@@ -1,17 +1,9 @@
-<%@page import="java.nio.file.Files"%>
 <%@ page language="java" 
 	contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
     session="true"
-    import="bd.dbos.*,
-     bd.daos.*,
-      util.*,
-       java.util.ArrayList,
-       java.io.File,
-       java.util.Arrays,
-       org.jsoup.Jsoup,
-       javax.mail.*,
-       javax.mail.internet.*"%>
+    import="bd.dbos.*, bd.daos.*, util.*, java.util.ArrayList, javax.mail.*, javax.mail.internet.MimeMultipart, java.io.File, java.util.Arrays, org.jsoup.Jsoup, javax.mail.internet.MimeMessage, javax.mail.internet.MimeBodyPart"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,9 +136,8 @@
 %>
 
 <%!
-ArrayList<MimeBodyPart> attachs;
-public String getTextFromMimeMultipart(
-	    MimeMultipart mimeMultipart, int j){
+public static String getTextFromMimeMultipart(
+	    MimeMultipart mimeMultipart){
 	    String result = "";
 	    int count = 0;
 	    try{
@@ -165,31 +156,20 @@ public String getTextFromMimeMultipart(
 	        	if (bodyPart.isMimeType("text/html")) 
 	        	{
 		            String html = (String) bodyPart.getContent();
-		            result += Jsoup.parse(html).text();
 		            //to read html and exibit it, jsoup library whould be needed
 	        	}
 	        	else
         		if (bodyPart.getContent() instanceof MimeMultipart)
         		{
         			//is a MimeMultipart
-        			result = result + getTextFromMimeMultipart((MimeMultipart)bodyPart.getContent(), i);
+        			result = result + getTextFromMimeMultipart((MimeMultipart)bodyPart.getContent());
         		}
-        		else 
-        		{
-		        	//attachment
-			        MimeBodyPart part = (MimeBodyPart) mimeMultipart.getBodyPart(i);
-			        
-			        if (MimeBodyPart.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) 
-			        {
-			        	attachs.add(part);
-			        }
-		        }
 	        }catch (Exception erro){}
 	    }
 	    return result;
 	    
 	}
-public String getTextFromMessage(Message message, int i) {
+public String getTextFromMessage(Message message) {
     String result = "";
     try{
     	result = message.getContent().toString();
@@ -198,7 +178,7 @@ public String getTextFromMessage(Message message, int i) {
 	    } else
 	    	if (message.isMimeType("multipart/*")) {
 	        MimeMultipart mimeMultipart = (MimeMultipart) message.getContent();
-	        result = getTextFromMimeMultipart(mimeMultipart, i);
+	        result = getTextFromMimeMultipart(mimeMultipart);
 	    }
     }
     catch (Exception erro)
@@ -309,10 +289,8 @@ public String getTextFromMessage(Message message, int i) {
                 <a class="nav-brand py-0 main-row" id="titulo-contas">
                     <h1 class="pl-4 text-dark">Contas</h1>
                 </a>
-                
-                <a class="btn btn-outline-dark navbar-brand h4 mb-0" href="Deslogar.jsp"><i class="fas fa-sign-out-alt fa-lg"></i></a>
-                    
-                
+                <button class="btn btn-warning" onclick="location.reload(true);"><i class="power_settings_new"></i></button>
+
 <!----------------------- pra quando a tela ficar mt pequena aparece o botão ----------------------->
                         <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#contas">
                         <span class="navbar-toggler-icon"></span>
@@ -336,17 +314,16 @@ public String getTextFromMessage(Message message, int i) {
 
                         <div id="collapse-group">
                         	<%
-                        	if(emails.length != 0)
-                        	{
-	                        	GerenciadorEmail geMain = new GerenciadorEmail(emails[selectedItem].getEndereco(), emails[selectedItem].getSenha());
-	                        	geMain.setSenderSession(emails[selectedItem].getPorta(), emails[selectedItem].getHost());
-	                    		
-	                        	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
-	                        	
-	                        	Folder[] folders = geMain.getFolders();
-	                        	
-	                        	ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "");
-                        	}
+                        	
+                        	GerenciadorEmail geMain = new GerenciadorEmail(emails[selectedItem].getEndereco(), emails[selectedItem].getSenha());
+                        	geMain.setSenderSession(emails[selectedItem].getPorta(), emails[selectedItem].getHost());
+                    		
+                        	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
+                        	
+                        	Folder[] folders = geMain.getFolders();
+                        	%>
+                        	<%=
+                        	ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "")
                             %>
 
                             <!-- <a class="nav-link btn btn-outline-amarelo mt-3 pasta" data-toggle="collapse" href="#sub-pasta1" role="button" aria-expanded="false"><i class="fas fa-folder fa-lg"></i> Pasta 1</a>
@@ -384,180 +361,10 @@ public String getTextFromMessage(Message message, int i) {
         <div class="col-sm-7 p-0">
             <div class="container pl-0 pt-3 ">
                 <a class="titulo-divisoria" href="#" data-toggle="collapse" data-target="#importantes">
-                    <h4 class="text-dark"><i class="fas fa-caret-down"> Importantes</i></h4>
+                    <h4 class="text-dark"><i class="fas fa-caret-down"> EMAIL </i></h4>
                 </a>
                 <div class="collapse show pt-1" id="importantes">
-                    <ul class="list-group">
-	                    <%
-	                    	toList.open(Folder.READ_ONLY);
-	                    	Message[] msgs = toList.getMessages();
-	                   		for(int i = msgs.length - 1; i > -1; i--)
-	                   		{
-	                   			String auxFrom = Arrays.toString(msgs[i].getFrom());
-	                   			auxFrom = auxFrom.substring(1);
-	                   			auxFrom = auxFrom.substring(0, auxFrom.length() - 1);
-	                   			auxFrom = Jsoup.parse(auxFrom).text();
-	                   			String from = auxFrom;
-	                   			if(auxFrom.length() > 20)
-	                   				auxFrom = auxFrom.substring(0, 17) + "...";
-	                   			
-	                   			while(auxFrom.length() < 20)
-	                   				auxFrom += " ";
-	                   			
-	                   			String auxSub = msgs[i].getSubject();
-	                   			auxSub = Jsoup.parse(auxSub).text();
-	                   			if(auxSub.length() > 20)
-	                   				auxSub = auxSub.substring(0, 17) + "...";
-	                   			if(auxSub.trim().equals(""))
-	                   				auxSub = "sem assunto...";
-	                   			
-	                   			while(auxSub.length() < 20)
-	                   				auxSub += " ";
-	                   			
-	                   			attachs = new ArrayList<MimeBodyPart>();
-	                   			String auxCont = getTextFromMessage(msgs[i], i);
-	                   			String contWithHTML = auxCont;
-	                   			
-	                   			auxCont = Jsoup.parse(auxCont).text();
-	                   			
-	                   			String allRecipients = "";
-	                   					
-	                   			for (Address aux :msgs[i].getAllRecipients())
-	                   				allRecipients += aux.toString() + "; ";
-	                   	%>
-	                   	
-	                   	<li class="list-group-item list-group-item-action pl-2 email">
-                            <i class="far fa-square checkbox"></i>
-                            <div id="email-<%= i %>" class="display inline">
-	                            <h6 class="username inline">
-	                            	<%= auxFrom %>
-	                            </h6>
-	                            <h6 class="assunto inline">
-	                            	<%= auxSub %>
-	                            </h6>
-	                            <p class="conteudo inline text-muted">
-	                            	<%= auxCont %>
-	                            </p>
-                            </div>
-                        </li>
-                        <script>
-	                        $(document).ready(function() {
-	                            $('#email-<%= i %>').click(function (){
-	                            	$('#modal-ver-email-<%= i %>').modal('show');
-	                            });
-	                        });
-                        </script>
-                        <div class="modal fade" id="modal-ver-email-<%= i %>" tabindex="-1" role="dialog"> <!-- fade = animação -->
-					        <div class="modal-dialog modal-lg" role="document">
-					            <div class="modal-content">
-					            
-					                <div class="modal-header">
-					                    
-					                    <h3 class="modal-title">Email <%= i %></h3>
-					                    
-					                    <button type="button" class="close" data-dismiss="modal">
-					                        <span>&times;</span><!-- $time; = x -->
-					                    </button>
-					                    
-					                </div>
-					                
-					                <div class="modal-body">
-					                        
-				                        <div class="form-row">  
-				
-				                            <div class="form-group col-sm-12">
-				                                <div class="input-group">
-				                                    <div class="input-group-prepend">
-				                                        <div class="input-group-text">De:</div>
-				                                    </div>
-				                                    <input type="text" name="destinatario" class="form-control" id="inputDestinatario" placeholder="" value="<%= from %>" readonly>
-				                                </div>
-				
-				                            </div>
-				
-				                        </div>
-				                        <div class="form-row">
-				
-				                            <div class="form-group col-sm-12">
-				                                <div class="input-group">
-				                                    <div class="input-group-prepend">
-				                                        <div class="input-group-text">Cc:</div>
-				                                    </div>
-				                                    <input type="text" name="cc" value="<%= allRecipients %>" class="form-control" id="ccEmail-<%= i %>" placeholder=""  readonly>
-				                                </div>
-				                                
-				                            </div>
-				
-				                        </div>
-				                        <div class="form-row">  
-				
-				                            <div class="form-group col-sm-12">
-				
-				                                <label for="assuntoEmail-<%= i %>>">Assunto:</label>
-				                                <input type="text" name="assunto" class="form-control" id="assuntoEmail-<%= i %>" value="<%= msgs[i].getSubject() %>" readonly>
-				
-				                            </div>
-				
-				                        </div>
-				                        <div class="form-row">  
-				
-				                            <div class="form-group col-sm-12">
-				
-				                                <label for="mensagemEmail-<%= i %>">Mensagem:</label>
-				                                <textarea name="mensagem" class="form-control" id="mensagemEmail-<%= i %>" form ="formEnviar" readonly><%= contWithHTML %></textarea>
-				
-				                            </div>
-					
-					                        </div>
-					                        <div class="form-row">  
-					
-					                            <div class="form-group col-sm-12">
-					                            <%
-					                            	if(attachs.size() == 0){
-					                            %>
-					                                <label for="anexoEmail-<%= i %>">Anexos:</label>
-					                                
-					                                <input type="file" value="choose file">
-					                                
-					                                <br/>
-					                            <%
-					                            	}
-					                            %>
-					
-					                            </div>
-					
-					                        </div>
-					                        
-					                  
-					                        <div class="modal-footer">
-					                        <%
-					                        	if(session.getAttribute("emailAtual") != null)
-					                        	{
-					                        %>
-					                    		<input type="hidden" name="enderecoH" value="<%=((Email)session.getAttribute("emailAtual")).getEndereco() %>">
-					                            <input type="hidden" name="senhaH" value="<%=((Email)session.getAttribute("emailAtual")).getSenha() %>">
-					                         <%
-					                        	}
-					                         %>   
-					                            <button type="submit" class="btn btn-danger btn-block">reply</button>
-											
-					                        </div>
-					                </div>
-					
-					            </div>
-					        </div>
-					      </div>
-	                   	<%
-	                   		}
-	                   		if(msgs.length == 0)
-	                   		{
-	                   		%>
-	                   			Sem emails aqui amigão :^|
-	                   		<%
-	                   		}
-	                   		toList.close();
-	                   	%>
-                    </ul>
+                    
                 </div>
             </div>
         </div>
@@ -705,10 +512,9 @@ public String getTextFromMessage(Message message, int i) {
 
                             <div class="form-group col-sm-12">
 
-                                <label for="inputAnexo" id="file">Anexo:</label>
+                                <label for="inputAnexo">Anexo:</label>
                                 <br/>
-                                <input type="file" name="anexo" class="form-control-file" id="inputAnexo" multiple="multiple"> 
-
+                                <input type="file" name="anexo" class="form-control-file" id="inputAnexo">
 
                             </div>
 
@@ -856,8 +662,7 @@ public String getTextFromMessage(Message message, int i) {
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
-        
-        
+      
     </script>
     
 </body>

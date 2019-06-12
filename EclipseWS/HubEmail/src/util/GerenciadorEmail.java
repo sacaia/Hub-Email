@@ -93,7 +93,7 @@ public class GerenciadorEmail {
 	public void setStore(String host, String mode) throws Exception
 	{
 		if(host == null || host.equals("") || user == null || user.equals("") || senha == null || senha.equals(""))
-			throw new Exception ("Algum dos par�metros esta vazio");
+			throw new Exception ("Algum dos parametros esta vazio");
 		
 		Properties props = System.getProperties();
 		Session session = Session.getDefaultInstance(props);
@@ -152,7 +152,7 @@ public class GerenciadorEmail {
 		Folder pasta = emailStore.getFolder(original);
 		
 		if(!pasta.exists())
-			throw new Exception ("Pasta n�o pode ser renomeada por n�o existir");
+			throw new Exception ("Pasta nao pode ser renomeada por nao existir");
 		
 		if(pasta.isOpen())
 			pasta.close();
@@ -165,7 +165,7 @@ public class GerenciadorEmail {
 		Folder pasta = emailStore.getFolder(nomePasta);
 		
 		if(!pasta.exists())
-			throw new Exception ("Pasta n�o pode ser renomeada por n�o existir");
+			throw new Exception ("Pasta nao pode ser renomeada por nao existir");
 		
 		if(pasta.isOpen())
 			pasta.close();
@@ -267,15 +267,17 @@ public class GerenciadorEmail {
 		if(CCs != null)
 			for(int i = 0; i < CCs.length; i++)
 			{
-				msg.addRecipient(
-				Message.RecipientType.CC, InternetAddress.parse(CCs[i])[0]);
+				if(CCs[i] != null)
+					if(!CCs[i].equals(""))
+						msg.addRecipient(Message.RecipientType.CC, InternetAddress.parse(CCs[i])[0]);
 			}
 
 		if(CCOs != null)
 			for(int i = 0; i < CCOs.length; i++)
 			{
-				msg.addRecipient(
-				Message.RecipientType.BCC, InternetAddress.parse(CCOs[i])[0]);
+				if(CCOs[i] != null)
+					if(!CCOs[i].equals(""))
+						msg.addRecipient(Message.RecipientType.BCC, InternetAddress.parse(CCOs[i])[0]);
 			}
 		
 		msg.setSubject(assunto);

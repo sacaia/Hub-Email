@@ -368,5 +368,24 @@ $(document).ready(function(){
         });
     });
     
+/////////////////ON CHANGE FILE////////////////////////////
+    /*$(function () {
+    	$('input[type=file]').change(function () {
+    		file = input.files[0];
+            fr = new FileReader();
+            fr.readAsDataURL(file);
+
+            var blob = new Blob([file], { type: "application/pdf" });
+
+            var objectURL = window.URL.createObjectURL(blob);
+            console.log(objectURL);
+
+            var link = document.createElement('a');
+            link.href = objectURL;
+            link.download = "myFileName.pdf";
+            link.click();
+    	});
+    });*/
+    
 //////////////////////////////////////////////////////////
 });

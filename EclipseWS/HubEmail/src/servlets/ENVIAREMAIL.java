@@ -7,6 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import util.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 
 /**
  * Servlet implementation class ENVIAREMAIL
@@ -48,56 +59,110 @@ public class ENVIAREMAIL extends HttpServlet {
         System.err.println("endereco: "+ endereco);
         System.err.println("senha: "+ senha);
         String[] aux = new String[0];
-        String[] destinatarios;
-        String[] CCs;
-        String[] CCOs;
+        String[] destinatarios = new String[0];
+        String[] CCs = new String[0];
+        String[] CCOs = new String[0];
+        String[] anexos = new String[1];
         
-        if(destinatario.indexOf(",") != -1)
-        {
-	        aux = destinatario.split(",");
-	        destinatarios = new String[aux.length];
-	        
-	        for(int i=0; i<destinatarios.length; i++)
-	        {
-	        	destinatarios[i] = aux[i].trim();
-	        }
-        } else {
-        	destinatarios = new String[1];
-        	destinatarios[0] = destinatario;
-        }
+        if(anexo != null)
+        	if(!anexo.equals(""))
+        		anexos[0] = "C:\\Temp\\" + anexo;
         
-        if(cc.indexOf(",") != -1)
-        {
-	        aux = cc.split(",");
-	        CCs = new String[aux.length];
-	        
-	        for(int i=0; i<CCs.length; i++)
-	        {
-	        	CCs[i] = aux[i].trim();
-	        }
-        } else {
-        	CCs = new String[1];
-        	CCs[0] = cc;
-        }
         
-        if(cco.indexOf(",") != -1)
-        {
-	        aux = cco.split(",");
-	        CCOs = new String[aux.length];
-	        
-	        for(int i=0; i<CCOs.length; i++)
-	        {
-	        	CCOs[i] = aux[i].trim();
-	        }
-        } else {
-        	CCOs = new String[1];
-        	CCOs[0] = cco;
-        } 
+        //request.getRequestDispatcher("/result.jsp").forward(request, response);
+     
+        if(destinatario != null)
+        	if(!destinatario.equals(""))
+		        if(destinatario.indexOf(",") != -1)
+		        {
+			        aux = destinatario.split(",");
+			        destinatarios = new String[aux.length];
+			        
+			        for(int i=0; i<destinatarios.length; i++)
+			        {
+			        	destinatarios[i] = aux[i].trim();
+			        }
+		        } else {
+		        	if(destinatario.indexOf(";") != -1)
+		            {
+		    	        aux = destinatario.split(";");
+		    	        destinatarios = new String[aux.length];
+		    	        
+		    	        for(int i=0; i<destinatarios.length; i++)
+		    	        {
+		    	        	destinatarios[i] = aux[i].trim();
+		    	        }
+		            } 
+		        	else {
+		            	destinatarios = new String[1];
+		            	destinatarios[0] = destinatario;
+		            }
+		        	
+		          }
+        
+        if(cc != null)
+        	if(!cc.equals(""))
+		        if(cc.indexOf(",") != -1)
+		        {
+			        aux = cc.split(",");
+			        CCs = new String[aux.length];
+			        
+			        for(int i=0; i<CCs.length; i++)
+			        {
+			        	CCs[i] = aux[i].trim();
+			        }
+		        } else {
+		        	if(cc.indexOf(";") != -1)
+		            {
+		    	        aux = cc.split(";");
+		    	        CCs = new String[aux.length];
+		    	        
+		    	        for(int i=0; i<CCs.length; i++)
+		    	        {
+		    	        	CCs[i] = aux[i].trim();
+		    	        }
+		            }
+		        	else {
+		        		CCs = new String[1];
+		            	CCs[0] = cc;
+		        	}
+		        	
+		          }
+        
+        if(cco != null)
+        	if(!cco.equals(""))
+		        if(cco.indexOf(",") != -1)
+		        {
+			        aux = cco.split(",");
+			        CCOs = new String[aux.length];
+			        
+			        for(int i=0; i<CCOs.length; i++)
+			        {
+			        	CCOs[i] = aux[i].trim();
+			        }
+		        } else {
+		        	if(cco.indexOf(";") != -1)
+		            {
+		    	        aux = cco.split(";");
+		    	        CCOs = new String[aux.length];
+		    	        
+		    	        for(int i=0; i<CCOs.length; i++)
+		    	        {
+		    	        	CCOs[i] = aux[i].trim();
+		    	        }
+		            }
+		        	else {
+		        		CCOs = new String[1];
+		            	CCOs[0] = cco;
+		        	}
+		        	
+		          } 
         
         try {
 			GerenciadorEmail ge = new GerenciadorEmail(endereco, senha);
 			ge.setSenderSession("587", "smtp.gmail.com");
 			ge.enviarEmail(assunto, mensagem, null, destinatarios, CCs, CCOs);
+			response.sendRedirect("Index.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

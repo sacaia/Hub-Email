@@ -706,9 +706,10 @@ public String getTextFromMessage(Message message, int i) {
 
                             <div class="form-group col-sm-12">
 
-                                <label for="inputAnexo">Anexos:</label>
+                                <label for="inputAnexo" id="file">Anexo:</label>
                                 <br/>
-                                <input type="file" id="filePathPicker"/>
+                                <input type="file" name="anexo" class="form-control-file" id="inputAnexo" multiple="multiple"> 
+
 
                             </div>
 
@@ -856,7 +857,8 @@ public String getTextFromMessage(Message message, int i) {
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
-      
+        
+        
     </script>
     
 </body>

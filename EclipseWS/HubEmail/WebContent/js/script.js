@@ -248,6 +248,11 @@ $(document).ready(function(){
         $('[class!="active"][class~="list-group-item"][class~="conta"]').click(function () {
             $('[class~="active"]').removeClass("active");
             $(this).addClass("active");
+            
+            document.getElementById('body').innerHTML = document.getElementById('body').innerHTML + "<form id='new-form-folder-aux' method='post' action='Index.jsp'> <input class='form-control ml-4 mr-2' name='selectedEmail' type='hidden' value='" +
+            $(this).attr("value") + "'></form>";
+            
+            document.getElementById("new-form-folder-aux").submit();
         });
     });
 /////////////////ON CLICK DIVISÓRIA////////////////////////////
@@ -343,7 +348,11 @@ $(document).ready(function(){
                     $(this).find("i").addClass("fa-folder-open");
                     $(this).find("i").removeClass("fa-folder");
                 }
-              document.getElementById('form-folder-' + $(this).find("div").html()).submit();
+              //document.getElementById('form-folder-' + $(this).find("div").html()).submit();
+                document.getElementById('body').innerHTML = document.getElementById('body').innerHTML + "<form id='new-form-folder-aux' method='post' action='Index.jsp'> <input class='form-control ml-4 mr-2' name='selectedFolder' type='hidden' value='" +
+                $(this).find("div").html() + "'></form>";
+                
+                document.getElementById("new-form-folder-aux").submit();
             }
             else
             {

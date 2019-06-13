@@ -1,11 +1,15 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import bd.dbos.Email;
 
@@ -33,8 +37,19 @@ public class BUSCAR extends HttpServlet {
 		String busca = (String)request.getParameter("busca");
 		String emails = (String)request.getParameter("vetorEmails");
 		
-		System.err.println(busca);
-		System.err.println(emails);
+		Gson gson = new Gson();
+		
+		Email[] vetorEmails = gson.fromJson(emails, Email[].class);
+		Email[] buscaEmail;
+
+		for (int i = 0; i < vetorEmails.length; i++)
+		{
+			
+		}
+		
+		request.setAttribute("recharge", true);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
+        dispatcher.forward( request, response); 
 	}
 
 	/**

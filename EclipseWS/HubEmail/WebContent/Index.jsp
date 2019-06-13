@@ -291,9 +291,9 @@ public String getTextFromMessage(Message message, int i) {
                             </li>
                             
                             <li class="nav-item align-middle centerY">
-                            <form method="POST" action="DELETAR">
-                            	<input type="hidden" name="vetorDeEmails" value='<%= gson.toJson(session.getAttribute("emails")) %>'>
-                                <button type="submit" style="display: none"><i class="fas fa-trash-alt fa-2x icon-menu" id="deletar" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Excluir" style="background: none;border: none;"></i></button>
+                            <form method="POST" action="Index.jsp">
+                            	<input type="hidden" id="deletaveis" name="deletar" value=''>
+                                <button type="submit" style="background: none; border: none;"><i class="fas fa-trash-alt fa-2x icon-menu" id="deletar" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Excluir" style="background: none;border: none;"></i></button>
                             </form>
                             </li>
                     
@@ -302,7 +302,7 @@ public String getTextFromMessage(Message message, int i) {
 <!----------------------- Formulário de pesquisa ----------------------->
                         <form class="form-inline d-flex justify-content-around" method="POST" action="BUSCAR">
                             <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar..." name="busca">
-                            <input type="hidden" name="vetorEmails" value='<%= gson.toJson(emails) %>'>
+                            <input type="hidden" name="vetorEmails" value=''>
                             <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
                         </form>
                         

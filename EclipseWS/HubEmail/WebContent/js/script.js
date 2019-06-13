@@ -305,7 +305,10 @@ $(document).ready(function(){
             }
             else
             {
-                //$(this).removeClass("");
+                value = $("#deletaveis").attr("value");
+                id = $(this).closest("div").attr("id");
+                index = id.slice(id.indexOf("-")+1, id.length-1)
+                $("#deletaveis").attr("value", value + index + "/")
                 $(this).closest(".email").addClass("active");
                 $(this).removeClass("far fa-square");
                 $(this).addClass("fas fa-check-square");

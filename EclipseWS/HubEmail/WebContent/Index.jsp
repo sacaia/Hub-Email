@@ -68,11 +68,15 @@
 			response.sendRedirect("Login.jsp");
 		
 	if(request.getParameter("selectedFolder") != null)
+	{
 		session.setAttribute("selectedFolder", request.getParameter("selectedFolder"));
+		recharge = true;
+	}
 	
 	if(request.getParameter("selectedEmail") != null)
 	{
 		session.setAttribute("selectedEmail", Integer.parseInt((String)request.getParameter("selectedEmail")));
+		recharge = true;
 	}
 
 	/*Pega o email*/
@@ -92,12 +96,6 @@
         session.setAttribute("contas", Emails.getEmailsFromHub(hub.getIdHub()));	
         
 	Email[] contas = (Email[])session.getAttribute("contas");
-	
-	int selectedItem = 0;
-	if(session.getAttribute("selectedItem") != null)
-		selectedItem = (int)session.getAttribute("selectedItem");
-	else
-		session.setAttribute("selectedItem", selectedItem);
 	
 	String selectedFolder = "INBOX";
 	if(session.getAttribute("selectedFolder") != null)
@@ -292,7 +290,7 @@ public String getTextFromMessage(Message message, int i) {
                             
                             <li class="nav-item align-middle centerY">
                             <form method="POST" action="DELETAR">
-                            	<input type="hidden" name="vetorDeEmails" value='<%= gson.toJson(session.getAttribute("emails")) %>'>
+                            	<input type="hidden" name="vetorDeEmails" value=''>
                                 <button type="submit" style="display: none"><i class="fas fa-trash-alt fa-2x icon-menu" id="deletar" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Excluir" style="background: none;border: none;"></i></button>
                             </form>
                             </li>
@@ -302,7 +300,7 @@ public String getTextFromMessage(Message message, int i) {
 <!----------------------- Formulário de pesquisa ----------------------->
                         <form class="form-inline d-flex justify-content-around" method="POST" action="BUSCAR">
                             <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar..." name="busca">
-                            <input type="hidden" name="vetorEmails" value='<%= gson.toJson(emails) %>'>
+                            <input type="hidden" name="vetorEmails" value=''>
                             <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
                         </form>
                         
@@ -368,12 +366,12 @@ public String getTextFromMessage(Message message, int i) {
                         	
                         	if(contas.length != 0)
                         	{
-	                        	GerenciadorEmail geMain = new GerenciadorEmail(contas[selectedItem].getEndereco(), contas[selectedItem].getSenha());
-	                        	geMain.setSenderSession(contas[selectedItem].getPorta(), contas[selectedItem].getHost());
+	                        	GerenciadorEmail geMain = new GerenciadorEmail(contas[selectedEmail].getEndereco(), contas[selectedEmail].getSenha());
+	                        	geMain.setSenderSession(contas[selectedEmail].getPorta(), contas[selectedEmail].getHost());
 	                    		
 	                        	try
 	                        	{
-		                        	geMain.setStore(contas[selectedItem].getHost(), contas[selectedItem].getProtocolo() + "s");
+		                        	geMain.setStore(contas[selectedEmail].getHost(), contas[selectedEmail].getProtocolo() + "s");
 		                        	Folder[] folders = geMain.getFolders();
 		                        	
 		                        	%>

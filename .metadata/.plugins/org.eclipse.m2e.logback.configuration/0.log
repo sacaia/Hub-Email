@@ -30,3 +30,72 @@
 2019-06-12 09:52:28,651 [Worker-19: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
 2019-06-12 09:52:28,651 [Worker-19: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\test\resources
 2019-06-12 11:38:11,309 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-06-13 08:14:15,000 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-06-13 10:12:38,945 [Worker-79: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.sun.mail:javax.mail:1.6.2 @ C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\pom.xml.
+2019-06-13 10:12:39,689 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:12:39,690 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\main\resources
+2019-06-13 10:12:42,016 [Worker-79: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Manifest com.sun.mail:javax.mail:jar:1.6.2 : No translation found for macro: mail.osgiversion
+2019-06-13 10:12:42,017 [Worker-79: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - Manifest com.sun.mail:javax.mail:jar:1.6.2 : Unused Export-Package instructions: [javax.mail.*] 
+2019-06-13 10:12:42,025 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:12:42,025 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\test\resources
+2019-06-13 10:14:46,545 [Worker-79: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.sun.mail:javax.mail:1.6.2 @ C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\pom.xml.
+2019-06-13 10:14:46,683 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:14:46,683 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\main\resources
+2019-06-13 10:14:47,108 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:14:47,108 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\test\resources
+2019-06-13 10:24:42,329 [Worker-87: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.sun.mail:javax.mail:1.6.2 @ C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\pom.xml.
+2019-06-13 10:24:42,469 [Worker-87: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:24:42,469 [Worker-87: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\main\resources
+2019-06-13 10:24:42,859 [Worker-87: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:24:42,859 [Worker-87: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\test\resources
+2019-06-13 10:24:51,714 [Worker-89: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.sun.mail:javax.mail:1.6.2 @ C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\pom.xml.
+2019-06-13 10:24:52,252 [Worker-79: reload maven project] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.6.5/gson-2.6.5.pom
+2019-06-13 10:24:52,256 [Worker-79: reload maven project] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.google.code.gson:gson:jar:2.6.5 is missing, no dependency information available
+2019-06-13 10:24:52,387 [Worker-89: Building workspace] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.6.5/gson-2.6.5.pom
+2019-06-13 10:24:52,388 [Worker-89: Building workspace] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.google.code.gson:gson:jar:2.6.5 is missing, no dependency information available
+2019-06-13 10:24:52,407 [Worker-79: reload maven project] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.6.5/gson-2.6.5.jar
+2019-06-13 10:24:52,514 [Worker-89: Building workspace] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.6.5/gson-2.6.5.jar
+2019-06-13 10:24:52,776 [Worker-89: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:24:52,776 [Worker-89: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\main\resources
+2019-06-13 10:24:52,802 [Worker-89: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:24:52,802 [Worker-89: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\test\resources
+2019-06-13 10:24:53,743 [Worker-87: Download sources and javadoc] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.google.code.gson:gson:jar:2.6.5 is missing, no dependency information available
+2019-06-13 10:24:54,341 [Worker-87: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.6.5/gson-2.6.5-sources.jar
+2019-06-13 10:24:54,353 [Worker-87: Download sources and javadoc] ERROR o.e.m.j.internal.DownloadSourcesJob - Could not download sources for com.google.code.gson:gson:2.6.5
+org.eclipse.core.runtime.CoreException: Could not resolve artifact com.google.code.gson:gson:jar:sources:2.6.5
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:763) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:731) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:708) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:279) [org.eclipse.m2e.jdt_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:254) [org.eclipse.m2e.jdt_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:221) [org.eclipse.m2e.jdt_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161) [org.eclipse.m2e.jdt_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:137) [org.eclipse.m2e.jdt_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1) [org.eclipse.m2e.jdt_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1336) [org.eclipse.m2e.core_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:135) [org.eclipse.m2e.jdt_1.10.0.20181127-2120.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63) [org.eclipse.core.jobs_3.10.200.v20180912-1356.jar:na]
+2019-06-13 10:26:13,775 [Worker-79: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.sun.mail:javax.mail:1.6.2 @ C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\pom.xml.
+2019-06-13 10:26:14,396 [Worker-79: Building workspace] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.pom
+2019-06-13 10:26:14,552 [Worker-79: Building workspace] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.pom
+2019-06-13 10:26:14,733 [Worker-79: Building workspace] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/google/code/gson/gson-parent/2.8.5/gson-parent-2.8.5.pom
+2019-06-13 10:26:14,867 [Worker-79: Building workspace] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/code/gson/gson-parent/2.8.5/gson-parent-2.8.5.pom
+2019-06-13 10:26:15,036 [Worker-79: Building workspace] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar
+2019-06-13 10:26:15,815 [Worker-79: Building workspace] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar
+2019-06-13 10:26:16,139 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:26:16,140 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\main\resources
+2019-06-13 10:26:16,514 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:26:16,514 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\test\resources
+2019-06-13 10:26:17,689 [Worker-90: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5-sources.jar
+2019-06-13 10:26:18,206 [Worker-90: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5-sources.jar
+2019-06-13 10:26:18,316 [Worker-90: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for com.google.code.gson:gson:2.8.5
+2019-06-13 10:26:18,811 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:26:18,812 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\main\resources
+2019-06-13 10:26:18,835 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'iso-8859-1' encoding to copy filtered resources.
+2019-06-13 10:26:18,835 [Worker-79: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\u17178\Desktop\Hub-Email\EclipseWS\javax.mail\ejbModule\META-INF\maven\com.sun.mail\javax.mail\src\test\resources

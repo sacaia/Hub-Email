@@ -11,7 +11,8 @@
        java.util.Arrays,
        org.jsoup.Jsoup,
        javax.mail.*,
-       javax.mail.internet.*"%>
+       javax.mail.internet.*,
+       com.google.gson.Gson"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +37,8 @@
     
 	<title>MALI MAIL</title>
 <%
+	Gson gson = new Gson();
+
 	/*Setando as Sessions*/
 	Boolean recharge = false;
 	if(request.getAttribute("recharge") != null && (Boolean)request.getAttribute("recharge"))
@@ -294,8 +297,9 @@ public String getTextFromMessage(Message message, int i) {
                         </ul>
                         
 <!----------------------- Formulário de pesquisa ----------------------->
-                        <form class="form-inline d-flex justify-content-around">
-                            <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar...">
+                        <form class="form-inline d-flex justify-content-around" method="POST" action="BUSCAR">
+                            <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar..." name="busca">
+                            <input type="hidden" name="vetorEmails" value='<%= gson.toJson(emails) %>'>
                             <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
                         </form>
                         
@@ -677,7 +681,7 @@ public String getTextFromMessage(Message message, int i) {
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Para:</div>
                                     </div>
-                                    <input type="text" name="destinatario" class="form-control" id="inputDestinatario" placeholder="">
+                                    <input type="text" name="destinatario" class="form-control" id="inputDestinatario" placeholder="" required>
                                 </div>
 
                             </div>
@@ -715,7 +719,7 @@ public String getTextFromMessage(Message message, int i) {
                             <div class="form-group col-sm-12">
 
                                 <label for="inputAssunto">Assunto:</label>
-                                <input type="text" name="assunto" class="form-control" id="inputAssunto">
+                                <input type="text" name="assunto" class="form-control" id="inputAssunto" required>
 
                             </div>
 
@@ -725,7 +729,7 @@ public String getTextFromMessage(Message message, int i) {
                             <div class="form-group col-sm-12">
 
                                 <label for="inputMensagem">Mensagem:</label>
-                                <textarea name="mensagem" class="form-control" id="inputMensagem" form ="formEnviar"></textarea>
+                                <textarea name="mensagem" class="form-control" id="inputMensagem" form ="formEnviar" required></textarea>
 
                             </div>
 

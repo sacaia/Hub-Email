@@ -13,5 +13,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/u17178/Desktop/Hub-Email/Recursos/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/gson-2.6.2"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

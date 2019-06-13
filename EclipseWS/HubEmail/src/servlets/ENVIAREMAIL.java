@@ -161,12 +161,13 @@ public class ENVIAREMAIL extends HttpServlet {
         try {
 			GerenciadorEmail ge = new GerenciadorEmail(endereco, senha);
 			ge.setSenderSession("587", "smtp.gmail.com");
-			ge.enviarEmail(assunto, mensagem, null, destinatarios, CCs, CCOs);
-			response.sendRedirect("Index.jsp");
+			ge.enviarEmailHTML(assunto, mensagem, null, destinatarios, CCs, CCOs);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        response.sendRedirect("Index.jsp");
 	}
 
 	/**

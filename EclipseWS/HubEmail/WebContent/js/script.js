@@ -375,7 +375,6 @@ $(document).ready(function(){
             }
         });
     });
-    
 /////////////////ON CHANGE FILE////////////////////////////
     /*$(function () {
     	$('input[type=file]').change(function () {

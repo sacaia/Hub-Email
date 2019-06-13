@@ -110,6 +110,28 @@
 		selectedEmail = (int)session.getAttribute("selectedEmail");
 	else
 		session.setAttribute("selectedEmail", selectedEmail);
+	
+	Message[] msgs = new Message[0];
+    if(session.getAttribute("emails") == null || recharge)
+    {
+    	if(toList != null)
+    	{
+    		try{
+
+    		toList.open(Folder.READ_ONLY);
+    		msgs = toList.getMessages();
+    		}
+    		catch (Exception erro)
+    		{
+    			toList = null;
+    		}
+    		
+    	}
+    	session.setAttribute("emails", msgs);
+    }
+    else
+    	msgs = (Message[])session.getAttribute("emails");
+    
 %>
 	
 <%!
@@ -299,7 +321,7 @@ public String getTextFromMessage(Message message, int i) {
 <!----------------------- Formulário de pesquisa ----------------------->
                         <form class="form-inline d-flex justify-content-around" method="POST" action="BUSCAR">
                             <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar..." name="busca">
-                            <input type="hidden" name="vetorEmails" value='<%= gson.toJson(emails) %>'>
+                            <input type="hidden" name="vetorEmails" value='<%= gson.toJson(session.getAttribute("emails")) %>'>
                             <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
                         </form>
                         
@@ -422,28 +444,6 @@ public String getTextFromMessage(Message message, int i) {
                 <div class="collapse show pt-1" id="importantes">
                     <ul class="list-group">
 	                    <%
-	                    Message[] msgs = new Message[0];
-	                    if(session.getAttribute("emails") == null || recharge)
-	                    {
-	                    	if(toList != null)
-	                    	{
-	                    		try{
-
-	                    		toList.open(Folder.READ_ONLY);
-	                    		msgs = toList.getMessages();
-	                    		}
-	                    		catch (Exception erro)
-	                    		{
-	                    			toList = null;
-	                    		}
-	                    		
-	                    	}
-	                    	session.setAttribute("emails", msgs);
-	                    }
-	                    else
-	                    	msgs = (Message[])session.getAttribute("emails");
-	                    
-	                    	
 	                   		for(int i = msgs.length - 1; i > -1; i--)
 	                   		{
 	                   			String auxFrom = Arrays.toString(msgs[i].getFrom());

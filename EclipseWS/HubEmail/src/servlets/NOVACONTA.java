@@ -40,20 +40,6 @@ public class NOVACONTA extends HttpServlet {
         String porta    = (String)request.getParameter("portaC");
         String mode     = (String)request.getParameter("modeC");
         String hub      = (String)request.getParameter("hubC");
-        
-        try {
-        	//GerenciadorEmail a = new GerenciadorEmail(endereco, senha);
-        	//a.setStore(host, mode);
-        	
-        } catch (Exception e)
-        {        	
-        	//request.setAttribute("autenticacaoInvalida", true);
-        	//RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
-        	//dispatcher.forward( request, response);
-        	System.err.println(e.getMessage());
-        	return;
-        }
-        
         Email email = null;
         
         try {

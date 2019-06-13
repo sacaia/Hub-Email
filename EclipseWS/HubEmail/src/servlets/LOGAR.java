@@ -48,6 +48,7 @@ public class LOGAR extends HttpServlet {
     		Hub h = Hubs.getHub(usuario, senha);
     		request.setAttribute("logado", true);
             request.setAttribute("hub", h);
+            //request.setAttribute("recharge", true);
             RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
             dispatcher.forward( request, response);
           

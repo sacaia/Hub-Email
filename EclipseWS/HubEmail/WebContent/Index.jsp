@@ -40,6 +40,13 @@
 	Gson gson = new Gson();
 
 	/*Setando as Sessions*/
+	Boolean recharge = false;
+	if(request.getAttribute("recharge") != null && (Boolean)request.getAttribute("recharge"))
+	{
+		recharge = true;
+		request.setAttribute("recharge", false);
+	}
+	
 	if(request.getAttribute("logado") != null)
 	{
 		session.setAttribute("logado", true);
@@ -60,14 +67,19 @@
 		if(!(boolean)session.getAttribute("logado"))
 			response.sendRedirect("Login.jsp");
 		
-	if(request.getAttribute("selectedFolder") != null)
-		session.setAttribute("selectedFolder", request.getAttribute("selectedFolder"));
+	if(request.getParameter("selectedFolder") != null)
+		session.setAttribute("selectedFolder", request.getParameter("selectedFolder"));
+	
+	if(request.getParameter("selectedEmail") != null)
+	{
+		session.setAttribute("selectedEmail", Integer.parseInt((String)request.getParameter("selectedEmail")));
+	}
 
 	/*Pega o email*/
 	/*Hub hub = (Hub)session.getAttribute("hub");
 	
 	try{
-	session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));
+	session.setAttribute("contas", Emails.getEmailsFromHub(hub.getIdHub()));
 	}catch (Exception ex)
 	{
 		session.setAttribute("logado", false);
@@ -76,10 +88,10 @@
     Hub hub = (Hub)session.getAttribute("hub");
     
 	//System.err.println("Hub: "+hub);
-	if(session.getAttribute("emails") == null && hub != null || (request.getAttribute("recharge") != null && (Boolean)request.getAttribute("recharge")))
-        session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
+	if(session.getAttribute("contas") == null && hub != null || recharge)
+        session.setAttribute("contas", Emails.getEmailsFromHub(hub.getIdHub()));	
         
-	Email[] emails = (Email[])session.getAttribute("emails");
+	Email[] contas = (Email[])session.getAttribute("contas");
 	
 	int selectedItem = 0;
 	if(session.getAttribute("selectedItem") != null)
@@ -98,7 +110,6 @@
 		selectedEmail = (int)session.getAttribute("selectedEmail");
 	else
 		session.setAttribute("selectedEmail", selectedEmail);
-
 %>
 	
 <%!
@@ -118,10 +129,12 @@
     		}
     		catch (Exception erro){}
     		String active = "";
+    		String abrir = "true";
     		 if(folder[i].getName().equals(selectedFolder))
     		 {
     			 toList = folder[i];
 				active = "active";
+				abrir = "true";
     		 }
     		 
     		 String icon = "fa-folder";
@@ -129,15 +142,14 @@
     		 if(folder[i].getName().equals("INBOX"))
     			 icon = "fa-inbox";
     		 
-     		ret += "<form id='form-folder-" + (id + "_" + i) +"' action='Index.jsp'>"
-     		+ "<a name='selectedFolder' class='nav-link btn btn-outline-amarelo mt-3 pasta "
+     		ret += "<a class='nav-link btn btn-outline-amarelo mt-3 pasta "
      		+ active + " ' data-toggle='collapse'role='button' href='#sub-pasta-" + (id + "_" + i)
-     		+ "' aria-expanded='false'>" 
-     		+ "<i class='fas " + icon + " fa-lg'></i><div class='inline' style='visibility: hidden' name=>" + (id + "_" + i) + "</div><div class='inline' name='selectedFolder'>"
-     		+ folder[i].getName() 
-     		+ "</div></a></form>";
+     		+ "' aria-expanded='" + abrir + "'>" 
+     		+ "<i class='fas " + icon + " fa-lg'></i><!--<div class='inline' style='visibility: hidden'>" + (id + "_" + i) + "</div>--><div class='inline' value='"
+     		+ folder[i].getName() + "'>" 
+     		+ folder[i].getName() + "</div></a>";
          try{
-         Folder [] foldersAuxiliares = folder[i].list();
+         Folder [] foldersAuxiliares = folder[i].list("*");
          ret += "<div class='collapse' id='sub-pasta-" + id + "_" + i + "' data-parent='#collapse-group'> <nav class='nav nav-pills flex-column'>";
          ret += ListarPastas(dentro + 1, selectedFolder, foldersAuxiliares, id + "_" + i);
          ret += "</nav></div>";
@@ -223,7 +235,7 @@ public String getTextFromMessage(Message message, int i) {
 %>
     
 </head>
-<body>
+<body id='body'>
 
 <!----------------------- Linha Principal ----------------------->
 	<div class="row">
@@ -353,14 +365,15 @@ public String getTextFromMessage(Message message, int i) {
 
                         <div id="collapse-group">
                         	<%
-                        	if(emails.length != 0)
+                        	
+                        	if(contas.length != 0)
                         	{
-	                        	GerenciadorEmail geMain = new GerenciadorEmail(emails[selectedItem].getEndereco(), emails[selectedItem].getSenha());
-	                        	geMain.setSenderSession(emails[selectedItem].getPorta(), emails[selectedItem].getHost());
+	                        	GerenciadorEmail geMain = new GerenciadorEmail(contas[selectedItem].getEndereco(), contas[selectedItem].getSenha());
+	                        	geMain.setSenderSession(contas[selectedItem].getPorta(), contas[selectedItem].getHost());
 	                    		
 	                        	try
 	                        	{
-		                        	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
+		                        	geMain.setStore(contas[selectedItem].getHost(), contas[selectedItem].getProtocolo() + "s");
 		                        	Folder[] folders = geMain.getFolders();
 		                        	
 		                        	%>
@@ -413,11 +426,26 @@ public String getTextFromMessage(Message message, int i) {
                     <ul class="list-group">
 	                    <%
 	                    Message[] msgs = new Message[0];
+	                    if(session.getAttribute("emails") == null || recharge)
+	                    {
 	                    	if(toList != null)
 	                    	{
+	                    		try{
+
 	                    		toList.open(Folder.READ_ONLY);
 	                    		msgs = toList.getMessages();
+	                    		}
+	                    		catch (Exception erro)
+	                    		{
+	                    			toList = null;
+	                    		}
+	                    		
 	                    	}
+	                    	session.setAttribute("emails", msgs);
+	                    }
+	                    else
+	                    	msgs = (Message[])session.getAttribute("emails");
+	                    
 	                    	
 	                   		for(int i = msgs.length - 1; i > -1; i--)
 	                   		{
@@ -563,8 +591,7 @@ public String getTextFromMessage(Message message, int i) {
 	                   			Sem emails aqui amigão :^|
 	                   		<%
 	                   		}
-	                   		if(toList != null)
-	                   			toList.close();
+							try{toList.close();}catch (Exception erro){}//Shhhhhh!!!
 	                   	%>
                     </ul>
                 </div>
@@ -579,9 +606,9 @@ public String getTextFromMessage(Message message, int i) {
 					
                 <%
                 
-			if(session.getAttribute("emails") != null)
+			if(session.getAttribute("contas") != null)
 			{
-            	Email[] ems = (Email[])session.getAttribute("emails");
+            	Email[] ems = (Email[])session.getAttribute("contas");
             
             	for(int i = 0; i < ems.length; i++)
             	{
@@ -594,13 +621,13 @@ public String getTextFromMessage(Message message, int i) {
             		{
             			session.setAttribute("emailAtual", ems[i]);
             	%>
-                    <a href="#" class="list-group-item list-group-item-action flex-column conta active">
+                    <a href="#" class="list-group-item list-group-item-action flex-column conta active" value="<%= i %>">
 				<%
             		}
             		else
             		{
 				%>
-					<a href="#" class="list-group-item list-group-item-action flex-column conta">
+					<a href="#" class="list-group-item list-group-item-action flex-column conta" value="<%= i %>">
 				<%
             		}
 				%>

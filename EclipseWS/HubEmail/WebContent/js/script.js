@@ -347,7 +347,6 @@ $(document).ready(function(){
                 
                 if($(this).attr("aria-expanded") == "true")
                 {
-                    alert("a");
                     $(this).find("i").addClass("fa-folder-open");
                     $(this).find("i").removeClass("fa-folder");
                 }

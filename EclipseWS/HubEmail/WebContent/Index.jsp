@@ -78,6 +78,34 @@
 		session.setAttribute("selectedEmail", Integer.parseInt((String)request.getParameter("selectedEmail")));
 		recharge = true;
 	}
+	
+	if(request.getParameter("selectedPagination") != null)
+	{
+		session.setAttribute("selectedPagination", request.getParameter("selectedPagination"));
+	}
+	
+	int selectedPagination = 0;
+	if(session.getAttribute("selectedPagination") == null)
+	{
+		session.setAttribute("selectedPagination", selectedPagination);
+	}
+	else
+		selectedPagination = (int)session.getAttribute("selectedPagination");
+	
+	
+	if(request.getParameter("lengthEmails") != null)
+	{
+		session.setAttribute("lengthEmails", request.getParameter("lengthEmails"));
+	}
+	
+	int lengthEmails = 0;
+	if(session.getAttribute("lengthEmails") == null)
+	{
+		session.setAttribute("lengthEmails", lengthEmails);
+	}
+	else
+		lengthEmails = (int)session.getAttribute("lengthEmails");
+	
 
 	/*Pega o email*/
 	/*Hub hub = (Hub)session.getAttribute("hub");
@@ -231,6 +259,47 @@ public String getTextFromMessage(Message message, int i) {
     return result;
 }
 %>
+
+<%!
+	public void setPagination(int selectedPagination, int lengthEmails)
+	{
+	String ret = "";
+	if(selectedPagination == 1)
+	{
+		
+		ret +="<li class='page-item'><a class='page-link text-dark bg-selected' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
+		if(lengthEmails > 10)
+		{
+			ret += "<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination + 1) + "'>" + (selectedPagination + 1) + "</a></li>";
+			if(lengthEmails > 20)
+				ret += "<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination + 2) + "'>" + (selectedPagination + 2) + "</a></li>";
+		}
+	}
+	else
+	{
+		if(Math.ceil(lengthEmails/10) != selectedPagination)
+		{
+			if(lengthEmails < 20)
+			{
+				ret +="<li class='page-item'><a class='page-link text-dark ' href='#' id='pag" + (selectedPagination - 1) + "'>" + (selectedPagination - 1) + "</a></li>";
+				ret += "<li class='page-item'><a class='page-link text-dark bg-selected' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
+			}
+			else{
+				ret +="<li class='page-item'><a class='page-link text-dark ' href='#' id='pag" + (selectedPagination - 2) + "'>" + (selectedPagination - 2) + "</a></li>";
+				ret += "<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination - 1) + "'>" + (selectedPagination - 1) + "</a></li>";
+				ret += "<li class='page-item'><a class='page-link text-dark bg-selected' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
+			}
+		}
+		else
+		{
+			ret +="<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination - 1) + "'>" + (selectedPagination - 1) + "</a></li>";
+			ret += "<li class='page-item'><a class='page-link text-dark bg-selected' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
+			ret += "<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination + 1) + "'>" + (selectedPagination + 1) + "</a></li>";
+		}
+	}
+	
+	}
+%>
     
 </head>
 <body id='body'>
@@ -312,9 +381,9 @@ public String getTextFromMessage(Message message, int i) {
                                 <li class="page-item disabled" id="pag-ant-container">
                                     <a class="page-link text-light bg-dark border-dark" href="#" tabindex="-1" id="pag-ant"><i class="fas fa-angle-left"></i></a>
                                 </li>
-                                <li class="page-item"><a class="page-link text-dark bg-selected" href="#" id="pag1">1</a></li>
-                                <li class="page-item"><a class="page-link text-dark" href="#" id="pag2">2</a></li>
-                                <li class="page-item"><a class="page-link text-dark" href="#" id="pag3">3</a></li>
+                                <div id="paginationGambiarrinha" class="inline">
+                                	
+                                </div>
                                 <li class="page-item" id="pag-prox-container">
                                     <a class="page-link text-light bg-dark border-dark" href="#" id="pag-prox"><i class="fas fa-angle-right"></i></a>
                                 </li>
@@ -375,6 +444,7 @@ public String getTextFromMessage(Message message, int i) {
 	                        	{
 		                        	geMain.setStore(contas[selectedEmail].getHost(), contas[selectedEmail].getProtocolo() + "s");
 		                        	Folder[] folders = geMain.getFolders();
+		                        	
 		                        	
 		                        	%>
 		                        		<%= ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "") %>
@@ -617,9 +687,12 @@ public String getTextFromMessage(Message message, int i) {
             		
             		ge.setStore(ems[i].getHost(), ems[i].getProtocolo() + "s");
             		
+            		int lengthEmailAtual = ge.receive().size();
+            		
             		if(i == selectedEmail)
             		{
             			session.setAttribute("emailAtual", ems[i]);
+            			session.setAttribute("lengthEmails", lengthEmailAtual);
             	%>
                     <a href="#" class="list-group-item list-group-item-action flex-column conta active" value="<%= i %>">
 				<%
@@ -632,7 +705,7 @@ public String getTextFromMessage(Message message, int i) {
             		}
 				%>
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1 texto-limitado"><%= ems[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><%= ge.receive().size() %></span>
+                            <h5 class="mb-1 texto-limitado"><%= ems[i].getEndereco() %></h5><span class="badge badge-danger p-2 text-end"><%= lengthEmailAtual %></span>
                         </div>
 
                     </a>

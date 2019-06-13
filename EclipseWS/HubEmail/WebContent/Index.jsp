@@ -73,7 +73,7 @@
     Hub hub = (Hub)session.getAttribute("hub");
     
 	//System.err.println("Hub: "+hub);
-	if(session.getAttribute("emails") == null && hub != null)
+	if(session.getAttribute("emails") == null && hub != null || (request.getAttribute("recharge") != null && (Boolean)request.getAttribute("recharge")))
         session.setAttribute("emails", Emails.getEmailsFromHub(hub.getIdHub()));	
         
 	Email[] emails = (Email[])session.getAttribute("emails");
@@ -351,12 +351,17 @@ public String getTextFromMessage(Message message, int i) {
 	                        	GerenciadorEmail geMain = new GerenciadorEmail(emails[selectedItem].getEndereco(), emails[selectedItem].getSenha());
 	                        	geMain.setSenderSession(emails[selectedItem].getPorta(), emails[selectedItem].getHost());
 	                    		
-	                        	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
+	                        	try
+	                        	{
+		                        	geMain.setStore(emails[selectedItem].getHost(), emails[selectedItem].getProtocolo() + "s");
+		                        	Folder[] folders = geMain.getFolders();
+		                        	
+		                        	%>
+		                        		<%= ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "") %>
+		                        	<%
 	                        	
-	                        	Folder[] folders = geMain.getFolders();
-	                        %>
-	                        	<%= ListarPastas(0, (String)session.getAttribute("selectedFolder"), folders, "") %>
-	                        <%
+	                        	}
+	                        	catch (Exception erro){}
                         	}
                             %>
 
@@ -400,8 +405,13 @@ public String getTextFromMessage(Message message, int i) {
                 <div class="collapse show pt-1" id="importantes">
                     <ul class="list-group">
 	                    <%
-	                    	toList.open(Folder.READ_ONLY);
-	                    	Message[] msgs = toList.getMessages();
+	                    Message[] msgs = new Message[0];
+	                    	if(toList != null)
+	                    	{
+	                    		toList.open(Folder.READ_ONLY);
+	                    		msgs = toList.getMessages();
+	                    	}
+	                    	
 	                   		for(int i = msgs.length - 1; i > -1; i--)
 	                   		{
 	                   			String auxFrom = Arrays.toString(msgs[i].getFrom());
@@ -546,7 +556,8 @@ public String getTextFromMessage(Message message, int i) {
 	                   			Sem emails aqui amigão :^|
 	                   		<%
 	                   		}
-	                   		toList.close();
+	                   		if(toList != null)
+	                   			toList.close();
 	                   	%>
                     </ul>
                 </div>

@@ -62,9 +62,9 @@ public class NOVACONTA extends HttpServlet {
         } catch (Exception e) {
         	System.err.println(e.getMessage());
         }
-        response.sendRedirect("Index.jsp");
-        
-                    
+        request.setAttribute("recharge", true);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
+        dispatcher.forward( request, response);  
 	}
 
 	/**

@@ -299,7 +299,7 @@ public String getTextFromMessage(Message message, int i) {
 <!----------------------- Formulário de pesquisa ----------------------->
                         <form class="form-inline d-flex justify-content-around" method="POST" action="BUSCAR">
                             <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar..." name="busca">
-                            <input type="hidden" name="vetorEmails" value='<%= gson.toJson(emails) %>'>
+                            <input type="hidden" name="vetorEmails" value='<%= gson.toJson(session.getAttribute("emails")) %>'>
                             <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
                         </form>
                         

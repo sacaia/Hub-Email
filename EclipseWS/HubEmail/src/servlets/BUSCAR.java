@@ -44,7 +44,7 @@ public class BUSCAR extends HttpServlet {
 
 		for (int i = 0; i < vetorEmails.length; i++)
 		{
-			
+			vetorEmails[i].get
 		}
 		
 		request.setAttribute("recharge", true);

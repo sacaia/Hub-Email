@@ -11,7 +11,8 @@
        java.util.Arrays,
        org.jsoup.Jsoup,
        javax.mail.*,
-       javax.mail.internet.*"%>
+       javax.mail.internet.*,
+       com.google.gson.Gson"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +37,8 @@
     
 	<title>MALI MAIL</title>
 <%
+	Gson gson = new Gson();
+
 	/*Setando as Sessions*/
 	if(request.getAttribute("logado") != null)
 	{
@@ -282,8 +285,9 @@ public String getTextFromMessage(Message message, int i) {
                         </ul>
                         
 <!----------------------- Formulário de pesquisa ----------------------->
-                        <form class="form-inline d-flex justify-content-around">
-                            <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar...">
+                        <form class="form-inline d-flex justify-content-around" method="POST" action="BUSCAR">
+                            <input class="form-control ml-4 mr-2" type="search" placeholder="Buscar..." name="busca">
+                            <input type="hidden" name="vetorEmails" value='<%= gson.toJson(emails) %>'>
                             <button class="btn btn-outline-dark" type="Submit"><i class="fas fa-search"></i></button>
                         </form>
                         

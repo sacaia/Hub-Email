@@ -516,9 +516,25 @@ public String getTextFromMessage(Message message, int i) {
 	                    else
 	                    	msgs = (Message[])session.getAttribute("emails");
 	                    
-	                    	
+	                    	if(request.getParameter("deletar") != null)
+	                    	{
+	                    		String a =(String)request.getAttribute("deletar");
+	                    		System.err.println(a);
+	                    		System.err.println(a.length());
+	                    		String b = a.substring(0, a.length() -2);
+	                    		System.err.println(b);
+	                    		String[] del = b.split("/");
+	                    		System.err.println(del.length);
+	                    		for(int i=0; i < del.length; i++)
+	                    			msgs[Integer.parseInt(del[i])].setFlag(Flags.Flag.DELETED, true);
+	                    		
+	                    		session.setAttribute("emails", msgs);
+	                    	}
+	                    
 	                   		for(int i = msgs.length - 1; i > -1; i--)
 	                   		{
+	                   			if(msgs[i].getFlags().contains(Flags.Flag.DELETED))
+	                   				continue;
 	                   			String auxFrom = Arrays.toString(msgs[i].getFrom());
 	                   			auxFrom = auxFrom.substring(1);
 	                   			auxFrom = auxFrom.substring(0, auxFrom.length() - 1);

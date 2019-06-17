@@ -290,6 +290,10 @@ $(document).ready(function(){
         $('[class~="checkbox"]').click(function () {
             if($(this).closest(".email").hasClass("active"))
             {
+            	value = $("#deletaveis").attr("value");
+                id = $(this).closest("li").find("div").attr("id");
+                index = id.slice(id.indexOf("-")+1, id.length);
+                $("#deletaveis").attr("value", value.replace(index + "/", ""));
                 $(this).closest(".email").removeClass("active");
                 $(this).removeClass("fas fa-check-square");
                 $(this).addClass("far fa-square");
@@ -306,9 +310,9 @@ $(document).ready(function(){
             else
             {
                 value = $("#deletaveis").attr("value");
-                id = $(this).closest("div").attr("id");
-                index = id.slice(id.indexOf("-")+1, id.length-1)
-                $("#deletaveis").attr("value", value + index + "/")
+                id = $(this).closest("li").find("div").attr("id");
+                index = id.slice(id.indexOf("-")+1, id.length);
+                $("#deletaveis").attr("value", value + index + "/");
                 $(this).closest(".email").addClass("active");
                 $(this).removeClass("far fa-square");
                 $(this).addClass("fas fa-check-square");

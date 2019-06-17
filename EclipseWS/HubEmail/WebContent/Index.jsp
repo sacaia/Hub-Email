@@ -81,10 +81,10 @@
 	
 	if(request.getParameter("selectedPagination") != null)
 	{
-		session.setAttribute("selectedPagination", request.getParameter("selectedPagination"));
+		session.setAttribute("selectedPagination", Integer.parseInt((String)request.getParameter("selectedPagination")));
 	}
 	
-	int selectedPagination = 0;
+	int selectedPagination = 1;
 	if(session.getAttribute("selectedPagination") == null)
 	{
 		session.setAttribute("selectedPagination", selectedPagination);
@@ -261,42 +261,46 @@ public String getTextFromMessage(Message message, int i) {
 %>
 
 <%!
-	public void setPagination(int selectedPagination, int lengthEmails)
+	public String setPagination(int selectedPagination, int lengthEmails)
 	{
 	String ret = "";
+	
 	if(selectedPagination == 1)
 	{
 		
-		ret +="<li class='page-item'><a class='page-link text-dark bg-selected' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
+		ret +="<li class='page-item'><a class='page-link text-dark bg-selected myPagination' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
 		if(lengthEmails > 10)
 		{
-			ret += "<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination + 1) + "'>" + (selectedPagination + 1) + "</a></li>";
+			ret += "<li class='page-item'><a class='page-link text-dark myPagination' href='#' id='pag" + (selectedPagination + 1) + "'>" + (selectedPagination + 1) + "</a></li>";
 			if(lengthEmails > 20)
-				ret += "<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination + 2) + "'>" + (selectedPagination + 2) + "</a></li>";
+				ret += "<li class='page-item'><a class='page-link text-dark myPagination' href='#' id='pag" + (selectedPagination + 2) + "'>" + (selectedPagination + 2) + "</a></li>";
 		}
 	}
 	else
 	{
 		if(Math.ceil(lengthEmails/10) != selectedPagination)
 		{
-			if(lengthEmails < 20)
+			if(lengthEmails < 21)
 			{
-				ret +="<li class='page-item'><a class='page-link text-dark ' href='#' id='pag" + (selectedPagination - 1) + "'>" + (selectedPagination - 1) + "</a></li>";
-				ret += "<li class='page-item'><a class='page-link text-dark bg-selected' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
+				ret +="<li class='page-item'><a class='page-link text-dark myPagination' href='#' id='pag" + (selectedPagination - 1) + "'>" + (selectedPagination - 1) + "</a></li>";
+				ret += "<li class='page-item'><a class='page-link text-dark bg-selected myPagination' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
 			}
 			else{
-				ret +="<li class='page-item'><a class='page-link text-dark ' href='#' id='pag" + (selectedPagination - 2) + "'>" + (selectedPagination - 2) + "</a></li>";
-				ret += "<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination - 1) + "'>" + (selectedPagination - 1) + "</a></li>";
-				ret += "<li class='page-item'><a class='page-link text-dark bg-selected' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
+				ret +="<li class='page-item'><a class='page-link text-dark myPagination' href='#' id='pag" + (selectedPagination - 2) + "'>" + (selectedPagination - 2) + "</a></li>";
+				ret += "<li class='page-item'><a class='page-link text-dark myPagination' href='#' id='pag" + (selectedPagination - 1) + "'>" + (selectedPagination - 1) + "</a></li>";
+				ret += "<li class='page-item'><a class='page-link text-dark bg-selected myPagination' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
 			}
 		}
 		else
 		{
-			ret +="<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination - 1) + "'>" + (selectedPagination - 1) + "</a></li>";
-			ret += "<li class='page-item'><a class='page-link text-dark bg-selected' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
-			ret += "<li class='page-item'><a class='page-link text-dark' href='#' id='pag" + (selectedPagination + 1) + "'>" + (selectedPagination + 1) + "</a></li>";
+			ret +="<li class='page-item'><a class='page-link text-dark myPagination' href='#' id='pag" + (selectedPagination - 1) + "'>" + (selectedPagination - 1) + "</a></li>";
+			ret += "<li class='page-item'><a class='page-link text-dark bg-selected myPagination' href='#' id='pag" + selectedPagination + "'>" + selectedPagination + "</a></li>";
+			ret += "<li class='page-item'><a class='page-link text-dark myPagination' href='#' id='pag" + (selectedPagination + 1) + "'>" + (selectedPagination + 1) + "</a></li>";
 		}
 	}
+		ret = "<script>document.getElementById('paginationGambiarrinha').innerHTML += \"" + "<li class='page-item disabled' id='pag-ant-container'> <a class='page-link text-light bg-dark border-dark' href='#' tabindex='-1' id='pag-ant'><i class='fas fa-angle-left'></i></a></li>" + ret;
+    	ret += "<li class='page-item' id='pag-prox-container'><a class='page-link text-light bg-dark border-dark' href='#' id='pag-prox'><i class='fas fa-angle-right'></i></a></li>\";</script>";
+		return ret;
 	
 	}
 %>
@@ -377,16 +381,8 @@ public String getTextFromMessage(Message message, int i) {
                         
 <!----------------------- Pagination ----------------------->
                         <nav class="ml-3">
-                            <ul class="pagination justify-content-end centerY">
-                                <li class="page-item disabled" id="pag-ant-container">
-                                    <a class="page-link text-light bg-dark border-dark" href="#" tabindex="-1" id="pag-ant"><i class="fas fa-angle-left"></i></a>
-                                </li>
-                                <div id="paginationGambiarrinha" class="inline">
-                                	
-                                </div>
-                                <li class="page-item" id="pag-prox-container">
-                                    <a class="page-link text-light bg-dark border-dark" href="#" id="pag-prox"><i class="fas fa-angle-right"></i></a>
-                                </li>
+                            <ul class="pagination justify-content-end centerY" id="paginationGambiarrinha">
+                                
                           </ul>
                         </nav>
                         
@@ -496,28 +492,33 @@ public String getTextFromMessage(Message message, int i) {
                     <ul class="list-group">
 	                    <%
 	                    Message[] msgs = new Message[0];
-	                    if(session.getAttribute("emails") == null || recharge)
-	                    {
-	                    	if(toList != null)
-	                    	{
-	                    		try{
+	                    
+                    	if(toList != null)
+                    	{
+                    		try{
 
-	                    		toList.open(Folder.READ_ONLY);
-	                    		msgs = toList.getMessages();
-	                    		}
-	                    		catch (Exception erro)
-	                    		{
-	                    			toList = null;
-	                    		}
-	                    		
-	                    	}
-	                    	session.setAttribute("emails", msgs);
+                    		toList.open(Folder.READ_ONLY);
+                    		msgs = toList.getMessages();
+                    		}
+                    		catch (Exception erro)
+                    		{
+                    			toList = null;
+                    		}
+                    		
+                    	}
+                    	if(session.getAttribute("emails") == null || recharge)
+	                    {
+                    	session.setAttribute("emails", msgs);
 	                    }
 	                    else
 	                    	msgs = (Message[])session.getAttribute("emails");
 	                    
-	                    	
-	                   		for(int i = msgs.length - 1; i > -1; i--)
+                    		int auxi = (selectedPagination * 10);
+                    		
+                    		if(auxi > msgs.length - 1)
+                    			auxi = msgs.length - 1;
+                    			
+	                   		for(int i = auxi; i > (selectedPagination-1) * 10; i--)
 	                   		{
 	                   			String auxFrom = Arrays.toString(msgs[i].getFrom());
 	                   			auxFrom = auxFrom.substring(1);
@@ -661,7 +662,7 @@ public String getTextFromMessage(Message message, int i) {
 	                   			Sem emails aqui amigão :^|
 	                   		<%
 	                   		}
-							try{toList.close();}catch (Exception erro){}//Shhhhhh!!!
+							//try{toList.close();}catch (Exception erro){}//Shhhhhh!!!
 	                   	%>
                     </ul>
                 </div>
@@ -694,6 +695,7 @@ public String getTextFromMessage(Message message, int i) {
             			session.setAttribute("emailAtual", ems[i]);
             			session.setAttribute("lengthEmails", lengthEmailAtual);
             	%>
+            		<%= setPagination(selectedPagination ,lengthEmailAtual) %>
                     <a href="#" class="list-group-item list-group-item-action flex-column conta active" value="<%= i %>">
 				<%
             		}

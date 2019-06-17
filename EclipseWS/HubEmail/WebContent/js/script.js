@@ -377,6 +377,38 @@ $(document).ready(function(){
             }
         });
     });
+//funcao de clickar nas paginarions
+    $(function () {
+        $(".myPagination").click(function () {
+            if(!($(this).hasClass("active")))
+            {
+                
+                document.getElementById('body').innerHTML = document.getElementById('body').innerHTML + "<form id='new-form-pagination-aux' method='post' action='Index.jsp'> <input class='form-control ml-4 mr-2' name='selectedPagination' type='hidden' value='" +
+                $(this).html() + "'></form>";
+                
+                document.getElementById("new-form-pagination-aux").submit();
+            }
+            else
+            {
+            	
+                /*if($(this).find("i").hasClass("fa-inbox"))
+                {
+                    $(this).removeClass("active");
+                    return;
+                }
+                if($(this).attr("aria-expanded") == "true")
+                {
+                    //alert("a");
+                    $(this).find("i").removeClass("fa-folder");
+                    $(this).find("i").addClass("fa-folder-open");
+                    return;
+                }
+                $(this).removeClass("active");
+                $(this).find("i").addClass("fa-folder");
+                $(this).find("i").removeClass("fa-folder-open");*/
+            }
+        });
+    });
 /////////////////ON CHANGE FILE////////////////////////////
     /*$(function () {
     	$('input[type=file]').change(function () {

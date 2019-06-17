@@ -515,9 +515,9 @@ public String getTextFromMessage(Message message, int i) {
 	                    
                     	if(request.getParameter("deletar") != null)
                     	{
-                    		String a =(String)request.getAttribute("deletar");
+                    		String a =request.getAttribute("deletar").toString();
                     		System.err.println(a);
-                    		System.err.println(a.length());
+                    		System.err.println("a.length: " + a.length());
                     		String b = a.substring(0, a.length() -2);
                     		System.err.println(b);
                     		String[] del = b.split("/");

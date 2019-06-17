@@ -533,7 +533,7 @@ public String getTextFromMessage(Message message, int i) {
                     		if(auxi > msgs.length - 1)
                     			auxi = msgs.length - 1;
                     			
-	                   		for(int i = auxi; i > (selectedPagination-1) * 10; i--)
+	                   		for(int i = auxi; i > (selectedPagination-1) * 10 - 1; i--)
 	                   		{
 	                   			if(msgs[i].getFlags().contains(Flags.Flag.DELETED))
 	                   				continue;

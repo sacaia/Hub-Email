@@ -216,7 +216,7 @@ public String getTextFromMimeMultipart(
 	        	if (bodyPart.isMimeType("text/html")) 
 	        	{
 		            String html = (String) bodyPart.getContent();
-		            result += Jsoup.parse(html).text();
+		            result += "<div id='htmlElement'>" + Jsoup.parse(html).text() + "</div>";
 		            //to read html and exibit it, jsoup library whould be needed
 	        	}
 	        	else
@@ -497,7 +497,7 @@ public String getTextFromMessage(Message message, int i) {
                     	{
                     		try{
 
-                    		toList.open(Folder.READ_ONLY);
+                    		toList.open(Folder.READ_WRITE);
                     		msgs = toList.getMessages();
                     		}
                     		catch (Exception erro)
@@ -515,10 +515,8 @@ public String getTextFromMessage(Message message, int i) {
 	                    
                     	if(request.getParameter("deletar") != null)
                     	{
-                    		String a =request.getAttribute("deletar").toString();
-                    		System.err.println(a);
-                    		System.err.println("a.length: " + a.length());
-                    		String b = a.substring(0, a.length() -2);
+                    		String a =request.getParameter("deletar").toString();
+                    		String b = a.substring(0, a.length() -1);
                     		System.err.println(b);
                     		String[] del = b.split("/");
                     		System.err.println(del.length);

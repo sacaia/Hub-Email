@@ -11,9 +11,6 @@ public class Email implements Cloneable
     private String host;
     private String porta;
     private String protocolo;
-    
-    private String portaSMTP;
-    private String protocoloSMTP;
  
     public void setIdEmail (int novoIdEmail) throws Exception
     {
@@ -73,34 +70,10 @@ public class Email implements Cloneable
     
     public void setProtocolo(String novoProtocolo) throws Exception
     {
-    	if (novoProtocolo==null || novoProtocolo.equals(""))
+    	if (porta==null || porta.equals(""))
             throw new Exception ("Porta nao fornecida");
     	
     	this.protocolo = novoProtocolo;
-    }
-    
-    public void setPortaSMTP(String porta) throws Exception
-    {
-        if (porta==null || porta.equals(""))
-            throw new Exception ("Porta nao fornecida");
-
-        setPortaSMTP(Integer.parseInt(porta));
-    }
-    
-    public void setPortaSMTP(int porta) throws Exception
-    {
-    	if(porta < 0 || porta > 999999)
-            throw new Exception ("porta inválida");
-    	
-    	this.portaSMTP = new Integer(porta).toString();
-    }
-    
-    public void setProtocoloSMTP(String novoProtocolo) throws Exception
-    {
-    	if (novoProtocolo==null || novoProtocolo.equals(""))
-            throw new Exception ("Porta nao fornecida");
-    	
-    	this.protocoloSMTP = novoProtocolo;
     }
 
     public int getIdEmail ()
@@ -137,18 +110,8 @@ public class Email implements Cloneable
     {
         return this.protocolo;
     }
-    
-    public String getPortaSMTP()
-    {
-    	return this.portaSMTP;
-    }
-    
-    public String getProtocoloSMTP()
-    {
-    	return this.protocoloSMTP;
-    }
 
-    public Email (int idEmail, int idHub, String endereco, String senha, String host, String porta, String protocolo, String portaSMTP, String protocoloSMTP) throws Exception
+    public Email (int idEmail, int idHub, String endereco, String senha, String host, String porta, String protocolo) throws Exception
     {
         this.setIdEmail   (idEmail);
         this.setIdHub     (idHub);
@@ -157,11 +120,9 @@ public class Email implements Cloneable
         this.setHost(host);
         this.setPorta     (porta);
         this.setProtocolo (protocolo);
-        this.setProtocoloSMTP(protocoloSMTP);
-        this.setPortaSMTP(portaSMTP);
     }
     
-    public Email (int idHub, String endereco, String senha, String host, String porta, String protocolo, String portaSMTP, String protocoloSMTP) throws Exception
+    public Email (int idHub, String endereco, String senha, String host, String porta, String protocolo) throws Exception
     {
         this.setIdHub     (idHub);
         this.setEndereco  (endereco);
@@ -169,8 +130,6 @@ public class Email implements Cloneable
         this.setHost(host);
         this.setPorta     (porta);
         this.setProtocolo (protocolo);
-        this.setProtocoloSMTP(protocoloSMTP);
-        this.setPortaSMTP(portaSMTP);
     }
 
     public String toString ()

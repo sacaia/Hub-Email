@@ -165,7 +165,7 @@
     		 
     		 String icon = "fa-folder";
     		 
-    		 if(folder[i].getName().trim().toUpperCase().equals("INBOX"))
+    		 if(folder[i].getName().equals("INBOX"))
     			 icon = "fa-inbox";
     		 
      		ret += "<a class='nav-link btn btn-outline-amarelo mt-3 pasta "
@@ -179,10 +179,6 @@
          ret += "<div class='collapse' id='sub-pasta-" + id + "_" + i + "' data-parent='#collapse-group'> <nav class='nav nav-pills flex-column'>";
          ret += ListarPastas(dentro + 1, selectedFolder, foldersAuxiliares, id + "_" + i);
          ret += "</nav></div>";
-         
-         //ret += "<div class='collapse' id='nova-pasta-" + id + "_" + i + "' data-parent='#collapse-group'> <nav class='nav nav-pills flex-column'>";
-         //ret += "<a class='nav-link btn btn-outline-amarelo mt-3' data-toggle='collapse'role='button' href='#' id='novaPasta'><i class='fas fa-lg></i>Nova Pasta</a>";
-         //ret += "</nav></div>";
          }
          catch (Exception erro)
          {
@@ -193,7 +189,6 @@
      		}
      		catch (Exception erro){}
     	}
-    	
     	
     	return ret;
    	}
@@ -858,8 +853,6 @@ public String getTextFromMessage(Message message, int i) {
                         %>
                     		<input type="hidden" name="enderecoH" value="<%=((Email)session.getAttribute("emailAtual")).getEndereco() %>">
                             <input type="hidden" name="senhaH" value="<%=((Email)session.getAttribute("emailAtual")).getSenha() %>">
-                            <input type="hidden" name="portaSMTP"  value="<%=((Email)session.getAttribute("emailAtual")).getPortaSMTP() %>">
-                            <input type="hidden" name="protocoloSMTP"  value="<%=((Email)session.getAttribute("emailAtual")).getProtocoloSMTP() %>">
                          <%
                         	}
                          %>   
@@ -930,17 +923,6 @@ public String getTextFromMessage(Message message, int i) {
 
                                 <div class="form-group col-sm-12">
 
-                                    <label for="inputPorta">Porta SMTP:</label>
-                                    <input type="number" name="portaSMTP" class="form-control" id="inputPorta" placeholder="Porta">
-
-                                </div>
-
-                            </div>
-                            
-                            <div class="form-row">  
-
-                                <div class="form-group col-sm-12">
-
                                     <label for="inputHost">Host:</label>
                                     <input type="text" name="hostC" class="form-control" id="inputHost" placeholder="Host">
 
@@ -954,17 +936,6 @@ public String getTextFromMessage(Message message, int i) {
 
                                     <label for="inputMode">Protocolo:</label>
                                     <input type="text" name="modeC" class="form-control" id="inputMode" placeholder="Protocolo">
-
-                                </div>
-
-                            </div>
-                            
-                            <div class="form-row">  
-
-                                <div class="form-group col-sm-12">
-
-                                    <label for="inputMode">Protocolo SMTP:</label>
-                                    <input type="text" name="protocoloSMTP" class="form-control" id="inputMode" placeholder="Protocolo">
 
                                 </div>
 

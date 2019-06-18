@@ -68,9 +68,9 @@ public class Emails
             String sql;
 
             sql = "INSERT INTO Email " +
-                  "(idHub,endereco, senha, host, porta, protocolo, portaSMTP, protocoloSMTP) " +
+                  "(idHub,endereco, senha, host, porta, protocolo) " +
                   "VALUES " +
-                  "(?, ?, ?, ?, ?, ?, ?, ?)";
+                  "(?, ?, ?, ?, ?, ?)";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
@@ -80,8 +80,6 @@ public class Emails
             BDSQLServer.COMANDO.setString (4, email.getHost()  );
             BDSQLServer.COMANDO.setString (5, email.getPorta    () );
             BDSQLServer.COMANDO.setString (6, email.getProtocolo() );
-            BDSQLServer.COMANDO.setString (7, email.getPortaSMTP() );
-            BDSQLServer.COMANDO.setString (8, email.getProtocoloSMTP() );
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();
@@ -135,8 +133,6 @@ public class Emails
                   ", host      = ?" +
                   ", porta     = ?" +
                   ", protocolo = ?" +
-                  ", protocoloSMTP = ?" +
-                  ", portaSMTP = ?" +
                   "WHERE idEmail = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
@@ -146,9 +142,7 @@ public class Emails
             BDSQLServer.COMANDO.setString (3, email.getSenha() );
             BDSQLServer.COMANDO.setString (4, email.getPorta    () );
             BDSQLServer.COMANDO.setString (5, email.getProtocolo() );
-            BDSQLServer.COMANDO.setString (6, email.getPortaSMTP() );
-            BDSQLServer.COMANDO.setString (7, email.getProtocoloSMTP() );
-            BDSQLServer.COMANDO.setInt    (8, email.getIdEmail() );
+            BDSQLServer.COMANDO.setInt    (6, email.getIdEmail() );
             
 
             BDSQLServer.COMANDO.executeUpdate ();
@@ -187,9 +181,7 @@ public class Emails
                                resultado.getString("senha"),
                                resultado.getString("host"),
                                resultado.getString("porta"),
-                               resultado.getString("protocolo"),
-                               resultado.getString("portaSMTP"),
-                               resultado.getString("protocoloSMTP"));
+                               resultado.getString("protocolo"));
         }
         catch (SQLException erro)
         {
@@ -225,7 +217,7 @@ public class Emails
             
             do
             {
-            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("host"), resultado.getString("porta"), resultado.getString("protocolo"), resultado.getString("portaSMTP"),resultado.getString("protocoloSMTP")));
+            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("host"), resultado.getString("porta"), resultado.getString("protocolo")));
             	i++;
             }while(resultado.next() == true);
             	
@@ -291,7 +283,7 @@ public class Emails
             
             do
             {
-            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("host"), resultado.getString("porta"), resultado.getString("protocolo"), resultado.getString("portaSMTP"), resultado.getString("protocoloSMTP")));
+            	lista.add(new Email(resultado.getInt("idEmail"), resultado.getInt("idHub"), resultado.getString("endereco"), resultado.getString("senha"), resultado.getString("host"), resultado.getString("porta"), resultado.getString("protocolo")));
             	i++;
             }while(resultado.next() == true);
             	

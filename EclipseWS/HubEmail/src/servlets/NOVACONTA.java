@@ -40,12 +40,10 @@ public class NOVACONTA extends HttpServlet {
         String porta    = (String)request.getParameter("portaC");
         String mode     = (String)request.getParameter("modeC");
         String hub      = (String)request.getParameter("hubC");
-        String portaSMTP = (String)request.getParameter("portaSMTP");
-        String protocoloSMTP = (String)request.getParameter("protocoloSMTP");
         Email email = null;
         
         try {
-        email = new Email(Integer.parseInt(hub), endereco, senha, host, porta, mode, portaSMTP, protocoloSMTP);
+        email = new Email(Integer.parseInt(hub), endereco, senha, host, porta, mode);
         Emails.incluir(email);
         } catch (Exception e) {
         	System.err.println(e.getMessage());

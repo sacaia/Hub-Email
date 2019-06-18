@@ -159,8 +159,8 @@
     		 if(folder[i].getName().equals(selectedFolder))
     		 {
     			 toList = folder[i];
-				 active = "active";
-				 abrir = "true";
+				active = "active";
+				abrir = "true";
     		 }
     		 
     		 String icon = "fa-folder";
@@ -647,13 +647,11 @@ public String getTextFromMessage(Message message, int i) {
 					                            <%
 					                            	if(attachs.size() == 0){
 					                            %>
-					                            <!-- 
 					                                <label for="anexoEmail-<%= i %>">Anexos:</label>
 					                                
 					                                <input type="file" value="choose file">
 					                                
 					                                <br/>
-					                             -->
 					                            <%
 					                            	}
 					                            %>
@@ -673,7 +671,7 @@ public String getTextFromMessage(Message message, int i) {
 					                         <%
 					                        	}
 					                         %>   
-					                            <button type="submit" class="btn btn-danger btn-block" data-toggle="modal" data-target="#modal-mover-pasta-<%= i %>">Mover para pasta</button>
+					                            <button type="submit" class="btn btn-danger btn-block">reply</button>
 											
 					                        </div>
 					                </div>
@@ -681,75 +679,6 @@ public String getTextFromMessage(Message message, int i) {
 					            </div>
 					        </div>
 					      </div>
-					      
-					      <div class="modal fade" id="modal-pasta" tabindex="-1" role="dialog" id="modal-mover-pasta-<%= i %>"> <!-- fade = animação -->
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content">
-            
-                <div class="modal-header">
-                    
-                    <h3 class="modal-title">Pastas</h3>
-                    
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span><!-- $time; = x -->
-                    </button>
-                    
-                </div>
-                
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        
-                        <form action="MOVERPASTA" method="POST">
-                  
-                            <%
-                            try{
-                            	GerenciadorEmail ge2 = new GerenciadorEmail(contas[selectedEmail].getEndereco(), contas[selectedEmail].getSenha());
-                            	ge2.setStore(contas[selectedEmail].getHost(), contas[selectedEmail].getProtocolo() + "s");
-                            	
-                            	ArrayList<String> nomes = ge2.listarPastas(contas[selectedEmail].getProtocolo() + "s");
-                            	
-                            	for(int j=0; j < nomes.size(); j++)
-                            	{
-                            	
-                            %>
-                            <div class="form-row">  
-
-                                <div class="form-group col-sm-12">
-
-                                    <a class="nav-link btn btn-outline-amarelo mt-3 pasta" role="button">
-                                    	<input type="hidden" name="user" value='<%= contas[selectedEmail].getEndereco() %>'>
-                                    	<input type="hidden" name="senha" value='<%= contas[selectedEmail].getSenha() %>'>
-                                    	<input type="hidden" name="host" value='<%= contas[selectedEmail].getHost() %>'>
-                                    	<input type="hidden" name="mode" value='<%= contas[selectedEmail].getProtocolo() + "s" %>'>
-                                    	<input type="hidden" name="origem" value='<%= selectedFolder%>'>
-                                    	<input type="hidden" name="numEmail" value='<%= i %>'>
-                                    	<input class="inline" style="background: none; border: none;" name="dest" value='<%= nomes.get(j) %>'>
-                                    </a>
-
-                                </div>
-
-                            </div>
-                            <%
-                            	}
-                            }
-                            catch (Exception e)
-                            {
-                            	System.err.println(e.getMessage());
-                            }
-                            
-                            %>
-
-                        </div>
-                      
-
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-					      
-      </div>
 	                   	<%
 	                   		}
 	                   		if(msgs.length == 0)
@@ -807,7 +736,6 @@ public String getTextFromMessage(Message message, int i) {
                         </div>
 
                     </a>
-        
                  <%
                  ge.closeStore();
             	}
@@ -930,7 +858,8 @@ public String getTextFromMessage(Message message, int i) {
                         %>
                     		<input type="hidden" name="enderecoH" value="<%=((Email)session.getAttribute("emailAtual")).getEndereco() %>">
                             <input type="hidden" name="senhaH" value="<%=((Email)session.getAttribute("emailAtual")).getSenha() %>">
-
+                            <input type="hidden" name="portaSMTP"  value="<%=((Email)session.getAttribute("emailAtual")).getPortaSMTP() %>">
+                            <input type="hidden" name="protocoloSMTP"  value="<%=((Email)session.getAttribute("emailAtual")).getProtocoloSMTP() %>">
                          <%
                         	}
                          %>   
@@ -1001,8 +930,8 @@ public String getTextFromMessage(Message message, int i) {
 
                                 <div class="form-group col-sm-12">
 
-                                    <label for="inputPortaSMTP">Porta SMTP:</label>
-                                    <input type="number" name="portaSMTP" class="form-control" id="inputPortaSMTP" placeholder="Porta">
+                                    <label for="inputPorta">Porta SMTP:</label>
+                                    <input type="number" name="portaSMTP" class="form-control" id="inputPorta" placeholder="Porta">
 
                                 </div>
 
@@ -1034,8 +963,8 @@ public String getTextFromMessage(Message message, int i) {
 
                                 <div class="form-group col-sm-12">
 
-                                    <label for="inputModeSMTP">Protocolo SMTP:</label>
-                                    <input type="text" name="protocoloSMTP" class="form-control" id="inputModeSMTP" placeholder="Protocolo">
+                                    <label for="inputMode">Protocolo SMTP:</label>
+                                    <input type="text" name="protocoloSMTP" class="form-control" id="inputMode" placeholder="Protocolo">
 
                                 </div>
 
@@ -1077,10 +1006,6 @@ public String getTextFromMessage(Message message, int i) {
             </div>
         </div>
       </div>
-      
-<!---------------------------------MODAL-Pasta--------------------------------->
-      
-      
     
     <script>
         

@@ -155,37 +155,37 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
                       <a class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="f.jpg" alt="">
+                            <img class="img-fluid img-thumbnail" src="img/f.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
                       <a class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="g.jpg" alt="">
+                            <img class="img-fluid img-thumbnail" src="img/g.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
                       <a class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="h.jpg" alt="">
+                            <img class="img-fluid img-thumbnail" src="img/h.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
                       <a class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="i.jpg" alt="">
+                            <img class="img-fluid img-thumbnail" src="img/i.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
                       <a class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="j.jpg" alt="">
+                            <img class="img-fluid img-thumbnail" src="img/j.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
                       <a class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="k.jpg" alt="">
+                            <img class="img-fluid img-thumbnail" src="img/k.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
                       <a class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="l.jpg" alt="">
+                            <img class="img-fluid img-thumbnail" src="img/l.jpg" alt="">
                           </a>
                     </div>
                   </div>

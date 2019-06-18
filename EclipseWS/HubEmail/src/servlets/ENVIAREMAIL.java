@@ -49,6 +49,8 @@ public class ENVIAREMAIL extends HttpServlet {
         String anexo = (String)request.getParameter("anexo");
         String endereco = (String)request.getParameter("enderecoH");
         String senha = (String)request.getParameter("senhaH");
+        String portaSMTP = (String)request.getParameter("portaSMTP");
+        String protocoloSMTP = (String)request.getParameter("protocoloSMTP");
         
         System.err.println("destinatario: "+ destinatario);
         System.err.println("cc: "+ cc);
@@ -160,7 +162,7 @@ public class ENVIAREMAIL extends HttpServlet {
         
         try {
 			GerenciadorEmail ge = new GerenciadorEmail(endereco, senha);
-			ge.setSenderSession("587", "smtp.gmail.com");
+			ge.setSenderSession(portaSMTP, protocoloSMTP);
 			ge.enviarEmailHTML(assunto, mensagem, null, destinatarios, CCs, CCOs);
 			
 		} catch (Exception e) {

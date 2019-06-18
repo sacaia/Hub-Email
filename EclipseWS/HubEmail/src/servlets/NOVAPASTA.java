@@ -16,14 +16,14 @@ import util.GerenciadorEmail;
 /**
  * Servlet implementation class NOVACONTA
  */
-@WebServlet("/NOVACONTA")
-public class NOVACONTA extends HttpServlet {
+@WebServlet("/NOVAPASTA")
+public class NOVAPASTA extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NOVACONTA() {
+    public NOVAPASTA() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,13 +40,16 @@ public class NOVACONTA extends HttpServlet {
         String porta    = (String)request.getParameter("portaC");
         String mode     = (String)request.getParameter("modeC");
         String hub      = (String)request.getParameter("hubC");
-        String portaSMTP = (String)request.getParameter("portaSMTP");
-        String protocoloSMTP = (String)request.getParameter("protocoloSMTP");
+        
+        String nomePasta = (String)request.getParameter("nomePasta");
         Email email = null;
         
         try {
-        email = new Email(Integer.parseInt(hub), endereco, senha, host, porta, mode, portaSMTP, protocoloSMTP);
-        Emails.incluir(email);
+        email = new Email(Integer.parseInt(hub), endereco, senha, host, porta, mode);
+        GerenciadorEmail ge = new GerenciadorEmail(email.getEndereco(), email.getSenha());
+    	ge.setSenderSession(email.getPorta(), email.getHost());
+    	ge.setStore(email.getHost(), email.getProtocolo() + "s");
+    	ge.criarPasta(nomePasta);
         } catch (Exception e) {
         	System.err.println(e.getMessage());
         }

@@ -103,6 +103,28 @@ public class GerenciadorEmail {
 		this.emailStore = store;
 	}
 	
+	public void moverParaPasta(String origem, String destino, int numEmail)
+	{
+		try
+        {
+            String origin = origem; //nome pasta de origem
+            String dest = destino; //nome pasta de destino
+            
+            com.sun.mail.imap.IMAPFolder originFolder = (com.sun.mail.imap.IMAPFolder)emailStore.getFolder(origin);
+            originFolder.open(Folder.READ_WRITE); //antes de fazer qualquer operacao na folder precisa abrir, nesse caso apenas para ler
+            
+            Message[] msgs = new Message[1];
+            int msgnum = numEmail;
+            msgs[0] = originFolder.getMessage(msgnum); //get mensagem especifica baseada na numeracao
+            
+            originFolder.moveMessages(msgs, emailStore.getFolder(dest)); //mover mensagem
+            
+            originFolder.close(); //as folders devem ser fechadas depois de usadas
+            System.out.println("Email movido de pasta com sucesso!!");
+        }catch(Exception e)
+        { System.err.println(e); }
+	}
+	
 	public ArrayList<Message> receive() throws Exception
 	{		
 		Folder[] f = emailStore.getDefaultFolder().list();
@@ -182,7 +204,7 @@ public class GerenciadorEmail {
 			ret.add(fd.getName());
 		
 		return ret;
-	}
+	}	
 	
 	public Folder[] getFolders()
 	{

@@ -295,7 +295,7 @@ $(document).ready(function(){
                 index = id.slice(id.indexOf("-")+1, id.length);
                 $("#deletaveis").attr("value", value.replace(index + "/", ""));
                 value = $("#selecionados").attr("value");
-                $("#selecionados").attr("value", value.replace(index + "/", ""));
+                $(".emailPasta").attr("value", "");
                 $(this).closest(".email").removeClass("active");
                 $(this).removeClass("fas fa-check-square");
                 $(this).addClass("far fa-square");

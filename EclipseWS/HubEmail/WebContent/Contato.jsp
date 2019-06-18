@@ -89,13 +89,13 @@
                   <div class="row align-items-center">
                     <div class="col-lg-6 order-lg-2">
                       <div class="p-5">
-                        <img class="img-fluid rounded-circle" src="img/Vulpix2.0.png" alt="">
+                        <img class="img-fluid rounded-circle" src="img/sacaia.jpg" alt="">
                       </div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                       <div class="p-5">
                         <h2 class="display-4">Lucas Romani</h2>
-                        <p class="lead">Raposas</p>
+                        <p class="lead">cc17189@g.unicamp.br</p>
                       </div>
                     </div>
                   </div>
@@ -113,7 +113,7 @@
                     <div class="col-lg-6">
                       <div class="p-5">
                         <h2 class="display-4">Francisco Maian</h2>
-                        <p class="lead">Gado q atrai cabelo colorido</p>
+                        <p class="lead">cc17178@g.unicamp.br</p>
                       </div>
                     </div>
                   </div>
@@ -131,7 +131,7 @@
                     <div class="col-lg-6 order-lg-1">
                       <div class="p-5">
                         <h2 class="display-4">Tales Nicoletti</h2>
-                        <p class="lead">Gamer nato</p>
+                        <p class="lead">cc17117@g.uniacmp.br</p>
                       </div>
                     </div>
                   </div>

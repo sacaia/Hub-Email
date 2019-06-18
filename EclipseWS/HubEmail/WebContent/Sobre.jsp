@@ -89,7 +89,7 @@
                   <div class="row align-items-center">
                     <div class="col-lg-6 order-lg-2">
                       <div class="p-5">
-                        <img class="img-fluid rounded-circle" src="img/Empoleon2.1.png" alt="">
+                        <img class="img-fluid rounded-circle" src="img/maligno.jpg" alt="">
                       </div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
@@ -129,63 +129,63 @@
                   <div class="row text-center text-lg-left">
 
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="img/Coral1.jpg" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="img/a.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="img/Jellyfish1.jpg" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="img/b.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="img/Tartaruga4.jpg" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="img/c.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="img/Tartaruga5.jpg" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="img/d.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="img/Tartaruga6.jpg" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="img/e.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="f.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="g.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="h.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="i.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="j.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="k.jpg" alt="">
                           </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-6">
-                      <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+                      <a class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="l.jpg" alt="">
                           </a>
                     </div>
                   </div>

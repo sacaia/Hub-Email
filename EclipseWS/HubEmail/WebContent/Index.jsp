@@ -358,10 +358,7 @@ public String getTextFromMessage(Message message, int i) {
                             </li>
                             
                             <li class="nav-item align-middle centerY mr-2">
-                            <form method="POST" action="Index.jsp">
-                            	<input type="hidden" id="selecionados" name="marcarLido" value=''>
                                 <i class="fas fa-envelope fa-2x nao-lida icon-menu" id="lida-naoLida" tabindex="1" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Marcar como lida"></i>
-                            </form>
                             </li>
                             
                             <li class="nav-item align-middle centerY">
@@ -569,8 +566,6 @@ public String getTextFromMessage(Message message, int i) {
 	                   					
 	                   			for (Address aux :msgs[i].getAllRecipients())
 	                   				allRecipients += aux.toString() + "; ";
-	                   				
-	                   			
 	                   	%>
 	                   	
 	                   	<li class="list-group-item list-group-item-action pl-2 email">

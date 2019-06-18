@@ -294,6 +294,8 @@ $(document).ready(function(){
                 id = $(this).closest("li").find("div").attr("id");
                 index = id.slice(id.indexOf("-")+1, id.length);
                 $("#deletaveis").attr("value", value.replace(index + "/", ""));
+                value = $("#selecionados").attr("value");
+                $("#selecionados").attr("value", value.replace(index + "/", ""));
                 $(this).closest(".email").removeClass("active");
                 $(this).removeClass("fas fa-check-square");
                 $(this).addClass("far fa-square");
@@ -313,6 +315,8 @@ $(document).ready(function(){
                 id = $(this).closest("li").find("div").attr("id");
                 index = id.slice(id.indexOf("-")+1, id.length);
                 $("#deletaveis").attr("value", value + index + "/");
+                value = $("#selecionados").attr("value");
+                $("#selecionados").attr("value", value + index + "/");
                 $(this).closest(".email").addClass("active");
                 $(this).removeClass("far fa-square");
                 $(this).addClass("fas fa-check-square");
